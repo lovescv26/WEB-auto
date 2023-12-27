@@ -1,0 +1,9 @@
+node_modules/
+*.swp
+*.swo
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+
