@@ -46,7 +46,10 @@ test.describe('測試套件', () => {
 
 
 let ip="192.168.120.218";
-console.log(ip);
+//console.log(ip);
+	//it will show 3 times that is in line with the number of features
+let love_firemware_name="IS-5121_v1.1.14N.ima";
+
 
 test.use({
 	ignoreHTTPSErrors: true,
@@ -55,7 +58,7 @@ test.describe.configure({mode:' serial' });
 let page;
 test.beforeAll(async({browser}) => {
 	page = await browser.newPage();
-	await page.goto('https://192.168.120.218/#login');
+	await page.goto('https://'+ip+'/#login');
 	
 	await page.getByPlaceholder('Username').fill('admin');
 	await page.waitForTimeout(2000);
@@ -88,12 +91,14 @@ test.beforeAll(async({browser}) => {
 	}
 });
 test('run 1',async () => {
-	await page.goto('https://192.168.120.218/#sensors');
-	
+	await page.goto('https://'+ip+'/#sensors');
 });
 test('run 2',async () => {
 	await page.goto('https://'+ip+'/#login');
 });
 test('run 3',async () => {
 	//await page.goto('https://192.168.120.218/
+	await page.goto('https://'+ip+'/#maintenance/firmware_update_wizard');
+	await page.locator('#mainfirmware_image').setInputFiles(love_firemware_name);
+	await page.getByRole('button', { name: 'Start firmware update' }).click();	
 });

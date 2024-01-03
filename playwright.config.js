@@ -35,18 +35,35 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+		use: 
+		{ ...devices['Desktop Chrome'] ,
+			/*
+			viewport:
+			{
+				screenshot:"on",
+				video:"on",
+				trace:"on",
+			},
+			// if i put this and error let page; page = await browser.newPage();
+			*/
+		},
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    //{
+    //    name: 'Microsoft Edge',
+    //    use:{...devices['Desktop Edge'], channel: 'msedge'  },
+    //}, 
+	  // test my origin borwser a  lovelovequeen
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    //{
+    //  name: 'firefox',
+    //  use: { ...devices['Desktop Firefox'] },
+    //},
+
+    //{
+    //  name: 'webkit',
+    //  use: { ...devices['Desktop Safari'] },
+    //},
 
     /* Test against mobile viewports. */
     // {
@@ -68,6 +85,11 @@ module.exports = defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
+	contextOptions:{
+		//ignoreHTTPSErrors:ture
+		ignoreHTTPSErrors:true
+	},
+	//[but didn't use..](https://github.com/playwright-community/jest-playwright/issues/247)
 
   /* Run your local dev server before starting the tests */
   // webServer: {
