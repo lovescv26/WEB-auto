@@ -38,6 +38,7 @@ module.exports = defineConfig({
 		use: 
 		{ ...devices['Desktop Chrome'] ,
 			/*
+			 * Thu Jan  4 09:05:51 CST 2024
 			viewport:
 			{
 				screenshot:"on",
@@ -85,10 +86,16 @@ module.exports = defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
+	/*
+	 * {{{ 
+	 * Thu Jan  4 09:08:08 CST 2024
 	contextOptions:{
 		//ignoreHTTPSErrors:ture
 		ignoreHTTPSErrors:true
 	},
+	---}}}
+	*/
+
 	//[but didn't use..](https://github.com/playwright-community/jest-playwright/issues/247)
 
   /* Run your local dev server before starting the tests */
@@ -97,5 +104,6 @@ module.exports = defineConfig({
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+
 });
 

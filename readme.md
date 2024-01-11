@@ -329,6 +329,14 @@ test.beforeEach('login', async({page,request })=>{
 `const response = await page.waitForRequest(url => url.url().includes('templateFrom3rdRedirect'));`
 `'templateFrom3rdRedirect'` : is the part of URL unique
 
+---
+
+##   
+
+
+
+
+
 
 
 

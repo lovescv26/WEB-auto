@@ -1,158 +1,17 @@
+
 // @ts-check
-// [ref reuse single page between tests](https://playwright.dev/docs/test-retries#reuse-single-page-between-tests)
 const { test,expect } = require('@playwright/test');
-const { request } = require('@playwright/test');
-//const { response } = require('@playwright/test');
-//const {newTest} = require('fixture.js'); 	==> error didint catvh
-/*
- * {{{ 
-//小應 竟然給我出錯 可見 只有人多的地方AI才有用==BING generator error ==
-const { chromium } = require('playwright');
-test.describe('測試套件', () => {
-	let browser;
-	test.before(async () => {
-		browser = await chromium.launch();
-	});
-	test.after(async () => {
-		await browser.close();
-	});
-	test.beforeEach(async () => {
-		// 每個測試用例之前都會執行
-	await page.goto('https://192.168.120.218/#login');
-	await page.getByPlaceholder('Username').fill('admin');
-	await page.getByPlaceholder('Password', { exact: true }).fill('11111111');
-	await page.getByRole('button', { name: 'Sign me in' }).click();
-	});
-	test.afterEach(async () => {
-		// 每個測試用例之後都會執行
-	});
-	test('sensor ', async () => {
-		// 執行測試用例 1
-	await page.goto('https://192.168.120.218/#sensors');
-	});
-	test('測試用例 2', async () => {
-		// 執行測試用例 2
-	});
-	test('測試用例 3', async () => {
-		// 執行測試用例 3
-	});
-});
- * }}}
-*/
-
 let ip="192.168.120.218";
-//console.log(ip);
-	//it will show 3 times that is in line with the number of features
-let love_firemware_name="IS-5121_v1.1.14N.ima";
-
 test.use({
 	ignoreHTTPSErrors: true,
   });
-
-
-/*
-test(' out run 1 ', async  ({page}) => {
+let page;
+test.beforeEach('login', async({page})=>{
 	await page.goto('https://'+ip+'/#login');
 	await page.getByPlaceholder('Username').fill('admin');
-	await page.waitForTimeout(2000);
-//	await page.getByPlaceholder('Password', { exact: true }).fill('admin');
 	await page.getByPlaceholder('Password', { exact: true }).fill('11111111');
 	await page.getByRole('button', { name: 'Sign me in' }).click();
-	
-});
-*/
-
-//test.describe.configure({mode:' serial' });   // => in doc it's not 
-let page;
-
-let InputUser="admin";
-const InputPassword="11111111";
-test.beforeEach('login', async({page,request })=>{
-	let loginFlag;
-	//let page = await browser.newPage();
-	//console.log(page);
-	await page.goto('https://'+ip+'/#login');
-	//const responsePromise = page.waitForResponse('https://'+ip+'/#login');
-	await page.getByPlaceholder('Username').fill(InputUser);
-	////await page.getByPlaceholder('Username').press('Tab');
 	await page.waitForTimeout(50);
-	await page.getByPlaceholder('Password', { exact: true }).fill(InputPassword);
-	await page.waitForTimeout(50);
-	await page.getByRole('button', { name: 'Sign me in' }).click();
-	/*
-	async function isFinished(response){
-		return reponse.url().includes("#dash")&& response.status() ===200 ;
-	}
-	const response = await page.waitForResponse(async (response) => await isFinished(response));
-	*/
-	//loginFlag = await page.getByText('Login Failed').isVisible();
-	loginFlag = await page.getByText('Login Failed').isVisible();
-	//loginFlag = await page.getByRole('tooltip').isVisible();
-	//loginFlag = await expect(page.locator("text=Login Failed")).not.toBeVisible();
-	console.log(" username: " + InputUser + " | password : " + InputPassword );
-	console.log(" validate : " + loginFlag );
-	await page.waitForTimeout(4488);
-	const response = await page.waitForRequest(url => url.url().includes('dashboard'));	
-	//console.log(response);
-	if(await page.getByText('Login Failed').isVisible()){
-		console.log("========================================");
-		console.log("    ERROR    :               ");
-		console.log(" didn't login !!!        ");
-	}
-
-	/*
-	const response = await request.post("https://"+ip+"/api/session",{
-		data:{
-			"username":"admin",
-			"password":"11111111",
-		}
-	});
-	*/
-	//console.log(response);
-	await page.waitForTimeout(1000);
-
-
-});
-test('run 1 -- sensor',async ({page}) => {
-	//await page.waitForTimeout(10000);
-	//await page.goto('https://'+ip+'/#login');
-	await page.goto('https://'+ip+'/#sensors');
-	await page.waitForTimeout(2000);
-	//[screenshot](https://testersdock.com/playwright-screenshot-capture/#:~:text=Go%20to%20Playwright.config.ts%20file%20and%20under%20use%20add,in%20Playwright%20provides%20other%20options%20to%20capture%2Fmanipulate%20screenshots.)'
-	//await page.getByRole('heading', { name: 'Sensor Reading Live reading' });
-	//await page.getByText('Sensor Reading ').isVisible();
-	 await page.getByRole('heading', { name: 'Sensor Reading Live reading' }) 
-	//  Error: locator.isVisible: Error: strict mode violation: getByText('Sensor Reading ') resolved to 3 elements:            
-	await page.screenshot({path:'screenshot/sensor.png',fullPage:true});
-
-});
-//test('run 2 -- syslog',async ({}) => { => TypeError: Cannot read properties of undefined (reading 'goto')
-test('run 2 -- syslog',async ({page}) => {
-	//await page.waitForTimeout(10000);
-	await page.goto('https://'+ip+'/#login');
-	await page.goto('https://'+ip+'/#settings/log/advanced_log');
-	await page.waitForTimeout(1000);
-	await page.screenshot({path:'screenshot/advanced_log.png',fullPage:true});
-
-});
-test('run 3',async ({page}) => {
-	//await page.goto('https://192.168.120.218/
-	//await page.waitForTimeout(10000);
-	await page.goto('https://'+ip+'/#login');
-	await page.goto('https://'+ip+'/#maintenance/firmware_update_wizard');
-	await page.locator('#mainfirmware_image').setInputFiles(love_firemware_name);
-	await page.getByRole('button', { name: 'Start firmware update' }).click();	
-});
-test('run 4',async ({page}) => {
-	//await page.waitForTimeout(10000);
-	await page.goto('https://'+ip+'/#login');
-	await page.waitForTimeout(2000);
-	await page.goto('https://'+ip+'/#logs/audit-log');
-	
-	//await page.pause();
-	await page.waitForTimeout(5000);
-	await page.screenshot({path:'screenshot/audit-log.png',fullPage:true });
-
 });
 test('run 5 -- settings/date_time ',async ({page}) => {
 	await page.goto('https://'+ip+'/#settings/date_time');
@@ -368,24 +227,15 @@ test('run 17 -- system firewall',async({page}) => {
 	await page.screenshot({path: 'screenshot/settings/firewall/port_firewall/add_port_rule.png',fullPage:true});
 });
 
-test('run 18',async({page}) => {
-	//console.log(page);
-	console.log("------------------");
+test('run 18 -- User Management ',async({page}) => {
 	await page.goto('https://'+ip+'/#settings/users');
+	await page.waitForTimeout(900);
 	//await page.screenshot({path: 'screenshot/settings/video/video.png',fullPage:true});
 	let LoveLayer = await page.$('#idgroup_by_channel');
-	let Loveflag=0;
 	//let LoveLayer = await page.$('#group_by_channel');//===>error
-	do{
-	await page.goto('https://'+ip+'/#settings/users');
-	console.log("Lovelayer : "+Loveflag+ "  " + LoveLayer);
+	console.log("Lovelayer : " + LoveLayer);
 	console.log(typeof(LoveLayer));
 	console.log("--------------------");
-	LoveLayer = await page.$('#idgroup_by_channel');
-	await page.waitForTimeout(100);
-	Loveflag++;
-	}while(LoveLayer ===null);
-
 	let allElements = await LoveLayer.$$("option");
 	console.log("allelements ====> " + allElements);
 	console.log(typeof(allElements));
@@ -434,7 +284,4 @@ test('run 20 -- ipmi interfaces ',async({page}) => {
 	await page.goto('https://'+ip+'/#settings/ipmi_interfaces');
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/ipmi_interfaces/ipmi_interfaces.png',fullPage:true});
-});
-test('run 21',async({page}) => {
-
 });
