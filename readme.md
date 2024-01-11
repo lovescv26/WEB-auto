@@ -1,3 +1,11 @@
+## 	ERR_CONNECTION_TIMED_OUT
+```
+Error: page.goto: net::ERR_CONNECTION_TIMED_OUT at https://192.168.120.218/#login
+Call log:
+  - navigating to "https://192.168.120.218/#login", waiting until "load"
+```
+就代表 你的機器沒開
+
 ## error 1 beforeALL  (test error)
 #  beforeAll   XD
 Error: "context" and "page" fixtures are not supported in "beforeAll" since they are created on a per-test basis.
@@ -213,7 +221,12 @@ that match the option selector and store them in a variable named allElements
 
 #  omg request  api!!!!!
 Wed Jan 10 11:05:28 CST 2024
+[api -first](https://stackoverflow.com/questions/71398892/how-to-access-response-body-correctly-when-using-playwright)
+這個我看了好幾遍 沒想到 最後還是逃不開...==
 ```
+const { request } = require('@playwright/test');
+const { test,expect } = require('@playwright/test');
+let ip="192.168.120.218";
 test.beforeEach('login', async({page,request})=>{
   //const loginResponse = await request.post('https://'+ip+'/api/session' , {	==> error 
 	const loginResponse = await request.post('https://'+ip+'/api/session' , {
@@ -228,13 +241,93 @@ test.beforeEach('login', async({page,request})=>{
 對我來說終於有成功了
 但是還不夠 只是一個開頭
 
-## 
+## api  in webtool
 ```
-Error: page.goto: net::ERR_CONNECTION_TIMED_OUT at https://192.168.120.218/#login
-Call log:
-  - navigating to "https://192.168.120.218/#login", waiting until "load"
+--- login-error.txt	2024-01-10 14:43:17.516459800 +0800
++++ login-correct.txt	2024-01-10 14:43:14.481453000 +0800
+@@ -3,7 +3,7 @@
+ Accept-Encoding: gzip, deflate, br
+ Accept-Language: zh-TW,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+ Connection: keep-alive
+-Content-Length: 30
++Content-Length: 32
+ Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+ Cookie: QSESSIONID=4f783e0f3a2236dc19dTYAlUQOxY4u; selected_lang=en-us; lang=en-us
+ Host: 192.168.120.218
 ```
-就代表 你的機器沒開
+這是 request head
+上面的差距 只有 密碼不同
+所以我就在看 playwright 可以按完後 
+如何得到他的 response!!
+這就是為什麼我需要 
+目的: 看是否登入!
+
+### use  request.post (correct vs error password )
+```
+	const loginResponse0 = await request.post('https://'+ip+'/api/session' , {
+		data : {
+			username:"admin",
+			password:"11111111",
+		}
+		});	
+	const loginResponse1 = await request.post('https://'+ip+'/api/session' , {
+		data : {
+			username:"admin",
+			password:"0111011",
+		}
+		});	
+	console.log(loginResponse0);
+	console.log("------");
+	console.log(loginResponse1);
+```
+result:  same 
+
+
+##   login error because delete beforeall ...(?
+[莫名其妙的 虛假技術==](https://stackoverflow.com/questions/70262213/playwright-before-each-for-all-spec-files)
+有出問題  因為 現在登入 直接出問題 (應該說前面 登入後 不能繼續使用)
+可能是 我把 beforeAll (就算 沒有 code...) ==
+我就在看 fixture.js 的方式 結果
+```
+Error: Cannot find module 'fixture.js'
+Require stack:
+- D:\tem\WEB-auto\tests\new.spec.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\transform\transform.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\common\config.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\reporters\json.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\reporters\html.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\runner\reporters.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\runner\runner.js
+- D:\tem\WEB-auto\node_modules\playwright\lib\cli.js
+- D:\tem\WEB-auto\node_modules\playwright\cli.js
+- D:\tem\WEB-auto\node_modules\@playwright\test\cli.js
+
+   at new.spec.js:6
+
+     4 | const { request } = require('@playwright/test');
+     5 | //const { response } = require('@playwright/test');
+   > 6 | const {newTest} = require('fixture.js');
+```
+	
+#### solution 
+```
+test.beforeEach('login', async({page,request })=>{
+	const response = await request.post("https://"+ip+"/api/session",{
+		data:{
+			"username":"admin",
+			"password":"11111111",
+		}
+	});
+});
+```
+因為我再用 login api 所以他直接 無法再同個登入 資訊
+
+---
+
+## how to capture requests and responses in playwright after hitting a button?
+[ref](https://stackoverflow.com/questions/67434530/how-to-capture-requests-and-responses-in-playwright-after-hitting-a-button)
+`const response = await page.waitForRequest(url => url.url().includes('templateFrom3rdRedirect'));`
+`'templateFrom3rdRedirect'` : is the part of URL unique
 
 
 
