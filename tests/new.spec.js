@@ -2,22 +2,20 @@
 // [ref reuse single page between tests](https://playwright.dev/docs/test-retries#reuse-single-page-between-tests)
 const { test,expect } = require('@playwright/test');
 const { request } = require('@playwright/test');
-
+//const { response } = require('@playwright/test');
+//const {newTest} = require('fixture.js'); 	==> error didint catvh
 /*
  * {{{ 
 //小應 竟然給我出錯 可見 只有人多的地方AI才有用==BING generator error ==
 const { chromium } = require('playwright');
 test.describe('測試套件', () => {
 	let browser;
-
 	test.before(async () => {
 		browser = await chromium.launch();
 	});
-
 	test.after(async () => {
 		await browser.close();
 	});
-
 	test.beforeEach(async () => {
 		// 每個測試用例之前都會執行
 	await page.goto('https://192.168.120.218/#login');
@@ -25,20 +23,16 @@ test.describe('測試套件', () => {
 	await page.getByPlaceholder('Password', { exact: true }).fill('11111111');
 	await page.getByRole('button', { name: 'Sign me in' }).click();
 	});
-
 	test.afterEach(async () => {
 		// 每個測試用例之後都會執行
 	});
-
 	test('sensor ', async () => {
 		// 執行測試用例 1
 	await page.goto('https://192.168.120.218/#sensors');
 	});
-
 	test('測試用例 2', async () => {
 		// 執行測試用例 2
 	});
-
 	test('測試用例 3', async () => {
 		// 執行測試用例 3
 	});
@@ -55,6 +49,7 @@ test.use({
 	ignoreHTTPSErrors: true,
   });
 
+
 /*
 test(' out run 1 ', async  ({page}) => {
 	await page.goto('https://'+ip+'/#login');
@@ -69,82 +64,63 @@ test(' out run 1 ', async  ({page}) => {
 
 //test.describe.configure({mode:' serial' });   // => in doc it's not 
 let page;
-test.beforeAll(async({browser}) => {
-/*
-	page = await browser.newPage();
-	await page.goto('https://'+ip+'/#login');
-	await page.screenshot({path:'screenshot/login.png',fullPage:true});
-	await page.getByPlaceholder('Username').fill('admin');
-	await page.waitForTimeout(2000);
-	await page.getByPlaceholder('Password', { exact: true }).fill('admin');
-	await page.waitForTimeout(1000);
-	await page.getByRole('button', { name: 'Sign me in' }).click();
-	await page.waitForTimeout(3000);
-	const look = await page.getByText('Password should be changed').isVisible();
-	console.log(look);
-	if(await page.getByText('Password should be changed').isVisible()){
-		console.log(' change password ');
-	await page.getByPlaceholder('New Password').fill('11111111');
-	await page.getByPlaceholder('Confirm Password').fill('11111111');
-	page.once('dialog', dialog => {
-		console.log(`Dialog message: ${dialog.message()}`);
-		dialog.dismiss().catch(() => {});
-	});
-	await page.getByRole('button', { name: 'Submit' }).click();
-	await page.getByPlaceholder('Username').fill('admin');
-	////await page.getByPlaceholder('Username').press('Tab');
-	await page.waitForTimeout(1000);
-	await page.getByPlaceholder('Password', { exact: true }).fill('11111111');
-	await page.waitForTimeout(2000);
-//	await page.getByRole('button', { name: 'Sign me in' }).click();
-	await page.locator('text=Sign me in').click();	
-	//await page.pause();
-	}
-	else
-	{
-	await page.getByPlaceholder('Username').fill('admin');
-	await page.getByPlaceholder('Password', { exact: true }).fill('11111111');
-	await page.getByRole('button', { name: 'Sign me in' }).click();
-	}
-	*/
-});
-//test('run 1 -- sensor',async function({page}) => {    // error
-//test('run 1 -- sensor',async ({page}) => {	 // error didnt login...==WTF
 
-test.beforeEach('login', async({page,request})=>{
+let InputUser="admin";
+const InputPassword="11111111";
+test.beforeEach('login', async({page,request })=>{
+	let loginFlag;
 	//let page = await browser.newPage();
 	//console.log(page);
 	await page.goto('https://'+ip+'/#login');
 	//const responsePromise = page.waitForResponse('https://'+ip+'/#login');
 	
-	await page.getByPlaceholder('Username').fill('admin');
+
+
+	await page.getByPlaceholder('Username').fill(InputUser);
 	////await page.getByPlaceholder('Username').press('Tab');
 	await page.waitForTimeout(50);
-	await page.getByPlaceholder('Password', { exact: true }).fill('11111111');
+	await page.getByPlaceholder('Password', { exact: true }).fill(InputPassword);
 	await page.waitForTimeout(50);
-	await page.getByRole('button', { name: 'Sign me in' }).click();
-	//await page.locator('text=Sign me in').click();	
-	//let passwor = await response.allHeaders();
-	//console.log(passwor);
-//	let loveboey=await response.body();
-//	console.log(loveboey);
-	//const responsePromise = page.waitForResponse('https://'+ip+'/#dashboard');
-	//await page.getByText('trigger response').click();
-	//const response = await responsePromise;
-	const loginResponse = await request.post('https://'+ip+'/api/session' , {
-		data : {
-			username:"admin",
-			password:"1111111",
-		}
-		});	
-	console.log(loginResponse);
 
-	await page.waitForTimeout(1000);
-	//console.log(request);
-	
+	await page.getByRole('button', { name: 'Sign me in' }).click();
+
+	/*
+	async function isFinished(response){
+		return reponse.url().includes("#dash")&& response.status() ===200 ;
+	}
+	const response = await page.waitForResponse(async (response) => await isFinished(response));
+	*/
+
+	//loginFlag = await page.getByText('Login Failed').isVisible();
+	loginFlag = await page.getByText('Login Failed').isVisible();
+	//loginFlag = await page.getByRole('tooltip').isVisible();
+	//loginFlag = await expect(page.locator("text=Login Failed")).not.toBeVisible();
+	console.log(" username: " + InputUser + " | password : " + InputPassword );
+	console.log(" validate : " + loginFlag );
+	const response = await page.waitForRequest(url => url.url().includes('dashboard'));	
+	console.log(response);
+
+	if(await page.getByText('Login Failed').isVisible()){
+		console.log("========================================");
+		console.log("    ERROR    :               ");
+		console.log(" didn't login !!!        ");
+	}
+
+
+	/*
+	const response = await request.post("https://"+ip+"/api/session",{
+		data:{
+			"username":"admin",
+			"password":"11111111",
+		}
+	});
+	*/
 	//console.log(response);
+	await page.waitForTimeout(1000);
+
+
 });
-test('run 1 -- sensor',async ({page}) => {
+test.only('run 1 -- sensor',async ({page}) => {
 	//await page.waitForTimeout(10000);
 	//await page.goto('https://'+ip+'/#login');
 	await page.goto('https://'+ip+'/#sensors');
