@@ -14,6 +14,10 @@
 ip="";
 validate_ip="";
 ip_flag=1;
+origin_ip="";
+#origin_ip=cat ./test.js|grep "let"|cut -d ' ' -f 2 ;
+origin_ip=$(cat ./test.js|grep "let"|cut -d ' ' -f 2) ;
+echo -e "or:  ${origin_ip} \n\n";
 while [ ${ip_flag} == 1 ]
 do
 echo -e " \nU need to input IP address ";
@@ -40,8 +44,6 @@ echo -e "\n\n you file in the /tests/uploadFiles "
 for file in $(ls ./tests/uploadFiles)
 do
 	Extension=${file##*.}
-	count_uploadfile=$((${count_uploadfile}+1));
-	echo  "[${count_uploadfile}    ->    ${file}]";
 	case "${Extension}" in
 		ima)
 			echo "";;
@@ -49,3 +51,17 @@ do
 			rm -v ./tests/uploadFiles/$file;;
 	esac	
 done
+for file in $(ls ./tests/uploadFiles)
+do
+	count_uploadfile=$((${count_uploadfile}+1));
+	echo  "[${count_uploadfile}    ->    ${file}]";
+	#case "${Extension}" in
+	#	ima)
+	#		echo "";;
+	#	*)
+	#		rm -v ./tests/uploadFiles/$file;;
+	#esac	
+done
+sed -i "s/${origin_ip}/ip=${ip}/g" ./test.js
+
+
