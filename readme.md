@@ -331,11 +331,68 @@ test.beforeEach('login', async({page,request })=>{
 
 ---
 
-##   
+##   extension bash
+[ref](https://phoenixnap.com/kb/bash-case-statement)
+
+## javascript import and export
+[js import export](https://github.com/microsoft/playwright/issues/13959)
+[ export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+> Every module can have two different types of export, named export and default export
+i need a core to control all  `*.spec.js` --> (this is palywright test )
+
+##  (self) bash case
+[ref](https://www.yiibai.com/bash/bash-case-statement.html)
+```bash
+case "${validate_ip}" in
+	Y) 
+		echo " double check ======================>  ${ip} ";
+		ip_flag=0;;
+	y)
+		echo " double check ======================>  ${ip} ";
+		ip_flag=0;;
+	0)
+		echo " double check ======================>  ${ip} ";
+		ip_flag=0;;
+	*)
+		echo "plz redo " ;;
+esac
+```
+這是我用的原始寫法
+後來他是可以用 `|`
+好氣喔 那我改一下 XD
+```bash
+case "${validate_ip}" in
+	yes|Yes|Y|y|0)
+		echo " double check ======================>  ${ip} ";
+		ip_flag=0;
+		;;
+	*)
+		echo "plz redo " ;
+		;;
+esac
+```
+> Bash 語句只接受一次值，然後多次測試該值。
+> 一旦找到模式就執行與其連結的語句,它將停止搜索模式,這與C語句幾乎相反
+
+> The case statement simplifies complex conditions with multiple different choices. This statement is easier to maintain and more readable than nested if statements[.](https://phoenixnap.com/kb/bash-case-statement)
 
 
+## bash function
+[ref](https://linuxize.com/post/bash-functions/)
+我只能用  `function_name() { command };`
+> if recall need to use only name
+>> didn't use [parentheses](http://www.blairenglish.com/exercises/technology_web/exercises/computer_code_symbols_signs_names_1/computer_code_symbols_signs_names_1.html)
 
+## bash for loop
+[ref](https://stackoverflow.com/questions/49110/how-do-i-write-a-for-loop-in-bash)
 
+## bash read
+[ref](https://phoenixnap.com/kb/bash-read)
+`read -p " {you want put something } " ${variable} `
+當時記得在一大堆資料中
+為什麼用這樣的方式
+因為他給使用者 更直觀的方式
+make code clear!!!!
 
 
 
