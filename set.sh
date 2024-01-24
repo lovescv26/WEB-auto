@@ -2,9 +2,9 @@
 ### {{{ 
 ### ----------------------
 ### created : Mon Jan 22 11:14:41 CST 2024
-### Version : 3 
+### Version : 4 
 ### author : lovelovequeen
-### time   : Mon Jan 22 11:31:11 CST 2024
+### time   : Wed Jan 24 09:16:35 CST 2024
 ### [ref](https://linuxhandbook.com/bash-variables/)
 ### [ref](https://linuxhandbook.com/bash-arrays/)
 ### [ref](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script)
@@ -26,23 +26,31 @@ set_ip(){
 echo -e "The initial IP  :  ${origin_ip} \n\n";
 while [ ${ip_flag} == 1 ]
 do
-echo -e " \nU need to input IP address ";
-read ip;
+#echo -e " \nU need to input IP address ";
+read -p  " \nU need to input IP address " ip;
 echo -e " if U ip address is  :: \e[31m[${ip}] \e[0m ";
-echo -e " press \"Y\" \"y\"  or \"0\" is comfirm ip address  ";
-read validate_ip;
+#echo -e " press \"Y\" \"y\"  or \"0\" is comfirm ip address  ";
+read -p  " press \"Y\" \"y\"  or \"0\" is comfirm ip address  " validate_ip;
 case "${validate_ip}" in
-	Y) 
+	#Y) 
+	#	echo " double check ======================>  ${ip} ";
+	#	ip_flag=0;;
+	#y)
+	#	echo " double check ======================>  ${ip} ";
+	#	ip_flag=0;;
+	#0)
+	#	echo " double check ======================>  ${ip} ";
+	#	ip_flag=0;;
+	#*)
+	#	echo "plz redo " ;;
+	yes|Yes|Y|y|0)
 		echo " double check ======================>  ${ip} ";
-		ip_flag=0;;
-	y)
-		echo " double check ======================>  ${ip} ";
-		ip_flag=0;;
-	0)
-		echo " double check ======================>  ${ip} ";
-		ip_flag=0;;
+		ip_flag=0;
+		;;
 	*)
-		echo "plz redo " ;;
+		echo "plz redo " ;
+		;;
+
 esac
 done
 }
@@ -120,8 +128,8 @@ set_ip;
 set_bmc;
 catch_ver;
 execute=0;
-echo "exectue how many time ? ";
-read execute 
+#echo "exectue how many time ? ";
+read -p  "exectue how many time ? " execute 
 for i in $(seq 1 ${execute})
 do
 	echo " !!!====> ${i}" >> log.txt;

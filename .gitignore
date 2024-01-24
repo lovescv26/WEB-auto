@@ -7,3 +7,12 @@ node_modules/
 /playwright/.cache/
 /screenshot/*
 
+tests/uploadFiles/*
+
+note/correct.txt
+note/error.txt
+note/t0.txt
+note/t1.txt
+log.txt
+note/ssssss.txt
+
