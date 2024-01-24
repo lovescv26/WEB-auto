@@ -2,6 +2,7 @@
 // [ref reuse single page between tests](https://playwright.dev/docs/test-retries#reuse-single-page-between-tests)
 const { test,expect } = require('@playwright/test');
 const { request } = require('@playwright/test');
+import {ip} from '../javascript_ip.js';
 //const { response } = require('@playwright/test');
 //const {newTest} = require('fixture.js'); 	==> error didint catvh
 /*
@@ -40,7 +41,7 @@ test.describe('測試套件', () => {
  * }}}
 */
 
-let ip="192.168.120.218";
+//let ip="192.168.120.218"; // Mon Jan 22 17:02:19 CST 2024 
 //console.log(ip);
 	//it will show 3 times that is in line with the number of features
 let love_firemware_name="IS-5121_v1.1.14N.ima";

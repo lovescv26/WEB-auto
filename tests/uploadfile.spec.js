@@ -1,10 +1,10 @@
-
-
 // @ts-check
 const { test,expect } = require('@playwright/test');
 const { request } = require('@playwright/test');
+import {ip} from '../javascript_ip.js';
+import {updateBMCfile} from '../bmc_update.js';
 //const { ip } = require('./new.spec.js');
-export let ip="192.168.120.218";
+//export let ip="192.168.120.218";
 let InputUser="admin";
 const InputPassword="11111111";
 test.use({
@@ -24,7 +24,7 @@ test('show export?',async ({page}) => {
 //	await page.locator('#mainfirmware_image').click();
 //	await page.locator('#mainfirmware_image').setInputFiles('tests/uploadFiles/IS-5121_v1.1.18N.ima');
 	//await page.locator('#textmainfirmware_image').setInputFiles('./tests/uploadFiles/IS-5121_v1.1.18N.ima');
-	await page.locator('#mainfirmware_image').setInputFiles('./tests/uploadFiles/IS-5121_v1.1.18N.ima');
+	await page.locator('#mainfirmware_image').setInputFiles('./tests/uploadFiles/'+updateBMCfile);
 	await page.waitForTimeout(1600);
 	await page.getByRole('button', { name: 'Start firmware update' }).click();
 	//expect(await page.locator('#textmainfirmware_image')).toHaveText('IS-5121_v1.1.1.18N.ima');
@@ -45,10 +45,11 @@ test('show export?',async ({page}) => {
 	let loveUploading;
 	do{
 	loveUploading = await page.locator("//span[contains(@class,'progress-info')]").textContent();
-	console.log("Uploading  ===>  "+loveUploading);
-	await page.waitForTimeout(1000);
+	//console.log("Uploading  ===>  "+loveUploading);		// dev debugger
+	await page.waitForTimeout(1024);
 	}while(loveUploading !== "Uploading 100%");
-	page.on('response', res => console.log(`<< : ${res.status()} ${res.url()}`));
+	//page.on('response', res => console.log(`<< : ${res.status()} ${res.url()}`));		 	//dev can debugger (just only api response)
+	
 
 	await page.locator('div').filter({ hasText: /^Full Flash$/ }).getByRole('insertion').click();
 	//await page.locator('div').filter({ hasText: Full Flash }).getByRole('insertion').click();

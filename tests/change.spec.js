@@ -1,8 +1,11 @@
 // @ts-check
 // [ref reuse single page between tests](https://playwright.dev/docs/test-retries#reuse-single-page-between-tests)
 const { test,expect } = require('@playwright/test');
+//let {ip} = require('../javascript_ip.js')
+import {ip} from '../javascript_ip.js';
 
-let ip="192.168.120.218";
+//console.log(ip);
+//let ip="192.168.120.218";
 //console.log(ip);
 test.use({
 	ignoreHTTPSErrors: true,
