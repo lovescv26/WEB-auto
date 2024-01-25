@@ -67,6 +67,8 @@ time 可以適度調整
 
 
 ## api error
+當時要解決 一直 login 的問題
+(因為每一次TEST 都需要登陸 原本想要用API的方式)
 [api-post](https://stackoverflow.com/questions/71398892/how-to-access-response-body-correctly-when-using-playwright)
 當你用API 是會一直出錯 ==
 我原本看到  
@@ -74,26 +76,21 @@ time 可以適度調整
 ![post](./pic/api_post.png)
 ```js
 test('run 7 -- login and get response',async({page,request }) =>{
-		//await page.waitForTimeout(7000);
-
 		await page.goto('https://'+ip+'/#login');
 		/*
 		   let loginResponse = await request.post('/api/session',{
-data:{
-username: "admin",
-password: "11111111",
-}
+		data:{
+		username: "admin",
+		password: "11111111",
+		}
 });
 
 		 */
 		//const loginResponse0 = await loginResponse.ok();
-
 });
 ```
 `==> TypeError: apiRequestContext.post: Invalid URL`
 ![api-er](./pic/api-error.png)
-(loveloveNTC)
-
 
 ---
 
@@ -207,11 +204,11 @@ if use `id="idgroup_by_channel` is	*correct* => `LoveLayer : JSHandle@node`
 is a method in Playwright 
 that selects the first element on the current page 
 that matches the specified selector.
-
+ 
 let LoveLayer = await page.$('#idgroup_by_channel');
 selects the element with ID idgroup_by_channel 
 and stores it in a variable named LoveLayer.
-
+ 
 let allElements = await LoveLayer.$$("option");
 will select all elements in the LoveLayer element 
 that match the option selector and store them in a variable named allElements
@@ -219,16 +216,14 @@ that match the option selector and store them in a variable named allElements
 ---
 
 
-#  omg request  api!!!!!
+#  request  api!!!!!
 Wed Jan 10 11:05:28 CST 2024
 [api -first](https://stackoverflow.com/questions/71398892/how-to-access-response-body-correctly-when-using-playwright)
-這個我看了好幾遍 沒想到 最後還是逃不開...==
-```
+```js
 const { request } = require('@playwright/test');
 const { test,expect } = require('@playwright/test');
 let ip="192.168.120.218";
 test.beforeEach('login', async({page,request})=>{
-  //const loginResponse = await request.post('https://'+ip+'/api/session' , {	==> error 
 	const loginResponse = await request.post('https://'+ip+'/api/session' , {
 		data : {
 		username:"admin",
@@ -239,7 +234,7 @@ test.beforeEach('login', async({page,request})=>{
 });
 ```
 對我來說終於有成功了
-但是還不夠 只是一個開頭
+可以用POST 的方式 
 
 ## api  in webtool
 ```
@@ -262,7 +257,7 @@ test.beforeEach('login', async({page,request})=>{
 這就是為什麼我需要 
 目的: 看是否登入!
 
-### use  request.post (correct vs error password )
+### use request.post (correct vs error password )
 ```
 	const loginResponse0 = await request.post('https://'+ip+'/api/session' , {
 		data : {
@@ -281,7 +276,6 @@ test.beforeEach('login', async({page,request})=>{
 	console.log(loginResponse1);
 ```
 result:  same 
-
 
 ##   login error because delete beforeall ...(?
 [莫名其妙的 虛假技術==](https://stackoverflow.com/questions/70262213/playwright-before-each-for-all-spec-files)
@@ -321,6 +315,7 @@ test.beforeEach('login', async({page,request })=>{
 });
 ```
 因為我再用 login api 所以他直接 無法再同個登入 資訊
+就算是正確的 username && password
 
 ---
 

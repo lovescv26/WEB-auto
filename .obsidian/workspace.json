@@ -1,0 +1,234 @@
+{
+  "main": {
+    "id": "63374a61fff7c91e",
+    "type": "split",
+    "children": [
+      {
+        "id": "365661c6151f7887",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fbc7a21116cfa0e4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "note/use_request_post_correct_error_password.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f4314e6c26fd0fc8",
+    "type": "split",
+    "children": [
+      {
+        "id": "139eac86353b997a",
+        "type": "tabs",
+        "dimension": 63.23529411764706,
+        "children": [
+          {
+            "id": "2fab90acdbb53872",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "db8aba161571be3e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "c85fe812d5a7a3fc",
+        "type": "tabs",
+        "dimension": 36.76470588235294,
+        "children": [
+          {
+            "id": "58a60e7a60828665",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 259.5
+  },
+  "right": {
+    "id": "6da2897fe403f1f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "cfec6648bbc3dee0",
+        "type": "tabs",
+        "dimension": 39.338235294117645,
+        "children": [
+          {
+            "id": "a8528507e0676bf5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "note/use_request_post_correct_error_password.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "fdec0381820a4351",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "note/use_request_post_correct_error_password.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a5046407866ccf0a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "8a010da8e3266ed5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "note/use_request_post_correct_error_password.md"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "30b2cfb707233c62",
+        "type": "tabs",
+        "dimension": 60.66176470588235,
+        "children": [
+          {
+            "id": "a0b097542b6c7cf5",
+            "type": "leaf",
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "note/use_request_post_correct_error_password.md",
+                "options": {
+                  "collapse-filter": true,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
+                  "showArrow": false,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 0.6554983534946918,
+                  "close": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 357.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "workspaces:Manage workspace layouts": false
+    }
+  },
+  "active": "fbc7a21116cfa0e4",
+  "lastOpenFiles": [
+    "4913",
+    "updateBMC.sh~",
+    "readme.md~",
+    "note/login_error_pass_api.md~",
+    "note/4913",
+    "note/login_error_pass_api.md",
+    "note/use_request_post_correct_error_password.md~",
+    "note/request_api.md",
+    "note/use_request_post_correct_error_password.md",
+    "note/api_requeset.md",
+    "playwright.md",
+    "palywright.md",
+    "note/api_error.md~",
+    "note/request_api.md~",
+    "note/error_User_Manangement.md",
+    "note/error_User_Manangement.md~",
+    "note/ERR_CONNECTION_TIMED_OUT.md",
+    "note/if screenshot no suffix png error.md~",
+    "note/if screenshot no suffix png error.md",
+    "note/api_requeset.md~",
+    "note/api_error.md",
+    "note/button-semi-transparent-screenshot.md",
+    "note/page.getByTextSensor Reading.md",
+    "note/only title name test.md",
+    "node_modules/playwright-core/bin/README.md",
+    "pic/transparent.png",
+    "pic/trasnparent.png_33488.tes.wmtmp.png",
+    "pic/trasnparent.png",
+    "node_modules/playwright-core/README.md",
+    "node_modules/playwright/README.md"
+  ]
+}

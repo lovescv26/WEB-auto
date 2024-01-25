@@ -4,7 +4,7 @@
 ### created : Mon Jan 22 11:14:41 CST 2024
 ### Version : 4 
 ### author : lovelovequeen
-### time   : Wed Jan 24 09:16:35 CST 2024
+### time   : Thu Jan 25 09:45:10 CST 2024
 ### [ref](https://linuxhandbook.com/bash-variables/)
 ### [ref](https://linuxhandbook.com/bash-arrays/)
 ### [ref](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script)
