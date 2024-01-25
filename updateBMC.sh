@@ -23,7 +23,25 @@ origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3) ;
 catch_version="";
 need_version="";
 set_ip(){
+use_file_ip=2;	# 0=> continue  1=>change
+use_file_ip_flag=1; #
 echo -e "The initial IP  :  ${origin_ip} \n\n";
+while [ ${use_file_ip_flag} == 1 ]
+do
+	read -p "Do you want to continue useing this IP?  press \"y\" or \"n\" " use_file_ip ;
+	case "${use_file_ip}" in 
+		y|yes|Y|YES)
+			use_file_ip_flag=0;
+			ip_flag=0;
+			ip=${origin_ip};
+			;;
+		n|no|N|No)
+			use_file_ip_flag=0;
+			;;
+		*)
+			;;
+	esac
+done
 while [ ${ip_flag} == 1 ]
 do
 #echo -e " \nU need to input IP address ";
@@ -33,8 +51,8 @@ echo -e " if U ip address is  :: \e[31m[${ip}] \e[0m ";
 read -p  " press \"Y\" \"y\"  or \"0\" is comfirm ip address  " validate_ip;
 case "${validate_ip}" in
 	yes|Yes|Y|y|0)
-		echo " double check ======================>  ${ip} ";
 		ip_flag=0;
+		sed -i "s/${origin_ip}/ip=\"${ip}\"/g" ./javascript_ip.js
 		;;
 	*)
 		echo "plz redo " ;
@@ -42,7 +60,7 @@ case "${validate_ip}" in
 
 esac
 done
-sed -i "s/${origin_ip}/ip=\"${ip}\"/g" ./javascript_ip.js
+echo " double check ======================>  ${ip} ";
 }
 set_bmc(){ 
 count_uploadfile=0;
@@ -108,7 +126,6 @@ parse_name=${parse_1}.${parse_2}.$((${parse_4}*100+${parse_3})); #char *[] parse
 #need_version=${need_version} $(echo "${catch_version}"|cut -d ' ' -f 3);
 #echo " out : ";
 #echo "${need_version}";
-#echo "----";
 #echo "${first_number}";
 #echo "${second_number}";
 #echo "${third_number}";
@@ -120,10 +137,10 @@ parse_name=${parse_1}.${parse_2}.$((${parse_4}*100+${parse_3})); #char *[] parse
 #echo "${parse_name}";
 # exclude the same upload file
 change_file=$(ls ./tests/uploadFiles/ | grep -v "${parse_name}");	
-# grab the previous update file
+	# grab the previous update file
 orgin_update_bmc_file=$(cat ./bmc_update.js | grep "updateBMCfile"|cut -d ' ' -f 3); 
 #echo "${change_file}";			#check bmc file
-#sed -i "s/${orgin_update_bmc_file}/updateBMCfile=${change_file}/g" ./bmc_update.js
+	#sed -i "s/${orgin_update_bmc_file}/updateBMCfile=${change_file}/g" ./bmc_update.js
 echo -e " will change version is  \e[41m${change_file}\e[0m"
 sed -i "s/${orgin_update_bmc_file}/updateBMCfile=\"${change_file}\"/g" ./bmc_update.js
 }
