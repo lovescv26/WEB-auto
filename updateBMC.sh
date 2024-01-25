@@ -106,14 +106,27 @@ done
 }
 catch_ver(){ 
 catch_version=$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00);
-echo -e "-------------------------------";
-echo -e "\nthis is version  \n${catch_version}";
+ipmitool_check="";
+#echo "ip check : ${catch_version}"
 #for i in $(seq 2 4);
 #do
 #	#need_version=${need_version} $(echo "${catch_version}"|cut -d ' ' -f ${i});
 #done
+if [  "${catch_version}" == "${ipmitool_check}" ]
+then
+	exit 1314520;
+fi
+echo -e "-------------------------------";
+echo -e "\nthis is version  \n${catch_version}";
 
-need_version=$(echo "${catch_version}"|cut -c 1-13);
+need_version=$(echo "${catch_version}"|cut -c 1-13 );
+ipmitool_count=5;
+if [ ${ipmitool_check} -ne 0 ]
+then
+#	       echo "==================================";
+#	echo -e "==================================|   You're got some big problems!|\n|  1. It's BMC problem \n  2. It's an IP problem \n"; exit 1;
+	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|  2. It's an IP problem        |\n================================="; exit 1;
+fi
 number_1=$(echo "${catch_version}"|cut -c 2-4);	#int number_1
 number_2=$(echo "${catch_version}"|cut -c 5-7);	#int number_2
 number_3=$(echo "${catch_version}"|cut -c 8-9); #int third_number (declare)
