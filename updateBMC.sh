@@ -2,16 +2,23 @@
 ### {{{ 
 ### ----------------------
 ### created : Mon Jan 22 11:14:41 CST 2024
-### Version : 4 
+### Version : 5 
 ### author : lovelovequeen
-### time   : Thu Jan 25 09:45:10 CST 2024
+### time   : Thu Jan 25 17:00:00 CST 2024
 ### [ref](https://linuxhandbook.com/bash-variables/)
 ### [ref](https://linuxhandbook.com/bash-arrays/)
 ### [ref](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script)
 ### [ref](https://stackoverflow.com/questions/49110/how-do-i-write-a-for-loop-in-bash)
 ### ----
 ### readme : this is need to let user input ip 
-### check firmware ima-file
+### rule: bmc upfile only 2 file
+### IP part :
+### 	+ +add feature :  if same ip can reuse 
+### bmc upfile :
+###		+ if the suffix is not ima delete it
+###		+ if file more than 2 file just need to delete file (interactive)
+###		+ grab all uploaded files && count it
+### 
 ### ---------------------
 ### }}}
 ip="";
@@ -19,7 +26,8 @@ validate_ip="";
 ip_flag=1;
 origin_ip="";
 #origin_ip=cat ./test.js|grep "let"|cut -d ' ' -f 2 ;
-origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3) ;
+#origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3) ;
+origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3|sed 's/"//g'|sed 's/ip=//g') ;
 catch_version="";
 need_version="";
 set_ip(){
@@ -34,6 +42,8 @@ do
 			use_file_ip_flag=0;
 			ip_flag=0;
 			ip=${origin_ip};
+			#ip=$(echo ${origin_ip}|cut -d " 1)
+			#echo ${origin_ip}|cut -d \" 2
 			;;
 		n|no|N|No)
 			use_file_ip_flag=0;
@@ -105,28 +115,33 @@ do
 done
 }
 catch_ver(){ 
-catch_version=$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00);
+	echo "ip =====> : ${ip}";
+catch_version=$(ipmitool -I lanplus -H "${ip}" -U admin -P 11111111 raw 0x1e 0x01 0x00);
 ipmitool_check="";
 #echo "ip check : ${catch_version}"
 #for i in $(seq 2 4);
 #do
 #	#need_version=${need_version} $(echo "${catch_version}"|cut -d ' ' -f ${i});
 #done
+#if [  "${catch_version}" == "${ipmitool_check}" ]
+#then
+#	
+#fi
 if [  "${catch_version}" == "${ipmitool_check}" ]
 then
-	exit 1314520;
+	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|    --check bmc is on          |\n|  2. It's an IP problem        |\n|    --check ip is correct      |\n================================="; exit 1314520;
 fi
 echo -e "-------------------------------";
 echo -e "\nthis is version  \n${catch_version}";
 
 need_version=$(echo "${catch_version}"|cut -c 1-13 );
 ipmitool_count=5;
-if [ ${ipmitool_check} -ne 0 ]
-then
-#	       echo "==================================";
-#	echo -e "==================================|   You're got some big problems!|\n|  1. It's BMC problem \n  2. It's an IP problem \n"; exit 1;
-	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|  2. It's an IP problem        |\n================================="; exit 1;
-fi
+#if [ ${ipmitool_check} -ne 0 ]
+#then
+##	       echo "==================================";
+##	echo -e "==================================|   You're got some big problems!|\n|  1. It's BMC problem \n  2. It's an IP problem \n"; exit 1;
+#	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|  2. It's an IP problem        |\n================================="; exit 1;
+#fi
 number_1=$(echo "${catch_version}"|cut -c 2-4);	#int number_1
 number_2=$(echo "${catch_version}"|cut -c 5-7);	#int number_2
 number_3=$(echo "${catch_version}"|cut -c 8-9); #int third_number (declare)
@@ -165,8 +180,8 @@ set_ip;
 set_bmc;
 catch_ver;
 execute=0;
-#echo "exectue how many time ? ";
-read -p  "exectue how many time ? " execute 
+#echo "execute how many time ? ";
+read -p  "execute how many time ? " execute 
 for i in $(seq 1 ${execute})
 do
 	echo " !!!====> ${i}" >> log.txt;
@@ -179,4 +194,9 @@ do
 	$(date >> log.txt)
 	$(npx playwright test tests/uploadfile.spec.js --headed |tee -a log.txt)
 	sleep 2m;
+	if [ ${i} -eq ${execute} ];
+	then
+		echo " this is last one ";
+		$(npx playwright test tests/change.spec.js --headed|tee -a log.txt);
+	fi
 done
