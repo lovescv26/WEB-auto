@@ -277,7 +277,8 @@ test.beforeEach('login', async({page,request})=>{
 ```
 result:  same 
 
-##   login error because delete beforeall ...(?
+##   login error pass api
+###   login error because delete beforeall ...(?
 [莫名其妙的 虛假技術==](https://stackoverflow.com/questions/70262213/playwright-before-each-for-all-spec-files)
 有出問題  因為 現在登入 直接出問題 (應該說前面 登入後 不能繼續使用)
 可能是 我把 beforeAll (就算 沒有 code...) ==
@@ -333,6 +334,7 @@ test.beforeEach('login', async({page,request })=>{
 [js import export](https://github.com/microsoft/playwright/issues/13959)
 [ export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 > Every module can have two different types of export, named export and default export
+
 i need a core to control all  `*.spec.js` --> (this is palywright test )
 
 ##  (self) bash case
@@ -390,7 +392,221 @@ esac
 make code clear!!!!
 
 
+## bash  if else 
+[ref](https://www.delftstack.com/zh-tw/howto/linux/how-to-use-if-else-statement-in-bash/)
+```bash
+if [ condition ]
+then ==> important
+else ==> option
+fi
+```
+
+##  bash while $va1 -ne $va2
+[ref](https://stackoverflow.com/questions/27209605/comparing-two-variables-in-while-loop-bash)
+```bash
+while [ ${limit_count} -gt 2 ]
+do 
+	#rm -v 
+	echo -e "only 2 file u need to delete some file \n    y=>yes delete\n    n=>no  delete"
+	for file_n in $(ls ./tests/uploadFiles)
+	do
+		rm -vi ./tests/uploadFiles/${file_n};
+		limit_count=$(ls ./tests/uploadFiles/ |wc -l);
+	done
+done
+```
+
+## want use ipmitool and check this command success
+```bash
+while [ ${ipmitool_check} -gt 0 ]
+do
+	sleep 5;
+	ipmitool_count=$((${ipmitool_count}-1));
+		need_version=$(echo "${catch_version}"|cut -c 1-13);
+		ipmitool_check=$?;
+	if [ ${ipmitool_count} -eq 1 ]
+	then
+		echo " IP ERROR OR BMC not working ";
+		exit 1314520;
+	fi
+	if [ ${ipmitool_check} -eq 0 ]
+	then
+		echo " ok --> 200 --> catch the bmc version " ;
+		ipmitool_count=0;
+	else
+		echo " XX --> 401 --> error ERROR where bmc ? " ;
+	fi
+done
+```
+
+## asc art code => by art
+[ref](https://stackoverflow.com/questions/1378274/in-a-bash-script-how-can-i-exit-the-entire-script-if-a-certain-condition-occurs)
+```bash
+if [ ${ipmitool_check} -ne 0 ]
+then
+#	       echo "==================================";
+#	echo -e "==================================|   You're got some big problems!|\n|  1. It's BMC problem \n  2. It's an IP problem \n"; exit 1;
+	echo -e "=================================";
+	echo -e "|You're got some big problems!  |";
+	echo -e "|  1. It's BMC problem          |";
+	echo -e "|    --check bmc is on          |";
+	echo -e "|  2. It's an IP problem        |"; 
+	echo -e "|    --check ip is correct      |";
+	echo -e "=================================";
+	exit 1;
+fi
+```
+
+## bash because add feature : can use same IP address 
+```bash
+ip="";
+validate_ip="";
+ip_flag=1;
+origin_ip="";
+#origin_ip=cat ./test.js|grep "let"|cut -d ' ' -f 2 ;
+origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3) ;
+catch_version="";
+need_version="";
+set_ip(){
+use_file_ip=2;	# 0=> continue  1=>change
+use_file_ip_flag=1; #
+echo -e "The initial IP  :  ${origin_ip} \n\n";
+while [ ${use_file_ip_flag} == 1 ]
+do
+	read -p "Do you want to continue useing this IP?  press \"y\" or \"n\" " use_file_ip ;
+	case "${use_file_ip}" in 
+		y|yes|Y|YES)
+			use_file_ip_flag=0;
+			ip_flag=0;
+			ip=${origin_ip};
+			#ip=$(echo ${origin_ip}|cut -d " 1)
+			#echo ${origin_ip}|cut -d \" 2
+			;;
+		n|no|N|No)
+			use_file_ip_flag=0;
+			;;
+		*)
+			;;
+	esac
+done
+```
+![ip-struct](./pic/ip-struct.png)
+because  origin_ip
+``` bash
+#{{
+===> error
+The initial IP  :  ip="192.168.120.218"
+Do you want to continue useing this IP?  press "y" or "n" y                                                         
+cut: you must specify a list of bytes, characters, or fields
+Try 'cut --help' for more
+information.
+double check ======================>  ip="192.168.120.218"
+you have  2  files in the /tets/uploadFiles
+[1    ->    IS-5121_v1.1.17N.ima]
+[2    ->    IS-5121_v1.1.18N.ima]
+ip =====> : ip="192.168.120.218"
+Address lookup for ip="192.168.120.218" failed
+Could not open socket!
+Error: Unable to establish IPMI v2 / RMCP+ session
+#}}}
+```
+first look at `The initial IP : ip="192.168.120.218"`
+當然如果是我在 重寫IP的時候沒問題 所以問題出在 他的結構
+包含了 非ip的部分
+所以修改了
+
+```bash
+ip="";
+validate_ip="";
+ip_flag=1;
+origin_ip="";
+#origin_ip=cat ./test.js|grep "let"|cut -d ' ' -f 2 ;
+#origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3) ;
+origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3|sed 's/"//g'|sed 's/ip=//g') ;
+catch_version="";
+need_version="";
+set_ip(){
+use_file_ip=2;	# 0=> continue  1=>change
+use_file_ip_flag=1; #
+echo -e "The initial IP  :  ${origin_ip} \n\n";
+while [ ${use_file_ip_flag} == 1 ]
+do
+	read -p "Do you want to continue useing this IP?  press \"y\" or \"n\" " use_file_ip ;
+	case "${use_file_ip}" in 
+		y|yes|Y|YES)
+			use_file_ip_flag=0;
+			ip_flag=0;
+			ip=${origin_ip};
+			#ip=$(echo ${origin_ip}|cut -d " 1)
+			#echo ${origin_ip}|cut -d \" 2
+			;;
+		n|no|N|No)
+			use_file_ip_flag=0;
+			;;
+		*)
+			;;
+	esac
+done
+```
+這是修正的version
+就把結構變成單純的值
+害我嚇爛 想說怎麼了==
+
+### expand issus --because ip struct
+```bash
+./updateBMC.sh: line 173: $'\E[1A\E[2KSyntaxError:': command not found
+./updateBMC.sh: line 167: $'\E[1A\E[2KSyntaxError:': command not found
+```
+![playwright-ip](./pic/playwright-ip.png)
+解決辦法在  {## bash_because_add_feature_can_use_same_IP_address.md} 是一樣的 
 
 
+
+## bash if no do something raise token fi
+```
+if [  "${catch_version}" == "${ipmitool_check}" ]
+then
+
+fi
+```
+```bash
+output=========>
+./updateBMC.sh: line 128: syntax error near unexpected token `fi'
+./updateBMC.sh: line 128: `fi'
+```
+
+## bash script can't use $?
+```bash
+catch_version=$(ipmitool -I lanplus -H "${ip}" -U admin -P 11111111 raw 0x1e 0x01 0x00);
+ipmitool_check="";
+if [  "${catch_version}" == "${ipmitool_check}" ]
+then
+	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|    --check bmc is on          |\n|  2. It's an IP problem        |\n|    --check ip is correct      |\n================================="; exit 1314520;
+	fi
+```
+```bash
+if [ ${ipmitool_check} -ne 0 ]
+then
+#	       echo "==================================";
+#	echo -e "==================================|   You're got some big problems!|\n|  1. It's BMC problem \n  2. It's an IP problem \n"; exit 1;
+	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|  2. It's an IP problem        |\n================================="; exit 1;
+fi
+```
+so I use different ways to verify
+
+## bash function didnt use functionname()
+```bash
+### error use
+#set_ip();
+#set_bmc();
+#catch_ver();
+### correct use
+set_ip;
+```
+
+## bash different function variable and can span function and not 
+```bash
+
+```
 
 
