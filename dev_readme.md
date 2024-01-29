@@ -628,3 +628,39 @@ find . -type f -name "*.csv" -print0 | while IFS= read -r -d '' file; do
 done
 ```
 
+
+## bash echo -e specail art use
+only use space
+```bash
+## error use
+if [[ ${limit_count} == 1 ]]
+then
+	echo -e "==============================\n| ERROR!!! need 2 file		  |\n| you only put one file      |\n==============================";
+fi
+```
+```bash
+## correct use 
+if [[ ${limit_count} == 1 ]]
+then
+	echo -e "==============================\n| ERROR!!! need 2 file       |\n| you only put one file      |\n==============================";
+fi
+```
+
+## bash condition
+```bash
+	#while [ ${ip} == ${ipmitool_check} ] 
+	while [[ ${ip} == ${ipmitool_check} ]]
+	do
+read -p  " U need to input IP address : " ip;
+	done
+```
+error : ./updateBMC.sh: line 59: [: 192.168.120.218: unary operator expected
+solution
+```bash
+	while [[ ${ip} == ${ipmitool_check} ]]
+	do
+read -p  " U need to input IP address : " ip;
+	done
+```
+
+
