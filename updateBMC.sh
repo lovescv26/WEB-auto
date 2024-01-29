@@ -2,9 +2,9 @@
 ### {{{ 
 ### ----------------------
 ### created : Mon Jan 22 11:14:41 CST 2024
-### Version : 2.1
+### Version : 2.2
 ### author : lovelovequeen	|| loveloveempress
-### time   : Fri Jan 26 14:12:33 CST 2024
+### time   : Mon Jan 29 14:03:47 CST 2024
 ### [ref](https://linuxhandbook.com/bash-variables/)
 ### [ref](https://linuxhandbook.com/bash-arrays/)
 ### [ref](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script)
@@ -92,7 +92,7 @@ do
 		ima)
 			echo "";;
 		*)
-			rm -v ./tests/uploadFiles/$file;;
+			rm ./tests/uploadFiles/$file;;
 	esac	
 done
 while [ ${limit_count} -gt 2 ]
@@ -133,7 +133,8 @@ then
 fi
 echo -e "-------------------------------";
 #echo -e "\nthis is version  \n${catch_version}";					#dev verification
-
+}
+function_catch_version(){
 need_version=$(echo "${catch_version}"|cut -c 1-13 );
 ipmitool_count=5;
 number_1=$(echo "${catch_version}"|cut -c 2-4);						#int number_1
@@ -171,6 +172,7 @@ sed -i "s/${orgin_update_bmc_file}/updateBMCfile=\"${change_file}\"/g" ./bmc_upd
 set_ip;
 catch_ver;
 set_bmc;
+function_catch_version;
 execute=0;															#int execute
 read -p  "execute how many time ?(input number) : " execute 
 for i in $(seq 1 ${execute})
@@ -181,6 +183,7 @@ do
 	sleep 10;
 	#set_bmc;
 	catch_ver;
+	function_catch_version;
 	$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
 	$(date >> log.txt)
 	$(npx playwright test tests/uploadfile.spec.js --headed |tee -a log.txt)
