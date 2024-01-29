@@ -79,10 +79,8 @@ set_bmc(){
 count_uploadfile=0;													#int count_uploadfile
 limit_count=0; 														#int limit_count
 limit_count=$(ls ./tests/uploadFiles/ |wc -l)
-if [[ ${limit_count} == 1 ]]
-then
-	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; 
-	exit 111;
+if [[ ${limit_count} == 1 ]] ; then
+	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; exit 111;
 fi
 if [ ${limit_count} -gt 2 ]
 then
