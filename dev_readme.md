@@ -594,4 +594,37 @@ bash 是用設定的方式來設定變數
 
 ---
 
+## bash if and oifs
+[ref](https://unix.stackexchange.com/questions/9496/looping-through-files-with-spaces-in-the-names)
+```bash
+===error  output ===>
+rm: cannot remove './tests/uploadFiles/MegaRAC': No such file or directory
+rm: cannot remove './tests/uploadFiles/SP-X': No such file or directory
+rm: cannot remove './tests/uploadFiles/-': No such file or directory
+rm: cannot remove './tests/uploadFiles/AMI': No such file or director
+rm: cannot remove './tests/uploadFiles/OEM': No such file or directory
+rm: cannot remove './tests/uploadFiles/Commands': No such file or directory
+rm: cannot remove './tests/uploadFiles/Specification.pdf': No such file or directory
+rm: cannot remove './tests/uploadFiles/MegaRAC': No such file or directory
+rm: cannot remove './tests/uploadFiles/SP-X': No such file or directory
+rm: cannot remove './tests/uploadFiles/REST': No such file or directory
+rm: cannot remove './tests/uploadFiles/API.pdf': No such file or director
+```
+```bash
+OIFS="$IFS"
+IFS=$'\n'
+for file in `find . -type f -name "*.csv"`  
+do
+	echo "file = $file"
+	diff "$file" "/some/other/path/$file"
+	read line
+	done
+IFS="$OIFS"
+
+find . -type f -name "*.csv" -print0 | while IFS= read -r -d '' file; do
+    echo "file = $file"
+	diff "$file" "/some/other/path/$file"
+	read line </dev/tty
+done
+```
 
