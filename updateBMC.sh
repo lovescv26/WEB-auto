@@ -56,7 +56,7 @@ done
 ###### input new ip
 while [ ${ip_flag} == 1 ]
 do
-	while [ ${ip} == ${ipmitool_check} ]
+	while [[ ${ip} == ${ipmitool_check} ]]
 	do
 read -p  " U need to input IP address : " ip;
 	done
@@ -173,7 +173,7 @@ else
 #echo -e "===================\n|!!!!!!ERROR!!!!! |\n| you file need   |\n|one is right now |\n|version!		   |";
 echo -e "==============================\n| One of your files needs to |\n| consisitent with your      |\n| current BMC version        |\n|                            |\n==============================\n| right now version is  :    |\n.      ${parse_name}         "; exit 520;
 fi
-echo "change_file_bash : ${change_file}";
+#echo "change_file_bash : ${change_file}";
 ###### grab the previous update file
 orgin_update_bmc_file=$(cat ./bmc_update.js | grep "updateBMCfile"|cut -d ' ' -f 3); 
 #echo "${change_file}";												#check bmc file
