@@ -85,6 +85,8 @@ then
 else
 	echo -e "\n\n you have  \e[42m${limit_count}\e[0m  files in the /tests/uploadFiles "
 fi
+OIFS="$IFS";
+IFS=$'\n';
 for file in $(ls ./tests/uploadFiles)
 do
 	Extension=${file##*.}
@@ -92,17 +94,23 @@ do
 		ima)
 			echo "";;
 		*)
-			rm ./tests/uploadFiles/$file;;
+			rm  ./tests/uploadFiles/$file;;
 	esac	
 done
+IFS="$OIFS";
 while [ ${limit_count} -gt 2 ]
 do 
-	#rm -v 
-	echo -e "only 2 file u need to delete some file \n    y=>yes delete\n    n=>no  delete"
+	#echo -e "only 2 file u need to delete some file \n    y=>yes delete\n    n=>no  delete"
+	echo -e "|============================|\n| !!BREAK THE RULE           |\n| only 2 files               |\n| U need to delete some file |\n|.                          .|\n|<<interactive delete mode >>|\n| press y => yes delete      |\n|       n => no  delete      |\n|============================|\n\n";
 	for file_n in $(ls ./tests/uploadFiles)
 	do
 		rm -vi ./tests/uploadFiles/${file_n};
 		limit_count=$(ls ./tests/uploadFiles/ |wc -l);
+		echo " check update file -> ${limit_count}";
+		if [[ ${limit_count} == 2 ]]
+		then
+			break;
+		fi
 	done
 done
 for file in $(ls ./tests/uploadFiles)
