@@ -5,13 +5,12 @@ date : Thu Jan 25 09:40:34 CST 2024
 [[playwright]] [[api]] [[post]]
 
 ---
-
 ##   login error because delete beforeall ...(?
 [ error ](https://stackoverflow.com/questions/70262213/playwright-before-each-for-all-spec-files)
 有出問題  因為 現在登入 直接出問題 (應該說前面 登入後 不能繼續使用)
 可能是 我把 beforeAll (就算 沒有 code...) 
 我就在看 fixture.js 的方式 結果
-```
+```js
 Error: Cannot find module 'fixture.js'
 Require stack:
 - D:\tem\WEB-auto\tests\new.spec.js
@@ -33,7 +32,7 @@ Require stack:
 ```
 	
 #### solution 
-```
+```js
 test.beforeEach('login', async({page,request })=>{
 	const response = await request.post("https://"+ip+"/api/session",{
 		data:{

@@ -10,8 +10,6 @@ tag [[playwright]] [[catch select]]
 
 ##  error : User Manangement 
 [basic-origin](https://www.youtube.com/watch?v=bgxQ3PXJdIM&list=PL6flErFppaj0iQG2_Dd72Jz0bfrzZwMZH&index=11)
-首先 我為什麼會出現這個問題 
-我先介紹一下 大環境 
 這個是他有選擇的選單
 ![user from](../pic/User_managment.png)
 有抓到重點嗎?
