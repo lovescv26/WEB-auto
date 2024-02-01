@@ -1,8 +1,8 @@
 #! /bin/bash
 ### {{{ 
 ### ----------------------
-### created : Mon Jan 22 11:14:41 CST 2024
-### Version : 2.2
+### created : Thu Feb  1 14:44:55 CST 2024
+### Version : 2.3
 ### author : lovelovequeen	|| loveloveempress
 ### time   : Mon Jan 29 14:03:47 CST 2024
 ### [ref](https://linuxhandbook.com/bash-variables/)
@@ -65,7 +65,6 @@ read -p  " press \"Y\" \"y\"  or \"0\" is comfirm ip address : " validate_ip;
 case "${validate_ip}" in
 	yes|Yes|Y|y|0)
 		ip_flag=0;
-		#sed -i "s/${origin_ip}/ip=\"${ip}\"/g" ./javascript_ip.js
 		sed -i "s/${origin_ip}/${ip}/g" ./javascript_ip.js
 		;;
 	*)
@@ -80,7 +79,8 @@ count_uploadfile=0;													#int count_uploadfile
 limit_count=0; 														#int limit_count
 limit_count=$(ls ./tests/uploadFiles/ |wc -l)
 if [[ ${limit_count} == 1 ]] ; then
-	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; exit 111;
+	### if only one update bmc file
+	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; exit 111;	
 fi
 if [ ${limit_count} -gt 2 ]
 then
@@ -140,6 +140,7 @@ ipmitool_check="";
 ###### if bmc not working just pop error
 if [  "${catch_version}" == "${ipmitool_check}" ]
 then
+	###### if ip error || BMC is off
 	echo -e "=================================\n|You're got some big problems!  |\n|  1. It's BMC problem          |\n|    --check bmc is on          |\n|  2. It's an IP problem        |\n|    --check ip is correct      |\n================================="; exit 1314520;
 fi
 echo -e "-------------------------------";
@@ -184,8 +185,11 @@ set_ip;
 catch_ver;
 set_bmc;
 function_catch_version;
-execute=0;															#int execute
-read -p  "execute how many time ?(input number) : " execute 
+#execute=0;															#int execute
+until [[ ${execute} == +([1-9]) ]];do
+	read -p  "execute how many time ?(input number) : " execute 
+done;
+echo " execute : ${execute}";
 for i in $(seq 1 ${execute})
 do
 	echo " !!!====> ${i}" >> log.txt;
