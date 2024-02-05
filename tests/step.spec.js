@@ -3,8 +3,7 @@
 const { test,expect } = require('@playwright/test');
 const { request } = require('@playwright/test');
 //const {newTest} = require('fixture.js'); 	==> error didint catvh
-
-let ip="192.168.120.218";
+import {ip} from '../javascript_ip.js';
 //console.log(ip);
 	//it will show 3 times that is in line with the number of features
 test.use({
@@ -12,9 +11,8 @@ test.use({
   });
 
 //test.describe.configure({mode:' serial' });   // => in doc it's not 
-let page;
-
-let InputUser="admin";
+//let page;
+const InputUser="admin";
 const InputPassword="11111111";
 test.beforeEach('login', async({page,request })=>{
 	let loginFlag;
@@ -62,7 +60,7 @@ test.beforeEach('login', async({page,request })=>{
 
 
 });
-test('run 1 -- sensor',async ({page}) => {
+test.only('run 1 -- sensor',async ({page}) => {
 	//await page.waitForTimeout(10000);
 	//await page.goto('https://'+ip+'/#login');
 	await page.goto('https://'+ip+'/#sensors');
@@ -104,10 +102,10 @@ test('run 4',async ({page}) => {
 
 });
 
-const config: PlaywrightTestConfig = {
-	globalTimeout: 120000,
-	timeout: 5000;
-}
+//const config: PlaywrightTestConfig = {
+//	globalTimeout: 120000,
+//	timeout: 5000;
+//}
 test.only('run 5 -- settings/',async ({page}) => {
 	await page.goto('https://'+ip+'/#settings/date_time');
 	let timeFactor = "false" ;
