@@ -780,6 +780,8 @@ Although the prompt text of the picture is different
 But this is just a small change
 
 I think it's because it's too fast
+**no time interval**
+
 ### solution
 `	await page.waitForTimeout(520); `
 ```js
