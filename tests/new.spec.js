@@ -3,7 +3,7 @@
 const { test,expect } = require('@playwright/test');
 const { request } = require('@playwright/test');
 import {ip} from '../javascript_ip.js';
-//const { response } = require('@playwright/test');
+const { response } = require('@playwright/test');
 //const {newTest} = require('fixture.js'); 	==> error didint catvh
 /*
  * {{{ 
@@ -40,11 +40,9 @@ test.describe('測試套件', () => {
 });
  * }}}
 */
-
 //let ip="192.168.120.218"; // Mon Jan 22 17:02:19 CST 2024 
 //console.log(ip);
 	//it will show 3 times that is in line with the number of features
-let love_firemware_name="IS-5121_v1.1.14N.ima";
 
 test.use({
 	ignoreHTTPSErrors: true,
@@ -67,7 +65,8 @@ test(' out run 1 ', async  ({page}) => {
 let page;
 
 let InputUser="admin";
-const InputPassword="11111111";
+//const InputPassword="11111111";
+const InputPassword="11111110";
 test.beforeEach('login', async({page,request })=>{
 	let loginFlag;
 	//let page = await browser.newPage();
@@ -80,6 +79,7 @@ test.beforeEach('login', async({page,request })=>{
 	await page.getByPlaceholder('Password', { exact: true }).fill(InputPassword);
 	await page.waitForTimeout(50);
 	await page.getByRole('button', { name: 'Sign me in' }).click();
+	await page.waitForTimeout(520);
 	/*
 	async function isFinished(response){
 		return reponse.url().includes("#dash")&& response.status() ===200 ;
@@ -91,14 +91,16 @@ test.beforeEach('login', async({page,request })=>{
 	//loginFlag = await page.getByRole('tooltip').isVisible();
 	//loginFlag = await expect(page.locator("text=Login Failed")).not.toBeVisible();
 	console.log(" username: " + InputUser + " | password : " + InputPassword );
-	console.log(" validate : " + loginFlag );
-	await page.waitForTimeout(4488);
-	const response = await page.waitForRequest(url => url.url().includes('dashboard'));	
-	//console.log(response);
+	console.log(" login error : " + loginFlag );		//dev-debugger (login check)
+	await page.waitForTimeout(1314);
+	//const responseLogin = await expect(page).toHaveURL('https://'+ip+'/#dashboard');
+	//const response = await page.waitForRequest(url => url.url().includes('dashboard'));	
+	//console.log("response login : "+response);
 	if(await page.getByText('Login Failed').isVisible()){
 		console.log("========================================");
-		console.log("    ERROR    :               ");
-		console.log(" didn't login !!!        ");
+		console.log("|               ERROR    :             |");
+		console.log("|             didn't login !!!         |");
+		console.log("========================================");
 	}
 
 	/*
@@ -114,7 +116,7 @@ test.beforeEach('login', async({page,request })=>{
 
 
 });
-test('run 1 -- sensor',async ({page}) => {
+test.only('run 1 -- sensor',async ({page}) => {
 	//await page.waitForTimeout(10000);
 	//await page.goto('https://'+ip+'/#login');
 	await page.goto('https://'+ip+'/#sensors');
