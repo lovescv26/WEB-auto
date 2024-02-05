@@ -5,7 +5,7 @@ Error: page.goto: net::ERR_CONNECTION_TIMED_OUT at https://192.168.120.218/#logi
 Call log:
   - navigating to "https://192.168.120.218/#login", waiting until "load"
 ```
-就代表 你的機器沒開
+This means your machine is not powered on
 
 ---
 ## error 1 beforeALL  (test error)
@@ -19,10 +19,9 @@ Replace beforeAll with beforeEach then it will work.
 
 Playwright Test has context isolation by default, this means you have a new page and context for each test. By this its not possible to give you a page instance in the beforeAll hook, since there are different pages for each test. See here for more information:
 
-
 ---
 ## error: locator.isVisible : 
-出問題的code
+issues code
 ``` js
 	await page.getByText('Sensor Reading ').isVisible();
 ```
@@ -44,19 +43,19 @@ resolution : Unique element representation
 ```bash
 npx playwright test -g "{title name}"
 ```
-如果 你要寫一個單獨的測試
-可以用 `-g` 選項
-因為如果你是 只放 `test`  他預設是 全部單元測試都跑
-> 就是浪費你的時間
+if you want to write a single test
+you can use the `g` option
+because if you only put `test`,the default is to run all unit tests.
+> just a waste of your time
 
-也可以在 test.only的方式 但是 在`npx playwright test tests/{you want test file name}.spec.js`
+also available in test.only but in `npx playwright test tests/{you want test file name}.spec.js`
 
 ---
 ## Even if there is only a button screenshot, it is still semi-transparent
-如果只有2個按鈕
-如果你截圖 仍然會半透明
-所以只能 給他等待
-我測試過 用得到元素的方式
+if you take a screenshot  of the big button,
+it weill still be translucent
+so It can only wait.
+I tested it by getting the element.
 ```js
 	let ldapGeneral = "false" ;
 	await page.goto('https://'+ip+'/#settings/ext_users');
@@ -64,18 +63,19 @@ npx playwright test -g "{title name}"
 	await page.screenshot({path: 'screenshot/settings/external_user_services/external_user.png',fullPage:true });
 	await page.waitForTimeout(2000);
 ```
-但是 元素的渲染速度 快過 JS的速度....==
+however,the rendering sped of elements is faster than the speed of JS
 #### resolution
 ` await page.waitForTimeout(2000); `
-time 可以適度調整
+time can be adjusted appropriately
 
 ---
 ## api error
-當時要解決 一直 login 的問題
-(因為每一次TEST 都需要登陸 原本想要用API的方式)
+at that time, we had to solve the problem of always logging in
+(because every TEST requires logging in,
+and we originally wanted to use the API method)
 [api-post](https://stackoverflow.com/questions/71398892/how-to-access-response-body-correctly-when-using-playwright)
-當你用API 是會一直出錯 ==
-我原本看到  
+when you use API, you will always encounter errors.
+what i saw originally
 ![api](./pic/api.png)
 ![post](./pic/api_post.png)
 ```js
@@ -98,7 +98,7 @@ test('run 7 -- login and get response',async({page,request }) =>{
 
 ---
 ### api correct all 200
-很不合理的東西
+very unreasonable thing
 ```js
 let ip="192.168.120.218";
 	const url = "https://192.168.120.218/#dashboard"
@@ -134,7 +134,8 @@ Date: Mon, 08 Jan 2024 05:42:46 GMT
 Server: lighttpd
 2 passed (15.4s)
 ```
-我故意用錯 但是在API 卻顯示 `200`
+I used it incorrectly on purpose,
+but it showed `200` in the API
 
 ---
 ## if screenshot no suffix png error
@@ -152,12 +153,12 @@ Server: lighttpd
 ---
 ##  error : User Manangement 
 [basic-origin](https://www.youtube.com/watch?v=bgxQ3PXJdIM&list=PL6flErFppaj0iQG2_Dd72Jz0bfrzZwMZH&index=11)
-這個是他有選擇的選單
+this is a selective menu
 ![user from](./pic/User_managment.png)
-有抓到重點嗎?
-我擔心元素會有其他
-所以我需要 把元素抓下來
-可以看到 source code
+have you caught the point?
+I'm worried that there will be other elements
+so I need to grap the element
+you can see the source code
 ```html
 <form class="form-inline">
 <div class="form-group" %%feature="" %%runtime-feature="">
@@ -194,9 +195,9 @@ test('run 18',async({page}) => {
 ```
 `name=group_by_channel` is 	*error* => `Lovelayer : null`
 `id="idgroup_by_channel` is	*correct* => `LoveLayer : JSHandle@node`
-~~我還不太確定... `JSHandle@node`~~
+~~I'm not sure... `JSHandle@node`~~
 
-> ID 對於網頁 是 唯一標示喔
+>  The ID is the only identifier for the web page.
 
 ### DF : `page.$`
 `page.$ `
@@ -230,8 +231,8 @@ test.beforeEach('login', async({page,request})=>{
 	console.log(loginResponse);
 });
 ```
-對我來說終於有成功了
 可以用POST 的方式 
+It can use the POST method.
 
 ---
 ## api  in webtool
@@ -248,12 +249,11 @@ test.beforeEach('login', async({page,request})=>{
  Cookie: QSESSIONID=4f783e0f3a2236dc19dTYAlUQOxY4u; selected_lang=en-us; lang=en-us
  Host: 192.168.120.218
 ```
-這是 request head
-上面的差距 只有 密碼不同
-所以我就在看 playwright 可以按完後 
-如何得到他的 response!!
-這就是為什麼我需要 
-目的: 看是否登入!
+This is the request head
+The only difference between the above is the password.
+So I'm just looking at playwright after I can press
+how to get his response!!
+That's why I need purpose : to see if I'm logged in!
 
 ---
 ### use request.post (correct vs error password )
@@ -280,9 +280,10 @@ result:  same
 ##   login error pass api
 ###   login error because delete beforeall ...(?
 [莫名其妙的 虛假技術==](https://stackoverflow.com/questions/70262213/playwright-before-each-for-all-spec-files)
-有出問題  因為 現在登入 直接出問題 (應該說前面 登入後 不能繼續使用)
-可能是 我把 beforeAll (就算 沒有 code...) ==
-我就在看 fixture.js 的方式 結果
+there is a problem because there is a problem immediately
+after logging in now (it should be said that after logging in before
+you can no longer use it)
+I'm just looking at the results of the Fixture.js way
 ```js
 Error: Cannot find module 'fixture.js'
 Require stack:
@@ -315,8 +316,8 @@ test.beforeEach('login', async({page,request })=>{
 	});
 });
 ```
-因為我再用 login api 所以他直接 無法再同個登入 資訊
-就算是正確的 username && password
+Because I used the login API again,he could no longer log in using the same information.
+Even if the username && password is correct
 
 ---
 ## how to capture requests and responses in playwright after hitting a button?
@@ -345,15 +346,16 @@ case "${validate_ip}" in
 		;;
 esac
 ```
-> Bash 語句只接受一次值，然後多次測試該值。
-> 一旦找到模式就執行與其連結的語句,它將停止搜索模式,這與C語句幾乎相反
+> bash staement accepts a value only once and then tests that value multiple times.
+> once the pattern is found, execute the statement connected to it,
+> it weill stop searching for the pattern,
+> which is almost the opposite of the C statement
 
 > The case statement simplifies complex conditions with multiple different choices. This statement is easier to maintain and more readable than nested if statements[.](https://phoenixnap.com/kb/bash-case-statement)
 
 ---
 ## bash function
 [ref](https://linuxize.com/post/bash-functions/)
-我只能用  `function_name() { command };`
 > if recall need to use only name
 >> didn't use [parentheses](http://www.blairenglish.com/exercises/technology_web/exercises/computer_code_symbols_signs_names_1/computer_code_symbols_signs_names_1.html)
 
@@ -363,9 +365,9 @@ esac
 ## bash read
 [ref](https://phoenixnap.com/kb/bash-read)
 `read -p " {you want put something } " ${variable} `
-當時記得在一大堆資料中
-為什麼用這樣的方式
-因為他給使用者 更直觀的方式
+at that time,I rememgered why it
+was used in this way among a lot of information.
+because it gives users a more intuitive way
 make code clear!!!!
 
 
@@ -438,7 +440,7 @@ then
 fi
 ```
 
-## bash because add feature : can use same IP address 
+## bash_because_add_feature_can_use_same_IP_address
 ```bash
 ip="";
 validate_ip="";
@@ -492,9 +494,11 @@ Error: Unable to establish IPMI v2 / RMCP+ session
 #}}}
 ```
 first look at `The initial IP : ip="192.168.120.218"`
-當然如果是我在 重寫IP的時候沒問題 所以問題出在 他的結構
-包含了 非ip的部分
-所以修改了
+of course, if I rewrite the IP
+it will be no problem.
+so the problem is that its
+structure contains non-IP parts.
+So modified
 
 ```bash
 ip="";
@@ -533,17 +537,17 @@ done
 就把結構變成單純的值
 害我嚇爛 想說怎麼了==
 
-### expand issus --because ip struct
+### expand issue --because ip struct
 ```bash
 ./updateBMC.sh: line 173: $'\E[1A\E[2KSyntaxError:': command not found
 ./updateBMC.sh: line 167: $'\E[1A\E[2KSyntaxError:': command not found
 ```
 ![playwright-ip](./pic/playwright-ip.png)
 issue: `ip=ip=ip="0.0.0.0""`
-解決辦法在  {## bash_because_add_feature_can_use_same_IP_address.md} 是一樣的 
+the solution is the same in  {## bash_because_add_feature_can_use_same_IP_address.md} 
 
 
-
+---
 ## bash if no do something raise token fi
 ```
 if [  "${catch_version}" == "${ipmitool_check}" ]
@@ -557,6 +561,7 @@ output=========>
 ./updateBMC.sh: line 128: `fi'
 ```
 
+---
 ## bash script can't use $?
 ```bash
 catch_version=$(ipmitool -I lanplus -H "${ip}" -U admin -P 11111111 raw 0x1e 0x01 0x00);
@@ -586,14 +591,14 @@ so I use different ways to verify
 set_ip;
 ```
 
+---
 ## bash different function variable and can span function and not 
-雖然我做function 
-但是在變數的地方卻可以同時用
-bash 是用設定的方式來設定變數
-所以他可以同步使用
+although I am making a function,
+I can use it at the same time as a variable
+bash uses settings to set variables
+so it can be usee at the same time
 
 ---
-
 ## bash if and oifs
 [ref](https://unix.stackexchange.com/questions/9496/looping-through-files-with-spaces-in-the-names)
 ```bash
@@ -628,7 +633,7 @@ find . -type f -name "*.csv" -print0 | while IFS= read -r -d '' file; do
 done
 ```
 
-
+---
 ## bash echo -e specail art use
 only use space
 ```bash
@@ -646,10 +651,10 @@ then
 fi
 ```
 
+---
 ## bash condition
 ```bash
-	#while [ ${ip} == ${ipmitool_check} ] 
-	while [[ ${ip} == ${ipmitool_check} ]]
+	while [ ${ip} == ${ipmitool_check} ] 
 	do
 read -p  " U need to input IP address : " ip;
 	done
@@ -662,5 +667,137 @@ solution
 read -p  " U need to input IP address : " ip;
 	done
 ```
+
+---
+# playwright use expect to check  login is correct
+```js
+1. 	//const response = await page.waitForRequest(url => url.url().includes('dashboard'));	
+2.	const response = await expect(page).toHaveURL('https://'+ip+'/#dashboard');
+```
+1. fail : it will be stuck and raise error (in playwright)
+2. success : I use expect -> Form a web design perspective
+
+---
+## playwright.locator.filter
+```bash
+	await page.locator('div').filter({ hasText: /^Full Flash$/ }).getByRole('insertion').click();
+	//await page.locator('div').filter({ hasText: Full Flash }).getByRole('insertion').click();
+```
+this way is by `codegen`
+need use `/^Full Flash$/`
+
+---
+## playwright page.once use to 
+[playwright dialog](https://playwright.dev/docs/dialogs)
+use at 3 way
+1. alert()
+2. confirm()
+3. prompt()
+```js
+	page.once('dialog', dialog => {
+		console.log(`Dialog message: ${dialog.message()}`);
+		//dialog.dismiss().catch(() => {});
+		dialog.accept().catch(() => {});
+	});
+```
+in confirm() 
+1. dismiss() 
+2. accept()
+
+---
+love me hard lov3e me
+do 520 you know love 
+love it is omg love
+
+love me 520
+
+---
+## playwright.issue.upload.bmc.file.after.hooks
+![unexpet0](./pic/is.after.unexpet0.png)
+This is explaining what went wrong
+Because this is not a matter of direct instruction
+but in my opinion
+I think this is a different kind of programming problem.
+![after-hook](./pic/is.after.hooks.png)
+this is the playwright last trace
+![unexpet](./pic/is.after.unexpet.png)
+The last part is also where the problem can be seen 
+(in playwright result)
+```bash
+=====palywright error message ====>
+Error: file data stream has unexpected number of bytes
+```
+### solution
+when the last ending code of API appears
+there will be a waiting time for him to restart
+but this is not an accurate statement
+
+because it should be in the WEBUI-interface
+even though he received the final closing code
+still need to wait for some time
+
+so I used waiting time do solve the error
+` await page.waitForTimeout(4000);`
+![pass](./pic/is.after.pass.png)
+> Even if an error is displayed,
+> the update action can still proceed normally.
+
+---
+## playwright timeout of execeeded while running beforeEach hook
+[ref](https://stackoverflow.com/questions/67434530/how-to-capture-requests-and-responses-in-playwright-after-hitting-a-button)
+```js
+	const response = await page.waitForRequest(url => url.url().includes('dashboard'));	
+```
+> where 'templateFrom3rdRedirect' is the part of URL unique 
+> to the necessary "hop" of the last redirect
+
+in my opinion,maybe BMC's web is not a jump
+but the should have a modified the version
+because I've succeeded before
+now jump directly to the error 
+( Mon Feb  5 10:29:00 CST 2024)
+
+---
+## playwright get  page.getByText sometimes did not work sometimes did work
+```js
+	await page.getByRole('button', { name: 'Sign me in' }).click();
+	loginFlag = await page.getByText('Login Failed').isVisible();
+	await page.waitForTimeout(1314);
+	if(await page.getByText('Login Failed').isVisible()){
+		console.log("========================================");
+		console.log("|               ERROR    :             |");
+		console.log("|             didn't login !!!         |");
+		console.log("========================================");
+	}
+```
+very surprising question
+Sometimes it's normal, sometimes it's abnormal
++ correct work
+![work](./pic/getBytext0.png)
++ error work 
+![ not](./pic/getBytext1.png)
+Although the prompt text of the picture is different
+But this is just a small change
+
+I think it's because it's too fast
+### solution
+`	await page.waitForTimeout(520); `
+```js
+	await page.getByRole('button', { name: 'Sign me in' }).click();
+	await page.waitForTimeout(520); 
+	loginFlag = await page.getByText('Login Failed').isVisible();
+	await page.waitForTimeout(1314);
+	if(await page.getByText('Login Failed').isVisible()){
+		console.log("========================================");
+		console.log("|               ERROR    :             |");
+		console.log("|             didn't login !!!         |");
+		console.log("========================================");
+	}
+```
+let the page comfirm and capture the judgment-element
+
+---
+
+
 
 

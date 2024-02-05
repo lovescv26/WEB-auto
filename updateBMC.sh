@@ -27,8 +27,6 @@ ip="";
 validate_ip="";
 ip_flag=1;
 origin_ip="";
-#origin_ip=cat ./test.js|grep "let"|cut -d ' ' -f 2 ;
-#origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3) ;
 origin_ip=$(cat ./javascript_ip.js|grep "let"|cut -d ' ' -f 3|sed 's/"//g'|sed 's/ip=//g') ;
 catch_version="";													#catch_version *[] use for ipmitool
 need_version="";													#need_version  *[] specific area
@@ -120,12 +118,6 @@ for file in $(ls ./tests/uploadFiles)
 do
 	count_uploadfile=$((${count_uploadfile}+1));
 	echo  "[${count_uploadfile}    ->    ${file}]";
-	#case "${Extension}" in
-	#	ima)
-	#		echo "";;
-	#	*)
-	#		rm -v ./tests/uploadFiles/$file;;
-	#esac	
 done
 }
 catch_ver(){ 
@@ -133,10 +125,6 @@ catch_ver(){
 catch_version=$(ipmitool -I lanplus -H "${ip}" -U admin -P 11111111 raw 0x1e 0x01 0x00);
 ipmitool_check="";
 #echo "ip check : ${catch_version}"
-#for i in $(seq 2 4);
-#do
-#	#need_version=${need_version} $(echo "${catch_version}"|cut -d ' ' -f ${i});
-#done
 ###### if bmc not working just pop error
 if [  "${catch_version}" == "${ipmitool_check}" ]
 then
