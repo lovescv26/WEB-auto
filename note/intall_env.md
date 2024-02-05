@@ -4,7 +4,7 @@
 [ref1](https://learn.microsoft.com/zh-tw/windows/dev-environment/javascript/nodejs-on-wsl)
 ## need curl tool
 `sudo apt install curl`
-![](./pic/env_curl.png)
+![](../pic/env_curl.png)
 
 the script can be downloaded and executed with the following :
 ```bash
@@ -17,7 +17,7 @@ close terminal and
 ```bash
 nvm install node
 ```
-![](./pic/envn_node.png)
+![](../pic/envn_node.png)
 
 ```bash
 nvm install 16.15.1
@@ -27,12 +27,12 @@ nvm install 16.15.1
 ```bash
 sudo apt install nodejs
 ```
-![](./pic/env_node.png)
+![](../pic/env_node.png)
 
 ```bash
 npx playwright install
 ```
-![](./pic/envnx_playwright.png)
+![](../pic/envnx_playwright.png)
 ## installed ipmitool
 ```bash
 sudo apt install ipmitool
