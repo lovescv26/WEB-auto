@@ -7,16 +7,16 @@ node_modules/
 
 tests/uploadFiles/*
 
+# this part is my dev_process
 note/correct.txt
 note/error.txt
 note/t0.txt
 note/t1.txt
 log.txt
-note/ssssss.txt
-
 .bosidian/*
 .obsidian/*
 .obsidian/*.*
+note/ssssss.txt
 
 javascript_ip.js
 bmc_update.js
