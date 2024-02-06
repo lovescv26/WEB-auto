@@ -24,7 +24,8 @@ test('upload bmc file',async ({page}) => {
 	await page.goto('https://'+ip+'/#maintenance/firmware_update_wizard');
 //	await page.locator('#mainfirmware_image').setInputFiles('tests/uploadFiles/IS-5121_v1.1.18N.ima');
 	//await page.locator('#textmainfirmware_image').setInputFiles('./tests/uploadFiles/IS-5121_v1.1.18N.ima');
-	await page.locator('#mainfirmware_image').setInputFiles('./tests/uploadFiles/'+updateBMCfile);
+	//await page.locator('#mainfirmware_image').setInputFiles('./tests/uploadFiles/'+updateBMCfile);old version 
+	await page.locator('#mainfirmware_image').setInputFiles('./UPLOADFILES/'+updateBMCfile);
 	await page.waitForTimeout(1600);
 	await page.getByRole('button', { name: 'Start firmware update' }).click();
 	console.log(" It is will update bmc version is : " + updateBMCfile);
