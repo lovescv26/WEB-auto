@@ -1,10 +1,11 @@
 ---
 created : Tue Feb  6 08:57:45 CST 2024
-date    : Tue Feb  6 10:27:04 CST 2024
+
+date    : Tue Feb  6 10:43:05 CST 2024
 
 ---
 # Consensus
-This is an automatic test MBC written using playwright
+This is an automatic test BMC written using playwright
 
 The file `dev_record.md` is all my development process
 1. development process
@@ -51,7 +52,7 @@ Description: A brief description of the work completed.
 1. loop burn in bmc				-- chiangchiang  ❤️  (^◕.◕^)   2024/02/06
 
 ---
-## Expeted completion
+## Expected completion
 Description: Expected functionality
 
 
