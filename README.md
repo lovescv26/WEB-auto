@@ -1,5 +1,6 @@
 ---
-date : Tue Feb  6 08:57:45 CST 2024
+created : Tue Feb  6 08:57:45 CST 2024
+date : Tue Feb  6 10:27:04 CST 2024
 
 ---
 # Consensus
@@ -12,8 +13,10 @@ The file `dev_record.md` is all my development process
 + The folder `note/` put all my test code or development stuff etc.  📜📄📑📚🧾🗒️📝
 + The folder `pic/` put all mp4 mp3 gif etc. 🎬
 
+[set playwright environment](http://sd20-server.aewin.com:3000/_67u42-XQvisBUMef1VGeQ)
+
 ---
-# necessary file ( developer  have to do )
+# ❗necessary file ( developer  have to do ) ❗
 ❗❗❗❗❗❗❗🧬🧬🧬🧬🧬
 ### Linux
 ```bash
@@ -22,6 +25,7 @@ echo -e '// @ts-check\nexport let ip="192.168.120.218"'>javascript_ip.js
 ```bash
 echo -e '// @ts-check\nexport let updateBMCfile="IS-5121_v1.1.18N.ima"'>bmc_update.js
 ```
+
 
 ### windows
 file : `javascript_ip.js`
