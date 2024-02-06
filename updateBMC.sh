@@ -81,12 +81,6 @@ if [[ ${limit_count} == 1 ]] ; then
 	### if only one update bmc file
 	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; exit 111;	
 fi
-if [ ${limit_count} -gt 2 ]
-then
-	echo -e "\n\n you have  \e[41m${limit_count}\e[0m  files in the /UPLOADFILES "
-else
-	echo -e "\n\n you have  \e[42m${limit_count}\e[0m  files in the /tests/UPLOADFILES "
-fi
 OIFS="$IFS";
 IFS=$'\n';
 for file in $(ls ./UPLOADFILES)
@@ -100,6 +94,12 @@ do
 	esac	
 done
 IFS="$OIFS";
+if [ ${limit_count} -gt 2 ]
+then
+	echo -e "\n\n you have  \e[41m${limit_count}\e[0m  files in the /UPLOADFILES "
+else
+	echo -e "\n\n you have  \e[42m${limit_count}\e[0m  files in the /tests/UPLOADFILES "
+fi
 while [ ${limit_count} -gt 2 ]
 do 
 	#echo -e "only 2 file u need to delete some file \n    y=>yes delete\n    n=>no  delete"
