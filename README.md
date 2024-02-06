@@ -46,7 +46,7 @@ export let updateBMCfile="IS-5121_v1.1.18N.ima"
 ## in progress
 0. (emergency)fix some structure : chiangchiang 
 	1. update bmc file location && git rule 
-	2. add new function -- chiangchiang
+	2. add new function 
 1. screenshot of setting page    -- chiangchiang 
 
 ---
