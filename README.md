@@ -31,7 +31,7 @@ Description: Expected functionality
 ##  how to use burn BMC repeatedly
 use command
 ```bash
-./updateBMC.sh*
+./updateBMC.sh
 ```
 [see more details](http://sd20-server.aewin.com:3000/7d_073JjTEiIFLKFqkMNsw)
 
