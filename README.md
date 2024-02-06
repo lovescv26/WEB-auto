@@ -23,22 +23,12 @@ The file `dev_record.md` is all my development process
 ```bash
 echo -e '// @ts-check\nexport let ip="192.168.120.218"'>javascript_ip.js
 ```
-```bash
-echo -e '// @ts-check\nexport let updateBMCfile="IS-5121_v1.1.18N.ima"'>bmc_update.js
-```
-
 
 ### windows
 file : `javascript_ip.js`
 ```js
 // @ts-check
 export let ip="192.168.120.210"
-```
-file : `bmc_update.js`
-```js
-// @ts-check
-//await page.locator('#mainfirmware_image').setInputFiles('./tests/uploadFiles/IS-5121_v1.1.18N.ima');
-export let updateBMCfile="IS-5121_v1.1.18N.ima"
 ```
 
 
