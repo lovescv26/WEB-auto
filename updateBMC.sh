@@ -75,27 +75,28 @@ done
 set_bmc(){ 
 count_uploadfile=0;													#int count_uploadfile
 limit_count=0; 														#int limit_count
-limit_count=$(ls ./tests/uploadFiles/ |wc -l)
+#limit_count=$(ls ./tests/uploadFiles/ |wc -l)
+limit_count=$(ls ./UPLOADFILES/ |wc -l)
 if [[ ${limit_count} == 1 ]] ; then
 	### if only one update bmc file
 	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; exit 111;	
 fi
 if [ ${limit_count} -gt 2 ]
 then
-	echo -e "\n\n you have  \e[41m${limit_count}\e[0m  files in the /tests/uploadFiles "
+	echo -e "\n\n you have  \e[41m${limit_count}\e[0m  files in the /UPLOADFILES "
 else
-	echo -e "\n\n you have  \e[42m${limit_count}\e[0m  files in the /tests/uploadFiles "
+	echo -e "\n\n you have  \e[42m${limit_count}\e[0m  files in the /tests/UPLOADFILES "
 fi
 OIFS="$IFS";
 IFS=$'\n';
-for file in $(ls ./tests/uploadFiles)
+for file in $(ls ./UPLOADFILES)
 do
 	Extension=${file##*.}
 	case "${Extension}" in
 		ima)
 			echo "";;
 		*)
-			rm  ./tests/uploadFiles/$file;;
+			rm  ./UPLOADFILES/$file;;
 	esac	
 done
 IFS="$OIFS";
@@ -103,10 +104,10 @@ while [ ${limit_count} -gt 2 ]
 do 
 	#echo -e "only 2 file u need to delete some file \n    y=>yes delete\n    n=>no  delete"
 	echo -e "|============================|\n| !!BREAK THE RULE           |\n| only 2 files               |\n| U need to delete some file |\n|.                          .|\n|<<interactive delete mode >>|\n| press y => yes delete      |\n|       n => no  delete      |\n|============================|\n\n";
-	for file_n in $(ls ./tests/uploadFiles)
+	for file_n in $(ls ./UPLOADFILES)
 	do
-		rm -vi ./tests/uploadFiles/${file_n};
-		limit_count=$(ls ./tests/uploadFiles/ |wc -l);
+		rm -vi ./UPLOADFILES/${file_n};
+		limit_count=$(ls ./UPLOADFILES/ |wc -l);
 		echo " check update file -> ${limit_count}";
 		if [[ ${limit_count} == 2 ]]
 		then
@@ -114,7 +115,7 @@ do
 		fi
 	done
 done
-for file in $(ls ./tests/uploadFiles)
+for file in $(ls ./UPLOADFILES)
 do
 	count_uploadfile=$((${count_uploadfile}+1));
 	echo  "[${count_uploadfile}    ->    ${file}]";
@@ -153,11 +154,12 @@ parse_name=${parse_1}.${parse_2}.$((${parse_4}*100+${parse_3})); 	#char *[] pars
 #echo "${third_number}";											#dev verification
 #echo "${forth_number}";											#dev verification
 ###### exclude the same upload file with current bmc version
-change_file_limit=$(ls ./tests/uploadFiles/ | grep -v "${parse_name}"|wc -l)
+change_file_limit=$(ls ./UPLOADFILES/ | grep -v "${parse_name}"|wc -l)
 ###### fix bug if update file not only 1
 if [ ${change_file_limit} == 1 ]
 then
-change_file=$(ls ./tests/uploadFiles/ | grep -v "${parse_name}");	#char *[] change_file 
+#change_file=$(ls ./tests/uploadFiles/ | grep -v "${parse_name}");	#char *change_file 
+change_file=$(ls ./UPLOADFILES/ | grep -v "${parse_name}");	#char *change_file 
 else
 #echo -e "===================\n|!!!!!!ERROR!!!!! |\n| you file need   |\n|one is right now |\n|version!		   |";
 echo -e "==============================\n| One of your files needs to |\n| consisitent with your      |\n| current BMC version        |\n|                            |\n==============================\n| right now version is  :    |\n.      ${parse_name}         "; exit 520;
