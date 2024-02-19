@@ -20,16 +20,13 @@ The file `dev_record.md` is all my development process
 # ❗necessary file ( developer  have to do ) ❗
 ❗❗❗❗❗❗❗🧬🧬🧬🧬🧬
 ### Linux
+execute 
 ```bash
-echo -e '// @ts-check\nexport let ip="192.168.120.218"'>javascript_ip.js
+./INItialize.sh
 ```
 
 ### windows
-file : `javascript_ip.js`
-```js
-// @ts-check
-export let ip="192.168.120.210"
-```
+To execute INItialize.bat  :  double-click the `INItialize.bat` file
 
 
 ---
@@ -51,7 +48,7 @@ Description: Expected functionality
 
 
 ---
-###  how to use burn BMC repeatedly
+###  how to use burn BMC repeatedly (only LINUX)
 use command
 ```bash
 ./updateBMC.sh
