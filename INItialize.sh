@@ -51,6 +51,7 @@ else
 fi
 #echo ${var_string_ip};
 echo "now use $(grep ip javascript_ip.js|cut -d ' ' -f 3)";
+IFS=${OIFS};
 #$(cat javascript_ip.js|grep ip)
 grep ip javascript_ip.js;
 if [ "$?" == "0" ];
