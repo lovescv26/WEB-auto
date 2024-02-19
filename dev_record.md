@@ -799,7 +799,64 @@ I think it's because it's too fast
 let the page comfirm and capture the judgment-element
 
 ---
+## bash alias and edit issue
+[ref](https://stackoverflow.com/questions/24054154/how-do-create-an-alias-in-shell-scripts)
 
+### first 
+```bash
+#!/bin/bash
+shopt -s expand_aliases
+alias I_am_only_ls_alias=ls
+I_am_only_ls_alias
+```
+> Scripts usually use functions, not aliases  --Barmar
+
+### edit issue
+```bash
+variable_catch_bmc="";
+if [ ${variable_string_bmc} == 'ANCHOR.java' ]
+then
+	variable_catch_bmc=$(ls -r UPLOADFILES/ |head -n1);
+	echo ${variable_catch_bmc};
+	#cat bmc_update.js|edit_file 's/${variable_string_bmc}/${variable_catch_bmc}/g'
+	#$(edit_file 's/${variable_string_bmc}/${variable_catch_bmc}/g' bmc_update.js)
+	#### this is error didn't use single quote
+	edit_file "s/${variable_string_bmc}/${variable_catch_bmc}/g" bmc_update.js
+	echo "exectue edit it";
+fi
+```
+
+## bash error - variable is null (empty)
+#### issue
+```bash
+#var_string_bmc=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
+#### if the var_string_bmc : have ANCHOR that no error
+#### if only grep and it is 1 but use cut and return 0
+if [ "$?" == "0" ]
+then
+	var_string_bmc=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
+else
+	var_string_bmc=$(grep update bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
+fi
+
+```
+```bash
+#var_string_bmc=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
+grep ANCHOR bmc_update.js;
+if [ "$?" == "0" ]
+then
+	var_string_bmc=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
+else
+	var_string_bmc=$(grep update bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
+fi
+```
+So I slightly modified it to make it easier to use.
+Then the error will not occur again in the future.
+```bash
+error output ======>
+
+
+```
 
 
 

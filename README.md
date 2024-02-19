@@ -26,16 +26,17 @@ execute
 ```
 
 ### windows
-To execute INItialize.bat  :  double-click the `INItialize.bat` file
-
+1. To execute INItialize.bat  :  double-click the `INItialize.bat` file
+2. Use powershell : `.\INItialize.bat`
+```powershell
+PS D:\tem\WEB-auto> .\INItialize.bat
+```
 
 ---
 ## in progress
-0. (emergency)fix some structure : chiangchiang 
-	1. update bmc file location && git rule 
-	2. add new function 
 1. screenshot of setting page    -- chiangchiang 
 2. loop script add fearture : ask whether to delete the previous LOG file --chiangchiang
+3. change the loop burn in bmc struct : (future branch)
 
 ---
 ## Objective
