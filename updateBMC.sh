@@ -33,6 +33,13 @@ need_version="";													#need_version  *[] specific area
 set_ip(){
 use_file_ip=2;														# 0=> continue  1=>change
 use_file_ip_flag=1; #
+another_file="./INItialize.sh"
+if [ ! -f ./javascript_ip.js ];
+then
+	echo " because you didn't it ";
+	#sh ${another_file};
+	bash  ${another_file};
+fi
 echo -e "The initial IP  :  \e[31m${origin_ip}\e[0m \n\n";
 ###### use same IP 
 while [ ${use_file_ip_flag} == 1 ]
