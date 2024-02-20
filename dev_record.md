@@ -758,6 +758,44 @@ now jump directly to the error
 ( Mon Feb  5 10:29:00 CST 2024)
 
 ---
+## optimization s and echo 
+Reason analysis: What I ordered can be written, so I replaced the original writing method.
+```bash
+var_catch_origin="";
+var_catch_origin=$(grep update bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
+change_file=$(ls ./UPLOADFILES/ |grep -v "${var_catch_origin}");
+echo "the check $change_file}"
+
+#echo "change_file_bash : ${change_file}";
+###### grab the previous update file
+orgin_update_bmc_file=$(cat ./bmc_update.js | grep "updateBMCfile"|cut -d ' ' -f 3); 
+#echo "${change_file}";												#check bmc file
+echo -e " will change version is  \e[41m${change_file}\e[0m"|tee -a log.txt
+sed -i "s/${orgin_update_bmc_file}/updateBMCfile=\"${change_file}\"/g" ./bmc_update.js
+```
+I can understand something so complex,
+but it seems like torture for someone not familiar with the script.
+> if you want to know detial!u can go to 40181ba9d419023ac6179fbb73af6def8c6346de
+
+#### how to fix it
+```bash
+#! /bin/bash
+orgin_update_bmc_file=$( grep "updateBMCfile" bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2); 
+echo "${orgin_update_bmc_file}";
+#echo "${change_file}";												#check bmc file
+ttt="IS-520_v1.1.20N.ima";
+echo -e " will change version is  \e[41m${change_file}\e[0m"|tee -a log.txt
+#sed -i "s/${orgin_update_bmc_file}/updateBMCfile=\"${change_file}\"/g" ./bmc_update.js
+#echo -e '// @ts-check\nexport let updateBMCfile="${ttt}"' >ttttttttt.js
+echo -e "// @ts-check\nexport let updateBMCfile=\"${ttt}\"" >ttttttttt.js
+```
+`echo -e '// @ts-check\nexport let updateBMCfile="${ttt}"' >ttttttttt.js`
++ error : because strong ref
+`echo -e "// @ts-check\nexport let updateBMCfile=\"${ttt}\"" >ttttttttt.js`
++ correct : weak ref
+this is my test.sh (just test) (no git ls )
+
+---
 ## playwright get  page.getByText sometimes did not work sometimes did work
 ```js
 	await page.getByRole('button', { name: 'Sign me in' }).click();
@@ -826,6 +864,7 @@ then
 fi
 ```
 
+---
 ## bash error - variable is null (empty)
 #### issue
 ```bash
@@ -855,8 +894,22 @@ Then the error will not occur again in the future.
 ```bash
 error output ======>
 
-
 ```
 
+---
+## issue : delay catch ip
+This happened after 
+I added new features and changed the overall architecture 
+(setting up bmc files)
+![delay](./pic/DR.delay.catch.ip.png)
 
+The issue It's facing is related to the newly added functionality and changes to the overall architecture.
+Initially, the IP address is correct,
+but after using the new feature,
+it modifies the IP address, resulting in errors.
+
+### solution 
+Just change the time of crawling IP
+
+---
 
