@@ -78,7 +78,7 @@ test('upload bmc file',async ({page}) => {
 //	})
 	
 
-	await page.goto('https://192.168.120.218/#login');
+	await page.goto('https://'+ip+'/#login');
 	
 
 
