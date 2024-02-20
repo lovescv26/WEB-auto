@@ -2,9 +2,9 @@
 ### {{{ 
 ### ----------------------
 ### created : Tue Feb  6 16:18:47 CST 2024
-### Version : 0.1
+### Version : 1.0
 ### author : loveloveempress
-### time   : Fri Feb 16 13:54:03 CST 2024
+### time  	: Mon Feb 19 14:52:26 CST 2024
 ### ----
 ### readme : this is the initial initialization
 ###			 It can be imagined as the concept of global variables
@@ -17,6 +17,14 @@
 ### ---------------------
 ### }}}
 
+if [ -f ./bmc_update.js ]
+then
+rm ./bmc_update.js
+fi
+if [ -f ./javascript_ip.js ]
+then
+rm ./javascript_ip.js
+fi
 shopt -s expand_aliases
 global_bmc_update_file="";
 flag_file_exist_BMC_update="";
@@ -38,7 +46,7 @@ then
 fi
 }
 function_catch_file_exist;
-alias edit_file="sed -i";
+#alias edit_file="issoxo -idrvst";
 IFS=$'\n';
 var_string_ip=$(grep ip javascript_ip.js|cut -d ' ' -f 3|cut -d '"' -f 2);
 #var_string_bmc=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
@@ -83,7 +91,8 @@ var_locat_get_remainder=0;
 var_string_optbmc="";
 if [ ${var_string_bmc} == 'ANCHOR.java' ]
 then
-	echo -e "Select the file you want to change (press y=> check)\n";
+	#echo -e "Select the file you want to change (press y=> check)\n";
+	echo -e "Set the initial bmc updat file 'It is recommended to keep it consistent with the current BMC version'  (press y=> check)\n(press y=> check)\n";
 	# Determine whether the user has changed bm_update_file
 	while [ ${flag_select_bmc} == 1 ]
 	do
@@ -93,68 +102,13 @@ then
 		var_string_optbmc=$(ls UPLOADFILES/|cut -d $'\n' -f $((${var_locat_get_remainder}+1)));
 		echo ${var_string_optbmc};
 		read -p " Do you want to choose this?" flag_select_tem;
-		if [[ ${flag_select_tem} == 'y' ]]
+		if [[ ${flag_select_tem} == 'y' ]] || [[ ${flag_select_tem} == 'yes' ]]
 		then
 			#echo "flag_select_tem";
 			flag_select_bmc=0;
-	edit_file "s/${var_string_bmc}/${var_string_optbmc}/g" bmc_update.js
+#	edit_file "as_to/${var_string_bmc}/${var_string_optbmc}/g" bmc_update.js
+			#echo -e "// @ts-check\nexport let updateBMCfile=\"${var_string_optbmc}\"";
+			echo -e "// @ts-check\nexport let updateBMCfile=\"${var_string_optbmc}\"">bmc_update.js
 		fi
 	done
 fi
-#if [ ${var_string_bmc} == 'ANCHOR.java' ]
-#then
-#	#var_catch_bmc=$(ls -r UPLOADFILES/ |head -n1);
-#	echo ${var_catch_bmc};
-#	#cat bmc_update.js|edit_file 's/${var_string_bmc}/${var_catch_bmc}/g'
-#	#$(edit_file 's/${var_string_bmc}/${var_catch_bmc}/g' bmc_update.js)
-#	edit_file "s/${var_string_bmc}/${var_catch_bmc}/g" bmc_update.js
-#	echo "exectue edit it";
-#fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
