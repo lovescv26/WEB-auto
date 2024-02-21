@@ -1,7 +1,7 @@
 ---
 created : Tue Feb  6 08:57:45 CST 2024
 
-date    : Tue Feb  6 15:30:26 CST 2024
+date    : Wed Feb 21 11:26:18 CST 2024
 
 ---
 # Consensus
@@ -42,6 +42,7 @@ PS D:\tem\WEB-auto> .\INItialize.bat
 ## Objective
 Description: A brief description of the work completed.
 1. loop burn in bmc				-- chiangchiang  ❤️  (^◕.◕^)   2024/02/06
+	+ change the struct	: remove the match bmc version  --chaingchiang 2024/02/21
 
 ---
 ## Expected completion

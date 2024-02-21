@@ -36,15 +36,24 @@ another_file="./INItialize.sh"
 flag_tem=1;
 var_input=0;
 
+
 function_set_initial(){
 bash  ${another_file};
 }
 
 if [ ! -f ./javascript_ip.js ] || [ ! -f ./bmc_update.js ];
 then
-	echo " because you didn't it ";
+	echo " because you didn't devloper file it ";
 	#sh ${another_file};
 	function_set_initial;
+fi
+
+var_catch_bmc_default=$(grep ANCHOR bmc_update.js)
+if [[ "$?" == 0 ]] ;then
+	var_catch_bmc_default=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
+	function_set_initial;
+else
+	
 fi
 
 while [[ ${flag_tem} == 1 ]]

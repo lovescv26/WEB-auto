@@ -2,18 +2,21 @@
 ### {{{ 
 ### ----------------------
 ### created : Tue Feb  6 16:18:47 CST 2024
-### Version : 1.0
+### Version : 1.1
 ### author : loveloveempress
-### time  	: Mon Feb 19 14:52:26 CST 2024
+### time  	: Wed Feb 21 10:02:29 CST 2024
 ### ----
 ### readme : this is the initial initialization
 ###			 It can be imagined as the concept of global variables
 ### rule: 
-###
+###				1. need to put >1 bmc-update-file in the UPLOADFILES/ (EX: IS-5121_v5.2.0.ima )
 ### IP part :
 ### 
 ### bmc upfile :
-### 
+### 			need to put >1 bmc-update-file
+### other :
+###				it well all reset  bmc_update.js and javascript_ip.js file (because ignore file )
+###
 ### ---------------------
 ### }}}
 if [ ! -d ./UPLOADFILES/ ];
@@ -64,7 +67,6 @@ function_catch_file_exist;
 #alias edit_file="issoxo -idrvst";
 IFS=$'\n';
 var_string_ip=$(grep ip javascript_ip.js|cut -d ' ' -f 3|cut -d '"' -f 2);
-#var_string_bmc=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3 | cut -d '"' -f 2);
 grep ANCHOR bmc_update.js;
 if [ "$?" == "0" ]
 then
@@ -89,8 +91,7 @@ then
 fi
 
 var_detect_num=$(find ./UPLOADFILES/ -name "*ima" |wc -l);
-#if [[ ${var_detect_num} == 0 ]]
-if (( ${var_detect_num} < 2 ))
+if (( ${var_detect_num} < 1 ))
 then
 	echo " ***************** ";
 	echo " *     ERROR     * ";
@@ -117,7 +118,8 @@ flag_select_tem='n';
 var_local_num=0;
 var_locat_get_remainder=0;
 var_string_optbmc="";
-
+var_catch_all_count=0;
+var_catch_all_count=$(ls UPLOADFILES/|wc -l);
 
 if [ ${var_string_bmc} == 'ANCHOR.java' ]
 then
@@ -127,7 +129,7 @@ then
 	while [ ${flag_select_bmc} == 1 ]
 	do
 		var_local_num=$((var_local_num+1));
-		var_locat_get_remainder=$((${var_local_num}%2))
+		var_locat_get_remainder=$((${var_local_num}%${var_catch_all_count}))
 		# flex If you use `head` it will be a bit static
 		var_string_optbmc=$(ls UPLOADFILES/|cut -d $'\n' -f $((${var_locat_get_remainder}+1)));
 		echo ${var_string_optbmc};
@@ -136,8 +138,7 @@ then
 		then
 			#echo "flag_select_tem";
 			flag_select_bmc=0;
-#	edit_file "as_to/${var_string_bmc}/${var_string_optbmc}/g" bmc_update.js
-			#echo -e "// @ts-check\nexport let updateBMCfile=\"${var_string_optbmc}\"";
+#	edit_file "as_to${var_string_bmc}${var_string_optbmc}g"
 			echo -e "// @ts-check\nexport let updateBMCfile=\"${var_string_optbmc}\"">bmc_update.js
 		fi
 	done

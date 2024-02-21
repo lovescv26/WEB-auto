@@ -912,4 +912,56 @@ it modifies the IP address, resulting in errors.
 Just change the time of crawling IP
 
 ---
+##  bash bug : fixed value parameter errors lead to - crawling non-existent files
+This is when I was writing, 
+because the default was two files,
+so it caused the [expected cognitive error.](https://link.springer.com/article/10.1007/s10339-007-0173-z)
+> Anticipatory cognitive errors refer to faulty thinking patterns 
+> that occur when individuals anticipate negative outcomes 
+> or misinterpret situations based on cognitive biases.
+> --bing
+
+```bash
+var_catch_bmc="";
+flag_select_bmc=1;
+flag_select_tem='n';
+var_local_num=0;
+var_locat_get_remainder=0;
+var_string_optbmc="";
+var_catch_all_count=0;
+var_catch_all_count=$(ls UPLOADFILES/|wc -l);
+if [ ${var_string_bmc} == 'ANCHOR.java' ]
+then
+	echo -e "Set the initial bmc updat file 'It is recommended to keep it consistent with the current BMC version'  (press y=> check)\n(press y=> check)\n";
+	while [ ${flag_select_bmc} == 1 ]
+	do
+		var_local_num=$((var_local_num+1));
+		#var_locat_get_remainder=$((${var_local_num}%2))
+		var_locat_get_remainder=$((${var_local_num}%${var_catch_all_count}))
+		# flex If you use `head` it will be a bit static
+		var_string_optbmc=$(ls UPLOADFILES/|cut -d $'\n' -f $((${var_locat_get_remainder}+1)));
+		echo ${var_string_optbmc};
+		read -p " Do you want to choose this?" flag_select_tem;
+		if [[ ${flag_select_tem} == 'y' ]] || [[ ${flag_select_tem} == 'yes' ]]
+		then
+			#echo "flag_select_tem";
+			flag_select_bmc=0;
+#	edit_file "as_to/${var_string_bmc}/${var_string_optbmc}/g" bmc_update.js
+			#echo -e "// @ts-check\nexport let updateBMCfile=\"${var_string_optbmc}\"";
+			echo -e "// @ts-check\nexport let updateBMCfile=\"${var_string_optbmc}\"">bmc_update.js
+		fi
+	done
+fi
+```
+
+`var_locat_get_remainder=$((${var_local_num}%2))`
+this will cause problems
+(the situation can only be 2 files)
+(I think like a bufer overflow)
+`var_locat_get_remainder=$((${var_local_num}%${var_catch_all_count}))`
+if use variable.that works like a charm
+
+---
+
+
 
