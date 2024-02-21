@@ -16,7 +16,22 @@
 ### 
 ### ---------------------
 ### }}}
-
+if [ ! -d ./UPLOADFILES/ ];
+then
+	mkdir UPLOADFILES/
+fi
+if [ ! -f ./UPLOADFILES/ANCHOR.java ]
+then
+	echo "public class Anchor{">./UPLOADFILES/ANCHOR.java;
+	echo "	public static void main(String[] args){">>./UPLOADFILES/ANCHOR.java;
+	echo "		System.out.println(\" this is anchor \");">>./UPLOADFILES/ANCHOR.java;
+	echo "	/*">>./UPLOADFILES/ANCHOR.java;
+	echo "	dGhpcyBpcyBhbmNob3IKIE9SIOWPr+S7peiqquaYr+iomOmMhOm7niDpgoTkuI3mmK/ngrrkuoYg">>./UPLOADFILES/ANCHOR.java;
+	echo "	Z2l0ID09Cuawo+atuwphbnl3YXkgOnJlY29yZAoyMDI0LzAyLzA2Cg==">>./UPLOADFILES/ANCHOR.java;
+	echo "	*/">>./UPLOADFILES/ANCHOR.java;
+	echo "	}">>./UPLOADFILES/ANCHOR.java;
+	echo "}">>./UPLOADFILES/ANCHOR.java;
+fi
 if [ -f ./bmc_update.js ]
 then
 rm ./bmc_update.js
@@ -72,6 +87,19 @@ if [ ${var_string_ip}="" ]
 then
 	echo -e '// @ts-check\nexport let ip="192.168.120.218"'>javascript_ip.js
 fi
+
+var_detect_num=$(find ./UPLOADFILES/ -name "*ima" |wc -l);
+#if [[ ${var_detect_num} == 0 ]]
+if (( ${var_detect_num} < 2 ))
+then
+	echo " ***************** ";
+	echo " *     ERROR     * ";
+	echo " * because no any* ";
+	echo " * update file   * ";
+	echo " ***************** ";
+	exit 22;
+fi
+echo " ----------------------";
 for file in $(ls ./UPLOADFILES)
 do
 	Extension=${file##*.}
@@ -89,6 +117,8 @@ flag_select_tem='n';
 var_local_num=0;
 var_locat_get_remainder=0;
 var_string_optbmc="";
+
+
 if [ ${var_string_bmc} == 'ANCHOR.java' ]
 then
 	#echo -e "Select the file you want to change (press y=> check)\n";
