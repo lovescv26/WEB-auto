@@ -921,6 +921,7 @@ so it caused the [expected cognitive error.](https://link.springer.com/article/1
 > or misinterpret situations based on cognitive biases.
 > --bing
 
+![ fixed value parameter](./pic/DR_fixed.value.parameter.png)
 ```bash
 var_catch_bmc="";
 flag_select_bmc=1;
@@ -960,6 +961,7 @@ this will cause problems
 (I think like a bufer overflow)
 `var_locat_get_remainder=$((${var_local_num}%${var_catch_all_count}))`
 if use variable.that works like a charm
+![flex value p](./pic/DR_flex.value.parameter.png)
 
 ---
 
