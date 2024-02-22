@@ -70,11 +70,9 @@ else
 	### optimizition : Thu Feb 22 10:03:44 CST 2024 --> 
 													###var_catch_origin
 	#var_catch_bmc_default=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
-	#var_catch_origin=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2)
 	var_catch_origin=$(grep updateBMC bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2)
 fi
 			#### 35->purper
-	#echo -e "\n\nBMC default => \e[35m${var_catch_origin}\e[0m\n";	
 	echo -e "\n\nBMC default => \e[1;34m${var_catch_origin}\e[0m\n";
 	echo -e "Whether to set the BMC reference file ";
 	echo -e "(usually this file will be consistent with the current BMC version)";
@@ -264,38 +262,22 @@ done;
 echo " execute : ${execute}";
 for i in $(seq 1 ${execute})
 do
-	#if [[ ${i} == 1 ]];then
-	#	echo " !!!====> ${i}" >> log.txt;
-	#	$(date >> log.txt)
-	#	$(npx playwright test tests/change.spec.js --headed>> log.txt)
-	#	sleep 10;
-	#	function_catch_ver;		### --> Thu Feb 22 11:36:14 CST 2024 I comment but error...this need to catch it... because the function_catch_version need to inhire it 
-	#	$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
-	#	$(command -v date >> log.txt)
-	#	$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
-	#	sleep 2m;
-	#	if [ ${i} -eq ${execute} ];
-	#	then
-	#		#echo " this is last one ";
-	#		$(npx playwright test tests/change.spec.js --headed>> log.txt);
-	#	fi
-	#else
-		echo " !!!====> ${i}" >> log.txt;
-		$(command -v date >> log.txt)
-		$(npx playwright test tests/change.spec.js --headed>> log.txt)
-		sleep 10;
-		function_catch_ver;
-		if (( ${i} > 1 ));then
+	echo " !!!====> ${i}" >> log.txt;
+	$(command -v date >> log.txt)
+	$(npx playwright test tests/change.spec.js --headed>> log.txt)
+	sleep 10;
+	function_catch_ver;
+	if (( ${i} > 1 ));then
 		function_catch_version;
-		fi
-		$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
-		$(date >> log.txt)
-		$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
-		sleep 2m;
-		if [ ${i} -eq ${execute} ];
-		then
-			#echo " this is last one ";
-			$(npx playwright test tests/change.spec.js --headed >> log.txt);
-		fi
+	fi
+	$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
+	$(date >> log.txt)
+	$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
+	sleep 2m;
+	if [ ${i} -eq ${execute} ];
+	then
+		#echo " this is last one ";
+		$(npx playwright test tests/change.spec.js --headed >> log.txt);
+	fi
 	#fi
 done
