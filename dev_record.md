@@ -474,6 +474,7 @@ do
 done
 ```
 ![ip-struct](./pic/ip-struct.png)
+
 because  origin_ip
 ``` bash
 #{{
@@ -536,6 +537,9 @@ done
 這是修正的version
 就把結構變成單純的值
 害我嚇爛 想說怎麼了==
+This is a revised version
+Just turn the struct into a simple value
+I was scared so I wanted to say what happened
 
 ### expand issue --because ip struct
 ```bash
@@ -543,6 +547,7 @@ done
 ./updateBMC.sh: line 167: $'\E[1A\E[2KSyntaxError:': command not found
 ```
 ![playwright-ip](./pic/playwright-ip.png)
+
 issue: `ip=ip=ip="0.0.0.0""`
 the solution is the same in  {## bash_because_add_feature_can_use_same_IP_address.md} 
 
@@ -964,6 +969,96 @@ if use variable.that works like a charm
 ![flex value p](./pic/DR_flex.value.parameter.png)
 
 ---
+---
+---
+##  bash message is " Running: command not found "
+```bash
+		echo " !!!====> ${i}" >> log.txt;
+		$(date >> log.txt)
+		#$(npx playwright test tests/change.spec.js --headed|tee -a log.txt)
+		$(npx playwright test tests/change.spec.js --headed>> log.txt)
+		sleep 10;
+		function_catch_ver;		### --> Thu Feb 22 11:36:14 CST 2024 I comment but error...this need to catch it... because the function_catch_version need to inhire it 
+		$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
+		$(command -v date >> log.txt)
+		$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
+		sleep 2m;
+		if [ ${i} -eq ${execute} ];
+		then
+			#echo " this is last one ";
+			$(npx playwright test tests/change.spec.js --headed>> log.txt);
+		fi
+```
+This still executes my playwright,
+but it keeps erroring out....
+> the error : only just say not found command
+
+~~I call it [a scumbag program, a ruthless program, a time-space disorder program]~~
+![a time-spae desorder program](./pic/DR_running.not.found.png)
+
+If
+[use command -v](https://stackoverflow.com/questions/58388169/date-command-not-found-in-shell-script)
+still error.
+
+#### solution
+and I find maybe playwrith test (and bash test ) is defferent
+and tee only use linux command so I just change redirector.
+
+
+---
+---
+---
+
+## bash -- Retrieve the old state that caused the error to occur
+```bash
+limit_count=0; 														#int limit_count
+#limit_count=$(ls ./tests/uploadFiles/ |wc -l)
+limit_count=$(ls ./UPLOADFILES/ |wc -l)
+if [[ ${limit_count} == 1 ]] ; then
+	### if only one update bmc file
+	echo -e "==============================\n| ERROR!!! need 2 files      |\n| you only put one file      |\n=============================="; exit 111;	
+fi
+for file in $(ls ./UPLOADFILES)
+do
+	Extension=${file##*.}
+	case "${Extension}" in
+		java)
+			rm -v ./UPLOADFILES/$file;;
+			
+		ima)
+			echo "";;
+		*)
+			rm  ./UPLOADFILES/$file;;
+	esac	
+done
+```
+![not synced ](./pic/DR_not.synced.png)
+There's nothing wrong with that.
+Even if the non-bmc update files are deleted,
+the error message still appears 
+(which means an inappropriate concept).
+	
+Why? Because my data is not synced to
+So it will cause this problem
+#### solution -- just synchronize it
+```bash
+do
+	Extension=${file##*.}
+	case "${Extension}" in
+		java)
+			rm -v ./UPLOADFILES/$file;;
+			
+		ima)
+			echo "";;
+		*)
+			rm  ./UPLOADFILES/$file;;
+	esac	
+done
+limit_count=$(ls ./UPLOADFILES/ |wc -l);		#### Need to synchronize
+```
+
+---
+
 
 
 

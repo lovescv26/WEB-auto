@@ -1,7 +1,7 @@
 ---
 created : Tue Feb  6 08:57:45 CST 2024
 
-date    : Wed Feb 21 11:26:18 CST 2024
+date    : Thu Feb 22 16:33:24 CST 2024
 
 ---
 # Consensus
@@ -12,7 +12,7 @@ The file `dev_record.md` is all my development process
 2. problems encountered and solve them
 
 + The folder `note/` put all my test code or development stuff etc.  📜📄📑📚🧾🗒️📝
-+ The folder `pic/` put all mp4 mp3 gif etc. 🎬
++ The folder `pic/` put all mp4 mp3 gif png etc. 🎬
 
 [set playwright environment](http://sd20-server.aewin.com:3000/_67u42-XQvisBUMef1VGeQ)
 

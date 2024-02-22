@@ -4,7 +4,7 @@
 ### created : Thu Feb  1 14:44:55 CST 2024
 ### Version : 2.3
 ### author : lovelovequeen	|| loveloveempress
-### time   : Tue Feb 20 09:19:08 CST 2024
+### time   : Thu Feb 22 16:33:04 CST 2024
 ### [ref](https://linuxhandbook.com/bash-variables/)
 ### [ref](https://linuxhandbook.com/bash-arrays/)
 ### [ref](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script)
@@ -23,6 +23,12 @@
 ### 
 ### ---------------------
 ### }}}
+
+#if [[ -f ~/.bashrc ]];then
+#	source ~/.bashrc;
+#fi
+
+dev_tem="";
 ip="";
 validate_ip="";
 ip_flag=1;
@@ -39,7 +45,13 @@ var_input=0;
 
 function_set_initial(){
 bash  ${another_file};
+echo "\n\n";
 }
+#function_catch_logfile(){
+	if [ -f log.txt ];then
+		rm -i log.txt;
+	fi
+#}
 
 if [ ! -f ./javascript_ip.js ] || [ ! -f ./bmc_update.js ];
 then
@@ -48,17 +60,28 @@ then
 	function_set_initial;
 fi
 
-var_catch_bmc_default=$(grep ANCHOR bmc_update.js)
+#var_catch_bmc_default=$(grep ANCHOR bmc_update.js)
+var_catch_origin=$(grep ANCHOR bmc_update.js)
 if [[ "$?" == 0 ]] ;then
-	var_catch_bmc_default=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
+	#var_catch_bmc_default=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
+	var_catch_origin=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2)
 	function_set_initial;
 else
-	
+	### optimizition : Thu Feb 22 10:03:44 CST 2024 --> 
+													###var_catch_origin
+	#var_catch_bmc_default=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
+	#var_catch_origin=$(grep ANCHOR bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2)
+	var_catch_origin=$(grep updateBMC bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2)
 fi
+			#### 35->purper
+	#echo -e "\n\nBMC default => \e[35m${var_catch_origin}\e[0m\n";	
+	echo -e "\n\nBMC default => \e[1;34m${var_catch_origin}\e[0m\n";
+	echo -e "Whether to set the BMC reference file ";
+	echo -e "(usually this file will be consistent with the current BMC version)";
 
 while [[ ${flag_tem} == 1 ]]
 do
-	read -p "do u want to set bmc update file? ( press y or n) " var_input;
+	read -p "Do u want to set bmc update file? ( press y or n) " var_input;
 	if [[ ${var_input} == 'y' ]]
 	then
 		flag_tem=0;
@@ -97,12 +120,12 @@ do
 	do
 read -p  " U need to input IP address : " ip;
 	done
-echo -e " if U ip address is  :: \e[31m[${ip}] \e[0m ";
+echo -e " if U ip address is  :: \e[4;31m[${ip}] \e[0m ";
 read -p  " press \"Y\" \"y\"  or \"0\" is comfirm ip address : " validate_ip;
 case "${validate_ip}" in
 	yes|Yes|Y|y|0)
 		ip_flag=0;
-		echo -e " // @ts-check\nexport let ip=\"${ip}\""
+		#echo -e " // @ts-check\nexport let ip=\"${ip}\""
 		echo -e " // @ts-check\nexport let ip=\"${ip}\"">javascript_ip.js
 		;;
 	*)
@@ -112,7 +135,7 @@ esac
 done
 #echo " double check ======================>  ${ip} ";	## because I think it not loot well
 }
-set_bmc(){ 
+function_set_bmcrule(){ 
 count_uploadfile=0;													#int count_uploadfile
 limit_count=0; 														#int limit_count
 #limit_count=$(ls ./tests/uploadFiles/ |wc -l)
@@ -127,12 +150,16 @@ for file in $(ls ./UPLOADFILES)
 do
 	Extension=${file##*.}
 	case "${Extension}" in
+		java)
+			rm -v ./UPLOADFILES/$file;;
+			
 		ima)
 			echo "";;
 		*)
 			rm  ./UPLOADFILES/$file;;
 	esac	
 done
+limit_count=$(ls ./UPLOADFILES/ |wc -l);		#### Need to synchronize
 if [ ${limit_count} -gt 2 ]
 then
 	echo -e "\n\n you have  \e[41m${limit_count}\e[0m  files in the /UPLOADFILES "
@@ -160,8 +187,10 @@ do
 	count_uploadfile=$((${count_uploadfile}+1));
 	echo  "[${count_uploadfile}    ->    ${file}]";
 done
+
+#============--------------------====================
 }
-catch_ver(){ 
+function_catch_ver(){ 
 	echo -e "\nip =====>  ${ip}\n";
 catch_version=$(ipmitool -I lanplus -H "${ip}" -U admin -P 11111111 raw 0x1e 0x01 0x00);
 ipmitool_null="";
@@ -174,6 +203,8 @@ then
 fi
 echo -e "-------------------------------";
 #echo -e "\nthis is version  \n${catch_version}";					#dev verification
+
+#=========------------==================
 }
 
 function_catch_version(){
@@ -210,19 +241,22 @@ parse_name=${parse_1}.${parse_2}.$((${parse_4}*100+${parse_3})); 	#char *[] pars
 var_catch_origin="";
 var_catch_origin=$(grep update bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
 change_file=$(ls ./UPLOADFILES/ |grep -v "${var_catch_origin}");
-echo "the check ${change_file}"
+#echo "the check ${change_file}"
 
 #echo "change_file_bash : ${change_file}";
 ###### grab the previous update file
-orgin_update_bmc_file=$( grep "updateBMCfile" bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2); 
+######  the old system ues perameter  Thu Feb 22 10:00:57 CST 2024 maybe delete
+#orgin_update_bmc_file=$( grep "updateBMCfile" bmc_update.js|cut -d ' ' -f 3|cut -d '"' -f 2);
 #echo "${change_file}";												#check bmc file
 echo -e " will change version is  \e[41m${change_file}\e[0m"|tee -a log.txt
 echo -e "// @ts-check\nexport let updateBMCfile=\"${change_file}\"">bmc_update.js
 }
 set_ip;
-catch_ver;
-set_bmc;
+###### because need to catch bmc raw  (this need to catch)
+function_catch_ver;
+function_set_bmcrule;
 function_catch_version;
+#echo "The BMC FILE IS	:	${var_catch_origin} ";
 #execute=0;															#int execute
 until [[ ${execute} == +([1-9]) ]];do
 	read -p  "execute how many time ?(input number) : " execute 
@@ -230,20 +264,38 @@ done;
 echo " execute : ${execute}";
 for i in $(seq 1 ${execute})
 do
-	echo " !!!====> ${i}" >> log.txt;
-	$(date >> log.txt)
-	$(npx playwright test tests/change.spec.js --headed|tee -a log.txt)
-	sleep 10;
-	#set_bmc;
-	catch_ver;
-	function_catch_version;
-	$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
-	$(date >> log.txt)
-	$(npx playwright test tests/uploadfile.spec.js --headed |tee -a log.txt)
-	sleep 2m;
-	if [ ${i} -eq ${execute} ];
-	then
-		#echo " this is last one ";
-		$(npx playwright test tests/change.spec.js --headed|tee -a log.txt);
-	fi
+	#if [[ ${i} == 1 ]];then
+	#	echo " !!!====> ${i}" >> log.txt;
+	#	$(date >> log.txt)
+	#	$(npx playwright test tests/change.spec.js --headed>> log.txt)
+	#	sleep 10;
+	#	function_catch_ver;		### --> Thu Feb 22 11:36:14 CST 2024 I comment but error...this need to catch it... because the function_catch_version need to inhire it 
+	#	$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
+	#	$(command -v date >> log.txt)
+	#	$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
+	#	sleep 2m;
+	#	if [ ${i} -eq ${execute} ];
+	#	then
+	#		#echo " this is last one ";
+	#		$(npx playwright test tests/change.spec.js --headed>> log.txt);
+	#	fi
+	#else
+		echo " !!!====> ${i}" >> log.txt;
+		$(command -v date >> log.txt)
+		$(npx playwright test tests/change.spec.js --headed>> log.txt)
+		sleep 10;
+		function_catch_ver;
+		if (( ${i} > 1 ));then
+		function_catch_version;
+		fi
+		$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
+		$(date >> log.txt)
+		$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
+		sleep 2m;
+		if [ ${i} -eq ${execute} ];
+		then
+			#echo " this is last one ";
+			$(npx playwright test tests/change.spec.js --headed >> log.txt);
+		fi
+	#fi
 done
