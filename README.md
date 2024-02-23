@@ -1,7 +1,7 @@
 ---
 created : Tue Feb  6 08:57:45 CST 2024
 
-date    : Thu Feb 22 16:33:24 CST 2024
+date    : Fri Feb 23 10:44:37 CST 2024
 
 ---
 # Consensus
@@ -17,6 +17,7 @@ The file `dev_record.md` is all my development process
 [set playwright environment](http://sd20-server.aewin.com:3000/_67u42-XQvisBUMef1VGeQ)
 
 ---
+---
 # ❗necessary file ( developer  have to do ) ❗
 ❗❗❗❗❗❗❗🧬🧬🧬🧬🧬
 ### Linux
@@ -26,12 +27,12 @@ execute
 ```
 
 ### windows
-1. To execute INItialize.bat  :  double-click the `INItialize.bat` file
-2. Use powershell : `.\INItialize.bat`
+Use **powershell** : `.\windows11_init.ps1`
 ```powershell
-PS D:\tem\WEB-auto> .\INItialize.bat
+PS D:\tem\WEB-auto> .\windows11_init.ps1
 ```
 
+---
 ---
 ## in progress
 1. screenshot of setting page    -- chiangchiang 
@@ -49,6 +50,7 @@ Description: A brief description of the work completed.
 Description: Expected functionality
 
 
+---
 ---
 ###  how to use burn BMC repeatedly (only LINUX)
 use command
