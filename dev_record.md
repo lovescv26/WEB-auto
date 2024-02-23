@@ -819,6 +819,7 @@ Sometimes it's normal, sometimes it's abnormal
 ![work](./pic/getBytext0.png)
 + error work 
 ![ not](./pic/getBytext1.png)
+
 Although the prompt text of the picture is different
 But this is just a small change
 
@@ -1033,6 +1034,7 @@ do
 done
 ```
 ![not synced ](./pic/DR_not.synced.png)
+
 There's nothing wrong with that.
 Even if the non-bmc update files are deleted,
 the error message still appears 

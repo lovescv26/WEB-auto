@@ -27,9 +27,13 @@ execute
 ```
 
 ### windows
-Use **powershell** : `.\windows11_init.ps1`
++ Use **powershell** : `.\windows11_init.ps1`
 ```powershell
 PS D:\tem\WEB-auto> .\windows11_init.ps1
+```
++ if use *CMD* : 
+```cmd
+powershell -File ".\windows11_init.ps1"
 ```
 
 ---
