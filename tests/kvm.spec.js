@@ -41,6 +41,8 @@ test('kvm',async () => {
 
 
 test.only('kvm1', async ({ page }) => {
+	browser = playwright.chromium.launch(channel="chrome");
+
 	await page.goto('https://'+ip+'/#login');
 	await page.getByPlaceholder('Username').fill(InputUser);
 	//await page.getByPlaceholder('Username').fill('admin');
@@ -50,13 +52,14 @@ test.only('kvm1', async ({ page }) => {
 	await page.goto('https://'+ip+'/#remote_control');
 	const page1Promise = page.waitForEvent('popup');
 	await page.getByRole('button', { name: ' Launch H5Viewer' }).click();
+	// only this line is so weird because  (F08E) 
 	const page1 = await page1Promise;
 	await page.waitForTimeout(2000);
 	await page1.locator('#cursor_canvas').click({
 		position: {
-			x: 39,
-			y: 548
+			x: 24,
+			y: 540
 		}
 	});
-	await page.waitForTimeout(2000);
+	await page1.waitForTimeout(2000);
 });

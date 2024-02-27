@@ -1060,6 +1060,180 @@ limit_count=$(ls ./UPLOADFILES/ |wc -l);		#### Need to synchronize
 ```
 
 ---
+---
+## playwright if not use tile\_name
+```js
+(async () => {
+	const browser = await playwright.chromium.launch();
+	const context = await browser.newContext();
+	const page = await context.newPage();
+	await page.goto('https://www.msn.com/zh-tw/news/living/%E8%8B%97%E6%A0%97%E4%B8%89%E7%81%A39-2%E5%BA%A6-%E5%90%B3%E5%BE%B7%E6%A6%AE-%E5%86%B7%E7%A9%BA%E6%B0%A327%E6%97%A5%E7%B7%A9%E6%85%A2%E6%B8%9B%E5%BC%B1/ar-BB1iSwML?ocid=entnewsntp&pc=U531&cvid=7a9fa0386821496d8ef17397bcb84441&ei=26');
+
+	// Important to "start" this promise before the window.open() could happen
+	const newPagePromise = new Promise(resolve => context.once("page", resolve))
+
+	// Imagine some internal window.open() logic
+	await page.evaluate(() => {
+		setTimeout(() => {
+			window.open("https://github.com/microsoft/playwright", "_blank")
+		}, 3 * 1000)
+	})
+
+	// Here we are waiting until the page has been opened
+	const newPage = await newPagePromise
+
+	// Since its a normal Page instance, we can now assert the URL of it
+	console.log(newPage.url(), await newPage.title())
+
+	await browser.close();
+})();
+```
+```bash
+=====error output=====>
+unning 2 tests using 2 workers
+
+/mnt/d/tem/WEB-auto/tests/kvm.spec.js:19
+const browser = await playwright.chromium.launch();
+                    ^
+ReferenceError: playwright is not defined
+	at /mnt/d/tem/WEB-auto/tests/kvm.spec.js:17:18
+	at Object.<anonymous> (/mnt/d/tem/WEB-auto/tests/kvm.spec.js:39:2)
+	at Module._compile (node:internal/modules/cjs/loader:1378:14)
+	at Module.f._compile (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/utilsBundleImpl.js:16:994)
+	at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+	at Object.i.<computed>.ut._extensions.<computed> (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/utilsBundleImpl.js:16:1010)
+	at Module.load (node:internal/modules/cjs/loader:1212:32)
+	at Function.Module._load (node:internal/modules/cjs/loader:1028:12)
+	at Module.require (node:internal/modules/cjs/loader:1237:19)
+	at require (node:internal/modules/helpers:176:18)
+	at requireOrImport (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/transform/transform.js:176:20)
+	at loadTestFile (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/common/testLoader.js:55:42)
+	at InProcessLoaderHost.loadTestFile (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/loaderHost.js:42:20)
+	at loadFileSuites (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/loadUtils.js:92:25)
+	at Object.setup (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/tasks.js:195:7)
+	at taskLoop (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/taskRunner.js:76:11)
+	at TaskRunner.runDeferCleanup (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/taskRunner.js:93:5)
+	at TaskRunner.run (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/taskRunner.js:48:9)
+	at Runner.runAllTests (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/runner/runner.js:74:24)
+	at runTests (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/cli.js:130:93)
+	at t.<anonymous> (/mnt/d/tem/WEB-auto/node_modules/playwright/lib/cli.js:40:7)
+
+Node.js v21.6.0
+```
+
+
+## playwright test is not a function
+```js
+test('kvm',async () => {
+
+})();
+```
+```bash
+=====error output ===>
+TypeError: test(...) is not a function
+
+at kvm.spec.js:39
+	37 |
+	38 |  await browser.close();
+  > 39 | })();
+           ^
+	40 |
+	41 |
+	42 | test('test', async ({ page }) => {
+		at Object.<anonymous> (/mnt/d/tem/WEB-auto/tests/kvm.spec.js:39:3)
+		To open last HTML report run:
+
+		npx playwright show-report
+		}
+```
+
+#### solution -- playwright if not use tile\_name && playwright test is not a function
+```js
+test('kvm',async () => {
+
+});
+```
+
+##  playwright new browser tab was opened
+[ref](https://stackoverflow.com/questions/64889036/how-can-i-check-if-a-new-browser-tab-was-opened)
+[ref](https://try.playwright.tech/?s=g8vb1si)
+so use this can open a new button
+```js
+// Important to "start" this promise before the window.open() could happen
+const newPagePromise = new Promise(resolve => context.once("page", resolve))
+
+// Imagine some internal window.open() logic
+await page.evaluate(() => {
+		setTimeout(() => {
+				window.open("https://github.com/microsoft/playwright", "_blank")
+				}, 3 * 1000)
+			})
+```
+
+## playwright use popup windows (need to control a new windows )
+He uses Promise to capture the context
+and use evaluate to open window (tab) 
+so let our change it!
+
+I use `codegen` 
+[If the page opens a pop-up (e.g. pages opened by target="\_blank" links)](https://playwright.dev/docs/pages)
+I find it from [playwright DOCS](https://playwright.dev/docs/)
+> Although there is no 'target' method in our JavaScript,
+> in Playwright, it observes actions and determines that 
+> it only captures actions. So
+> this approach has been successful!
+```js
+	const page1Promise = page.waitForEvent('popup');
+	await page.getByRole('button', { name: ' Launch H5Viewer' }).click();
+	// only this line is so weird because  (F08E) 
+	const page1 = await page1Promise;
+	await page.waitForTimeout(2000);
+```
+
+> Locators don't return promises
+> only the "action" methods like 
+> `.fill()` , `.click()`, `.evaluate() `
+> and [so forth return promises](https://stackoverflow.com/questions/76155060/understanding-playwright-promises)
+
+
+---
+---
+---
+## playwright  error page.waitForeven : test timeout of 30000ms exceeded.
+```js
+====error output ===>
+Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+=========================== logs ===========================
+waiting for event "popup"
+============================================================
+
+	48 | 	await page.getByRole('button', { name: 'Sign me in' }).click();
+	49 | 	await page.goto('https://'+ip+'/#remote_control');
+  > 50 | 	const page1Promise = page.waitForEvent('popup');
+	   | 	                          ^
+	51 | 	await page.getByRole('button', { name: ' Launch H5Viewer' }).click();
+	52 | 	const page1 = await page1Promise;
+	53 | 	await waitForTimeout(2000);
+
+at /mnt/d/tem/WEB-auto/tests/kvm.spec.js:50:28
+```
+##### solution : jump to fast + add condition
+Although each playwright’s official documentation states
+that actions should be taken only after the element has finished loading,
+this condition refers to the element’s loading process, not navigation.
+
+`	const response = await expect(page).toHaveURL('https://'+ip+'/#dashboard');`
+add condition to solution it
+
+
+
+
+
+
+
+
+
+
 
 
 

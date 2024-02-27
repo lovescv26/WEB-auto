@@ -66,6 +66,7 @@ test('upload bmc file',async ({page}) => {
 	});	
 	*/
 	
+	// need to use it to catch api 
 	const [requestflag] = await Promise.all([
 		page.waitForResponse( response => response.url().includes("api/maintenance/reset") && response.status()===200,{timeout:240000}),
 	]);
