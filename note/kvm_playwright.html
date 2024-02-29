@@ -1,0 +1,1017 @@
+<html lang="en" style="overflow: hidden;"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <title>Remote KVM [192.168.120.69] - [1280 x 1024 ]</title>
+
+    <!-- Application styles. -->
+    <link rel="stylesheet" href="/viewer.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/libs/js/html5shiv.js"></script>
+    <script src="/libs/js/respond.min.js"></script>
+  <![endif]-->
+<style>
+      body[data-pw-cursor=pointer] *, body[data-pw-cursor=pointer] *::after { cursor: pointer !important; }
+      body[data-pw-cursor=text] *, body[data-pw-cursor=text] *::after { cursor: text !important; }
+    </style><style type="text/css" id="notify-bootstrap">.notifyjs-bootstrap-base {
+  font-weight: bold;
+  padding: 8px 15px 8px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: 3px 7px;
+}
+.notifyjs-bootstrap-error {
+  color: #B94A48;
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAtRJREFUeNqkVc1u00AQHq+dOD+0poIQfkIjalW0SEGqRMuRnHos3DjwAH0ArlyQeANOOSMeAA5VjyBxKBQhgSpVUKKQNGloFdw4cWw2jtfMOna6JOUArDTazXi/b3dm55socPqQhFka++aHBsI8GsopRJERNFlY88FCEk9Yiwf8RhgRyaHFQpPHCDmZG5oX2ui2yilkcTT1AcDsbYC1NMAyOi7zTX2Agx7A9luAl88BauiiQ/cJaZQfIpAlngDcvZZMrl8vFPK5+XktrWlx3/ehZ5r9+t6e+WVnp1pxnNIjgBe4/6dAysQc8dsmHwPcW9C0h3fW1hans1ltwJhy0GxK7XZbUlMp5Ww2eyan6+ft/f2FAqXGK4CvQk5HueFz7D6GOZtIrK+srupdx1GRBBqNBtzc2AiMr7nPplRdKhb1q6q6zjFhrklEFOUutoQ50xcX86ZlqaZpQrfbBdu2R6/G19zX6XSgh6RX5ubyHCM8nqSID6ICrGiZjGYYxojEsiw4PDwMSL5VKsC8Yf4VRYFzMzMaxwjlJSlCyAQ9l0CW44PBADzXhe7xMdi9HtTrdYjFYkDQL0cn4Xdq2/EAE+InCnvADTf2eah4Sx9vExQjkqXT6aAERICMewd/UAp/IeYANM2joxt+q5VI+ieq2i0Wg3l6DNzHwTERPgo1ko7XBXj3vdlsT2F+UuhIhYkp7u7CarkcrFOCtR3H5JiwbAIeImjT/YQKKBtGjRFCU5IUgFRe7fF4cCNVIPMYo3VKqxwjyNAXNepuopyqnld602qVsfRpEkkz+GFL1wPj6ySXBpJtWVa5xlhpcyhBNwpZHmtX8AGgfIExo0ZpzkWVTBGiXCSEaHh62/PoR0p/vHaczxXGnj4bSo+G78lELU80h1uogBwWLf5YlsPmgDEd4M236xjm+8nm4IuE/9u+/PH2JXZfbwz4zw1WbO+SQPpXfwG/BBgAhCNZiSb/pOQAAAAASUVORK5CYII=);
+}
+.notifyjs-bootstrap-success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border-color: #D6E9C6;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAutJREFUeNq0lctPE0Ecx38zu/RFS1EryqtgJFA08YCiMZIAQQ4eRG8eDGdPJiYeTIwHTfwPiAcvXIwXLwoXPaDxkWgQ6islKlJLSQWLUraPLTv7Gme32zoF9KSTfLO7v53vZ3d/M7/fIth+IO6INt2jjoA7bjHCJoAlzCRw59YwHYjBnfMPqAKWQYKjGkfCJqAF0xwZjipQtA3MxeSG87VhOOYegVrUCy7UZM9S6TLIdAamySTclZdYhFhRHloGYg7mgZv1Zzztvgud7V1tbQ2twYA34LJmF4p5dXF1KTufnE+SxeJtuCZNsLDCQU0+RyKTF27Unw101l8e6hns3u0PBalORVVVkcaEKBJDgV3+cGM4tKKmI+ohlIGnygKX00rSBfszz/n2uXv81wd6+rt1orsZCHRdr1Imk2F2Kob3hutSxW8thsd8AXNaln9D7CTfA6O+0UgkMuwVvEFFUbbAcrkcTA8+AtOk8E6KiQiDmMFSDqZItAzEVQviRkdDdaFgPp8HSZKAEAL5Qh7Sq2lIJBJwv2scUqkUnKoZgNhcDKhKg5aH+1IkcouCAdFGAQsuWZYhOjwFHQ96oagWgRoUov1T9kRBEODAwxM2QtEUl+Wp+Ln9VRo6BcMw4ErHRYjH4/B26AlQoQQTRdHWwcd9AH57+UAXddvDD37DmrBBV34WfqiXPl61g+vr6xA9zsGeM9gOdsNXkgpEtTwVvwOklXLKm6+/p5ezwk4B+j6droBs2CsGa/gNs6RIxazl4Tc25mpTgw/apPR1LYlNRFAzgsOxkyXYLIM1V8NMwyAkJSctD1eGVKiq5wWjSPdjmeTkiKvVW4f2YPHWl3GAVq6ymcyCTgovM3FzyRiDe2TaKcEKsLpJvNHjZgPNqEtyi6mZIm4SRFyLMUsONSSdkPeFtY1n0mczoY3BHTLhwPRy9/lzcziCw9ACI+yql0VLzcGAZbYSM5CCSZg1/9oc/nn7+i8N9p/8An4JMADxhH+xHfuiKwAAAABJRU5ErkJggg==);
+}
+.notifyjs-bootstrap-info {
+  color: #3A87AD;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYFAhkSsdes/QAAA8dJREFUOMvVlGtMW2UYx//POaWHXg6lLaW0ypAtw1UCgbniNOLcVOLmAjHZolOYlxmTGXVZdAnRfXQm+7SoU4mXaOaiZsEpC9FkiQs6Z6bdCnNYruM6KNBw6YWewzl9z+sHImEWv+vz7XmT95f/+3/+7wP814v+efDOV3/SoX3lHAA+6ODeUFfMfjOWMADgdk+eEKz0pF7aQdMAcOKLLjrcVMVX3xdWN29/GhYP7SvnP0cWfS8caSkfHZsPE9Fgnt02JNutQ0QYHB2dDz9/pKX8QjjuO9xUxd/66HdxTeCHZ3rojQObGQBcuNjfplkD3b19Y/6MrimSaKgSMmpGU5WevmE/swa6Oy73tQHA0Rdr2Mmv/6A1n9w9suQ7097Z9lM4FlTgTDrzZTu4StXVfpiI48rVcUDM5cmEksrFnHxfpTtU/3BFQzCQF/2bYVoNbH7zmItbSoMj40JSzmMyX5qDvriA7QdrIIpA+3cdsMpu0nXI8cV0MtKXCPZev+gCEM1S2NHPvWfP/hL+7FSr3+0p5RBEyhEN5JCKYr8XnASMT0xBNyzQGQeI8fjsGD39RMPk7se2bd5ZtTyoFYXftF6y37gx7NeUtJJOTFlAHDZLDuILU3j3+H5oOrD3yWbIztugaAzgnBKJuBLpGfQrS8wO4FZgV+c1IxaLgWVU0tMLEETCos4xMzEIv9cJXQcyagIwigDGwJgOAtHAwAhisQUjy0ORGERiELgG4iakkzo4MYAxcM5hAMi1WWG1yYCJIcMUaBkVRLdGeSU2995TLWzcUAzONJ7J6FBVBYIggMzmFbvdBV44Corg8vjhzC+EJEl8U1kJtgYrhCzgc/vvTwXKSib1paRFVRVORDAJAsw5FuTaJEhWM2SHB3mOAlhkNxwuLzeJsGwqWzf5TFNdKgtY5qHp6ZFf67Y/sAVadCaVY5YACDDb3Oi4NIjLnWMw2QthCBIsVhsUTU9tvXsjeq9+X1d75/KEs4LNOfcdf/+HthMnvwxOD0wmHaXr7ZItn2wuH2SnBzbZAbPJwpPx+VQuzcm7dgRCB57a1uBzUDRL4bfnI0RE0eaXd9W89mpjqHZnUI5Hh2l2dkZZUhOqpi2qSmpOmZ64Tuu9qlz/SEXo6MEHa3wOip46F1n7633eekV8ds8Wxjn37Wl63VVa+ej5oeEZ/82ZBETJjpJ1Rbij2D3Z/1trXUvLsblCK0XfOx0SX2kMsn9dX+d+7Kf6h8o4AIykuffjT8L20LU+w4AZd5VvEPY+XpWqLV327HR7DzXuDnD8r+ovkBehJ8i+y8YAAAAASUVORK5CYII=);
+}
+.notifyjs-bootstrap-warn {
+  color: #C09853;
+  background-color: #FCF8E3;
+  border-color: #FBEED5;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAABJlBMVEXr6eb/2oD/wi7/xjr/0mP/ykf/tQD/vBj/3o7/uQ//vyL/twebhgD/4pzX1K3z8e349vK6tHCilCWbiQymn0jGworr6dXQza3HxcKkn1vWvV/5uRfk4dXZ1bD18+/52YebiAmyr5S9mhCzrWq5t6ufjRH54aLs0oS+qD751XqPhAybhwXsujG3sm+Zk0PTwG6Shg+PhhObhwOPgQL4zV2nlyrf27uLfgCPhRHu7OmLgAafkyiWkD3l49ibiAfTs0C+lgCniwD4sgDJxqOilzDWowWFfAH08uebig6qpFHBvH/aw26FfQTQzsvy8OyEfz20r3jAvaKbhgG9q0nc2LbZxXanoUu/u5WSggCtp1anpJKdmFz/zlX/1nGJiYmuq5Dx7+sAAADoPUZSAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdBgUBGhh4aah5AAAAlklEQVQY02NgoBIIE8EUcwn1FkIXM1Tj5dDUQhPU502Mi7XXQxGz5uVIjGOJUUUW81HnYEyMi2HVcUOICQZzMMYmxrEyMylJwgUt5BljWRLjmJm4pI1hYp5SQLGYxDgmLnZOVxuooClIDKgXKMbN5ggV1ACLJcaBxNgcoiGCBiZwdWxOETBDrTyEFey0jYJ4eHjMGWgEAIpRFRCUt08qAAAAAElFTkSuQmCC);
+}
+</style><style type="text/css" id="core-notify">.notifyjs-corner {
+  position: fixed;
+  margin: 5px;
+  z-index: 1050;
+}
+
+.notifyjs-corner .notifyjs-wrapper,
+.notifyjs-corner .notifyjs-container {
+  position: relative;
+  display: block;
+  height: inherit;
+  width: inherit;
+  margin: 3px;
+}
+
+.notifyjs-wrapper {
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  height: 0;
+  width: 0;
+}
+
+.notifyjs-container {
+  display: none;
+  z-index: 1;
+  position: absolute;
+}
+
+.notifyjs-hidable {
+  cursor: pointer;
+}
+
+[data-notify-text],[data-notify-html] {
+  position: relative;
+}
+
+.notifyjs-arrow {
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+}</style></head>
+
+<body data-pw-cursor="default" style="overflow: hidden;">
+    <!-- Processing Icon container. -->
+    <div id="processing_maindiv" style="display: none;">
+        <div class="processing_bg_outer">
+            <div class="processing_bg_inner"></div>
+        </div>
+        <div class="processing_img_outer">
+            <div class="loader"></div>
+            <div class="processing_content" id="processing_content">Processing ... </div>
+        </div>
+    </div>
+    <!-- Application container. -->
+    <main role="main" id="main" class="skin-black"><div><!-- header logo: style can be found in header.less -->
+
+
+<div>
+    <!-- Center side column. Contains KVM convas only -->
+    <aside class="center-side"><div><!-- Content Header (Page header) -->
+<!--<section class="content-header">
+	<h1>
+		 Remote Control
+		<small> Power Control &amp; Remote KVM</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i>Home</a>
+		</li>
+		<li class="active">
+			 Remote Control
+		</li>
+	</ol>
+</section>-->
+
+<div id="oem_dialog" hidden="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_oem">×</button>
+                <h4 class="modal-title">
+                    <p id="oem_dialog_title"></p>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p id="oem_dialog_body"></p>
+            </div>
+            <div class="modal-footer">
+                <p id="oem_dialog_footer"></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div id="master_dialog" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_master">×</button>
+				<h4 class="modal-title">Slave Permission</h4>
+			</div>
+			<div class="modal-body">
+				<p id="master_dialog_body"></p>
+				<p>You have <span id="master_time_left">30</span> more seconds to make a decision. The YES option will be chosen if no answer is obtained.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="full_permission">Full Permission</button>
+				<button type="button" class="btn btn-primary" id="part_permission">Partial Permission</button>
+				<span class="dropdown">
+    			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Block Privilege Request&nbsp;&nbsp;
+    				<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="block_priv_partial_opt">Partial Permission&nbsp;&nbsp;</a></li>
+					<li><a href="#" id="block_priv_denied_opt">No Permission&nbsp;&nbsp;</a></li>
+				</ul>
+				</span>
+				<button type="button" class="btn btn-primary" id="no_permission">No Permission</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div id="slave_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Permission Requested</h4>
+			</div>
+			<div class="modal-body">
+				<p id="slave_dialog_body"></p>
+				<p>Master session has <span id="slave_time_left">30</span> more seconds to make a decision. The YES option will be chosen if no answer is obtained.</p>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div id="status_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_status">×</button>
+				<h4 class="modal-title">Status</h4>
+			</div>
+			<div class="modal-body">
+				<p id="status_body"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="status_ok">Ok</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div id="switch_master_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_master_switch">×</button>
+				<h4 class="modal-title">Switch Master</h4>
+			</div>
+			<div class="modal-body">
+				<p>Which session would you like to grant full permission after you exit?</p>
+				<p id="switch_master_options"></p>
+				<br>
+				<!-- The value for the countdown is set during runtime using SWITCH_MASTER_DIALOG_COUNTDOWN -->
+				<p>You have <span id="switch_master_time_left"></span> more seconds to make a decision. The YES option will be chosen if no answer is obtained.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="switch_master">Grant Permission</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div id="video_rec_setting_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_settings">×</button>
+				<h4 class="modal-title">Record Settings</h4>
+			</div>
+			<div class="modal-body">
+				<p id="settings_dialog_body"> <i class="fa fa-question-circle video-help"></i>
+				</p><p>
+					</p><p></p><p>
+					</p><p></p><p>
+                    </p><p></p><table class="video_table">
+				<tbody><tr><td>Video Length</td>
+					<td class="width_half">
+						<input id="video_rec_length_box" maxlength="4" type="text" name="video_len" value="20" autocorrect="off" autocapitalize="off" autocomplete="off"></td>
+					<td> <p class="help-string hide"> <font size="2">1 to 1800 Seconds.</font> </p></td>
+					
+				</tr>
+				<tr><td> Video Compression</td>
+					<td><input id="video_compression_value_box" type="text" maxlength="3" value="0.3" name="video_compression_len" autocorrect="off" autocapitalize="off" autocomplete="off"></td>
+					<td><p class="help-string hide">  <font size="2">0.1 (Low quality) to 1.0 (High quality) </font></p></td>
+					
+				</tr>
+                <tr><td><label class="checkbox-inline active"><input type="checkbox" id="normalize_video" checked="">Normalized video resolution to 1024 X 768</label></td>
+                    
+                </tr>
+				</tbody></table>
+				<p></p>
+			</div>
+			<div class="modal-footer">
+				<b><p class="alert-danger"></p></b>
+				<button type="button" class="btn btn-primary" id="video_settings_ok">Ok</button>
+				<button type="button" class="btn btn-primary" id="close_settings">Cancel</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--  Soft Keboard  -->
+<div id="softkeyboard_dialog" class=" keyboard_div dialog_div" hidden="">
+	<div id="softkeyboard_dialog_header">
+			<div class="Softkeyboard_title_box">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_softkeyboard"><i class="fa fa-times"></i></button>
+				<h5 id="title" class="softkeyboard-title">Soft Keyboard</h5>
+			</div>
+			<div> 
+				<div class="container-fluid">
+					<div class="row_1">
+							<div class="softkeyboard "><div type="button" id="key_0" class="softkeboard_default_button">esc</div></div>
+							<div class="softkeyboard first_key"><div type="button" id="key_1" class="softkeboard_default_button">F1</div></div>
+							<div class="softkeyboard "><div type="button" id="key_2" class="softkeboard_default_button">F2</div></div>
+							<div class="softkeyboard "><div type="button" id="key_3" class="softkeboard_default_button">F3</div></div>
+							<div class="softkeyboard "><div type="button" id="key_4" class="softkeboard_default_button">F4</div></div>
+							<div class="softkeyboard margin_left_width"><div type="button" id="key_5" class="softkeboard_default_button">F5</div></div>
+							<div class="softkeyboard "><div type="button" id="key_6" class="softkeboard_default_button">F6</div></div>
+							<div class="softkeyboard "><div type="button" id="key_7" class="softkeboard_default_button">F7</div></div>
+							<div class="softkeyboard "><div type="button" id="key_8" class="softkeboard_default_button">F8</div></div>
+							<div class="softkeyboard margin_left_width"><div type="button" id="key_9" class="softkeboard_default_button">F9</div></div>
+							<div class="softkeyboard "><div type="button" id="key_10" class="softkeboard_default_button">F10</div></div>
+							<div class="softkeyboard "><div type="button" id="key_11" class="softkeboard_default_button">F11</div></div>
+							<div class="softkeyboard "><div type="button" id="key_12" class="softkeboard_default_button">F12</div></div>
+							<div class="softkeyboard width_div_3_psc"><div type="button" id="key_13" class="softkeboard_default_button">psc</div></div>
+							<div class="softkeyboard "><div type="button" id="key_14" class="softkeboard_default_button remove_select">slk</div></div>
+							<div class="softkeyboard "><div type="button" id="key_15" class="softkeboard_default_button">brk</div></div>
+					</div>
+				</div>
+				<div class="container-fluid">
+					<div class="row_2">
+							<div class="softkeyboard "><div type="button" id="key_16" class="softkeboard_default_button">`</div></div>
+							<div class="softkeyboard "><div type="button" id="key_17" class="softkeboard_default_button">1</div></div>
+							<div class="softkeyboard "><div type="button" id="key_18" class="softkeboard_default_button">2</div></div>
+							<div class="softkeyboard "><div type="button" id="key_19" class="softkeboard_default_button">3</div></div>
+							<div class="softkeyboard "><div type="button" id="key_20" class="softkeboard_default_button">4</div></div>
+							<div class="softkeyboard "><div type="button" id="key_21" class="softkeboard_default_button">5</div></div>
+							<div class="softkeyboard "><div type="button" id="key_22" class="softkeboard_default_button">6</div></div>
+							<div class="softkeyboard "><div type="button" id="key_23" class="softkeboard_default_button">7</div></div>
+							<div class="softkeyboard "><div type="button" id="key_24" class="softkeboard_default_button">8</div></div>
+							<div class="softkeyboard "><div type="button" id="key_25" class="softkeboard_default_button">9</div></div>
+							<div class="softkeyboard "><div type="button" id="key_26" class="softkeboard_default_button">0</div></div>
+							<div class="softkeyboard "><div type="button" id="key_27" class="softkeboard_default_button">-</div></div>
+							<div class="softkeyboard "><div type="button" id="key_28" class="softkeboard_default_button">=</div></div>
+							<div class="softkeyboard spl_keys_div_nlk"><div type="button" id="key_76" class="softkeboard_default_button resize_btn_with_width">bksp</div></div>
+							<div class="softkeyboard margin_left_width width_div_3_psc"><div type="button" id="key_77" class="softkeboard_default_button">ins</div></div>
+							<div class="softkeyboard "><div type="button" id="key_78" class="softkeboard_default_button">hm</div></div>
+							<div class="softkeyboard "><div type="button" id="key_79" class="softkeboard_default_button">pup</div></div>
+							<div class="softkeyboard margin_left_width"><div type="button" id="key_80" class="softkeboard_default_button select_btn">nlk</div></div>
+							<div class="softkeyboard "><div type="button" id="key_81" class="softkeboard_default_button">/</div></div>
+							<div class="softkeyboard "><div type="button" id="key_82" class="softkeboard_default_button">*</div></div>
+							<div class="softkeyboard "><div type="button" id="key_83" class="softkeboard_default_button">-</div></div>
+					</div>
+				</div>
+					
+				<div class="container-fluid">
+					<div class="row_3">
+							
+							<div class="softkeyboard tab_key_div"><div type="button" id="key_64" class="softkeboard_default_button resize_btn_with_width">Tab</div></div>
+							<div class="softkeyboard "><div type="button" id="key_29" class="softkeboard_default_button">q</div></div>
+							<div class="softkeyboard "><div type="button" id="key_30" class="softkeboard_default_button">w</div></div>
+							<div class="softkeyboard "><div type="button" id="key_31" class="softkeboard_default_button">e</div></div>
+							<div class="softkeyboard "><div type="button" id="key_32" class="softkeboard_default_button">r</div></div>
+							<div class="softkeyboard "><div type="button" id="key_33" class="softkeboard_default_button">t</div></div>
+							<div class="softkeyboard "><div type="button" id="key_34" class="softkeboard_default_button">y</div></div>
+							<div class="softkeyboard "><div type="button" id="key_35" class="softkeboard_default_button">u</div></div>
+							<div class="softkeyboard "><div type="button" id="key_36" class="softkeboard_default_button">i</div></div>
+							<div class="softkeyboard "><div type="button" id="key_37" class="softkeboard_default_button">o</div></div>
+							<div class="softkeyboard "><div type="button" id="key_38" class="softkeboard_default_button">p</div></div>
+							<div class="softkeyboard "><div type="button" id="key_39" class="softkeboard_default_button">[</div></div>
+							<div class="softkeyboard "><div type="button" id="key_40" class="softkeboard_default_button">]</div></div>
+							<div class="softkeyboard "><div type="button" id="key_41" class="softkeboard_default_button">\</div></div>
+							<div class="softkeyboard width_div_3_psc"><div type="button" id="key_84" class="softkeboard_default_button">del</div></div>
+							<div class="softkeyboard "><div type="button" id="key_85" class="softkeboard_default_button">end</div></div>
+							<div class="softkeyboard "><div type="button" id="key_86" class="softkeboard_default_button">pd</div></div>
+							<div class="softkeyboard margin_left_width"><div type="button" id="key_93" class="softkeboard_default_button">7</div></div>
+							<div class="softkeyboard ">
+								<div type="button" id="key_94" class="softkeboard_default_button remove_select">
+									<div class="numlock_on_keys">8</div>
+									<i class="numlock_off_keys fa fa-arrow-up" style="display: none;"></i>
+								</div>
+							</div>
+							<div class="softkeyboard "><div type="button" id="key_95" class="softkeboard_default_button">9</div></div>
+							<div class="softkeyboard plus_key_div"><div type="button" id="key_91" class="softkeboard_default_button plus_key_button">+</div></div>
+
+					</div>
+				</div>
+				<div class="container-fluid">
+					<div class="row_4">
+							<div class="softkeyboard caps_key_div"><div type="button" id="key_65" class="softkeboard_default_button remove_select resize_btn_with_width">Caps</div></div>
+							<div class="softkeyboard "><div type="button" id="key_42" class="softkeboard_default_button">a</div></div>
+							<div class="softkeyboard "><div type="button" id="key_43" class="softkeboard_default_button">s</div></div>
+							<div class="softkeyboard "><div type="button" id="key_44" class="softkeboard_default_button">d</div></div>
+							<div class="softkeyboard "><div type="button" id="key_45" class="softkeboard_default_button">f</div></div>
+							<div class="softkeyboard "><div type="button" id="key_46" class="softkeboard_default_button">g</div></div>
+							<div class="softkeyboard "><div type="button" id="key_47" class="softkeboard_default_button">h</div></div>
+							<div class="softkeyboard "><div type="button" id="key_48" class="softkeboard_default_button">j</div></div>
+							<div class="softkeyboard "><div type="button" id="key_49" class="softkeboard_default_button">k</div></div>
+							<div class="softkeyboard "><div type="button" id="key_50" class="softkeboard_default_button">l</div></div>
+							<div class="softkeyboard "><div type="button" id="key_51" class="softkeboard_default_button">;</div></div>
+							<div class="softkeyboard "><div type="button" id="key_52" class="softkeboard_default_button">'</div></div>
+							<div class="softkeyboard left_ent_key_div"><div type="button" id="key_75" class="softkeboard_default_button resize_btn_with_width">enter</div></div>
+							<div class="softkeyboard numpad_margin_left">
+								<div type="button" id="key_96" class="softkeboard_default_button remove_select">
+									<div class="numlock_on_keys">4</div>
+									<i class="numlock_off_keys fa fa-arrow-left" style="display: none;"></i>
+								</div>
+							</div>
+							<div class="softkeyboard "><div type="button" id="key_97" class="softkeboard_default_button">5</div></div>
+							<div class="softkeyboard ">
+								<div type="button" id="key_98" class="softkeboard_default_button remove_select">
+									<div class="numlock_on_keys">6</div>
+									<i class="numlock_off_keys fa fa-arrow-right" style="display: none;"></i>
+								</div>
+							</div>
+					</div>
+				</div>
+				<div class="container-fluid">
+					<div class="row_5">
+							<div class="softkeyboard shift_key_div"><div type="button" id="key_66" class="softkeboard_default_button remove_select resize_btn_with_width">Shift</div></div>
+							<div class="softkeyboard "><div type="button" id="key_53" class="softkeboard_default_button">\</div></div>
+							<div class="softkeyboard "><div type="button" id="key_54" class="softkeboard_default_button">z</div></div>
+							<div class="softkeyboard "><div type="button" id="key_55" class="softkeboard_default_button">x</div></div>
+							<div class="softkeyboard "><div type="button" id="key_56" class="softkeboard_default_button">c</div></div>
+							<div class="softkeyboard "><div type="button" id="key_57" class="softkeboard_default_button">v</div></div>
+							<div class="softkeyboard "><div type="button" id="key_58" class="softkeboard_default_button">b</div></div>
+							<div class="softkeyboard "><div type="button" id="key_59" class="softkeboard_default_button">n</div></div>
+							<div class="softkeyboard "><div type="button" id="key_60" class="softkeboard_default_button">m</div></div>
+							<div class="softkeyboard "><div type="button" id="key_61" class="softkeboard_default_button">,</div></div>
+							<div class="softkeyboard "><div type="button" id="key_62" class="softkeboard_default_button">.</div></div>
+							<div class="softkeyboard "><div type="button" id="key_63" class="softkeboard_default_button">/</div></div>
+							<div class="softkeyboard shift_key_div"><div type="button" id="key_74" class="softkeboard_default_button resize_btn_with_width remove_select">Shift</div></div>
+							<div class="softkeyboard align_up_arrow "><div type="button" id="key_87" class="fa fa-arrow-up softkeboard_default_button "></div></div>
+							<div class="softkeyboard num_margin_left"><div type="button" id="key_99" class="softkeboard_default_button">1</div></div>
+							<div class="softkeyboard ">
+								<div type="button" id="key_100" class="softkeboard_default_button remove_select">
+									<div class="numlock_on_keys">2</div>
+									<i class="numlock_off_keys fa fa-arrow-down" style="display: none;"></i>
+								</div>
+							</div>
+							<div class="softkeyboard "><div type="button" id="key_101" class="softkeboard_default_button">3</div></div>
+							<!-- <div class="softkeyboard "><div type="button" id="key_75" class="softkeboard_default_button ">ent</div></div> -->
+							<div class="softkeyboard right_enter_key_div"><div type="button" id="key_75" class="softkeboard_default_button right_enter_key_btn">ent</div></div>
+
+
+					</div>
+				</div>
+				<div class="container-fluid">
+					<div class="row_6">
+							<div class="softkeyboard last_row_key"><div id="key_67" type="button" class="softkeboard_default_button resize_btn_with_width remove_select">Ctrl</div></div>
+							<div class="softkeyboard last_row_key"><div id="key_68" type="button" class="softkeboard_default_button resize_btn_with_width remove_select"><i class="fa fa-windows"></i></div></div>
+							<div class="softkeyboard last_row_key"><div id="key_69" type="button" class="softkeboard_default_button resize_btn_with_width remove_select">Alt</div></div>
+							<div class="softkeyboard btn_div_space_width_key"><div id="key_70" type="button" class="softkeboard_default_button resize_btn_with_width">space</div></div>
+							<div class="softkeyboard last_row_key"><div id="key_105" type="button" class="softkeboard_default_button resize_btn_with_width"><i class="fa fa-bars"></i></div></div>
+							<div class="softkeyboard last_row_key"><div id="key_71" type="button" class="softkeboard_default_button resize_btn_with_width remove_select">Alt</div></div>
+							<div class="softkeyboard last_row_key"><div id="key_72" type="button" class="softkeboard_default_button resize_btn_with_width remove_select"><i class="fa fa-windows"></i></div></div>
+							<div class="softkeyboard last_row_key"><div id="key_73" type="button" class="softkeboard_default_button resize_btn_with_width remove_select">Ctrl</div></div>
+							<div class="softkeyboard margin_left_width "><div id="key_88" type="button" class=" softkeboard_default_button "><i class="fa fa-arrow-left"></i></div></div>
+							<div class="softkeyboard "><div id="key_89" type="button" class="softkeboard_default_button"><i class="fa fa-arrow-down"></i></div></div>
+							<div class="softkeyboard "><div id="key_90" type="button" class="softkeboard_default_button"><i class="fa fa-arrow-right"></i></div></div>
+							<div class="softkeyboard shift_0_key_div"><div id="key_102" type="button" class="softkeboard_default_button resize_btn_with_width">0</div></div>
+							<div class="softkeyboard "><div id="key_103" type="button" class="softkeboard_default_button">.</div></div>
+					</div>
+				</div>
+			</div>
+		<!-- </div> modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- softkeyboard end  -->
+
+<!-- Keyboard Layout Dialog -->
+<div id="kbd_layout_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Keyboard Layout Language for upcoming KVM sessions</h4>
+			</div>
+			<div class="modal-body">
+				<p id="kbd_layout_dialog_body">Do you want current Keyboard Layout Language selection to be default Keyboard Layout Language for upcoming KVM sessions ?</p>
+				<p>You have <span id="kbd_time_left">5</span> more seconds to make a decision. The YES option will be chosen if no answer is obtained.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="kbd_permission_yes">YES</button>
+				<button type="button" class="btn btn-primary" id="kbd_permission_no">NO</button>
+			</div>
+		</div>
+	</div>
+</div><!-- End of Keyboard Layout Dialog -->
+
+<!-- User Defined Macros Dialog -->
+<div id="usr_macros_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="usr_macro_close">×</button>
+				<h4 class="modal-title">User Defined Macros</h4>
+			</div>
+			<div class="modal-body">
+				<div class="list-group" id="usr_macros_list"></div>
+			</div>
+			<div class="modal-footer">
+				<!-- Error message to be shown when maximum macro limit is reached -->
+				<div id="err_MaxMacroLimit" hidden="">
+					<p><i class="fa fa-exclamation-circle"></i><span>&nbsp;Maximum of 20 Hot key combinations can be specified. No more hot keys can be added.</span></p>
+				</div>
+				<button type="button" class="btn btn-primary" id="usr_macro_add">Add</button>
+				<!-- If data-dismiss="modal" attribute is missed, then backdrop won't appear properly during next invocation -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="usr_macro_close">Close</button>
+			</div>
+		</div>
+	</div>
+</div><!-- End of User Defined Macros Dialog -->
+
+<!-- Add Macro Dialog -->
+<div id="macro_dialog" class="dialog_div" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="macro_close">×</button>
+				<h4 class="modal-title">Add Macro</h4>
+			</div>
+			<div class="modal-body">
+				<p id="macro_dialog_body">
+					To add a User Defined Macro, Place the curser in the text box. PRESS and RELEASE the key event combination to define a Macro
+					<br><br>
+					<button type="button" class="btn btn-default" id="macro_win">
+						<i class="fa fa-windows"></i>&nbsp;Windows
+					</button>
+					<button type="button" class="btn btn-default" id="macro_altf4">Alt + F4</button>
+					<button type="button" class="btn btn-default" id="macro_printscr">Print Screen</button>
+					<br><br>
+					<!-- Don't want editable input box -->
+					<input type="text" class="form-control" id="macro_dialog_input" readonly="">
+				</p>
+				<!-- Error message to be shown when single macro limit is reached -->
+				<div id="err_SingleMacroLimit" hidden="">
+					<p><i class="fa fa-exclamation-circle"></i><span>&nbsp;There can be a maximum of 6 key events in a Hot key combination. No more key events can be added.</span></p>
+				</div>
+				<!-- Error message to be shown when duplicate entry is detected -->
+				<div id="err_DuplicateMacro" hidden="">
+					<p><i class="fa fa-exclamation-circle"></i><span>&nbsp;The Hotkey you are trying to add, already exists. Duplicate entries are not allowed.</span></p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="macro_clr">Clear</button>
+				<button type="button" class="btn btn-primary" id="macro_clrAll">Clear All</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="macro_close">Insert</button>
+			</div>
+		</div>
+	</div>
+</div><!-- End of Add Macro Dialog -->
+
+<!-- About H5Viewer Dialog -->
+<div id="help_dialog" hidden="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" aria-hidden="true" id="close_help">×</button>
+				<h4 class="modal-title" id="help_title"></h4>
+			</div>
+			<div class="modal-body" id="help_body"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="close_help">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- End of About H5Viewer Dialog -->
+
+<!-- Main content -->
+
+<section sytle="margin: auto;">
+<div class="alert alert-success hide"><b></b> </div>
+<div class="alert alert-danger hide"><b></b></div>
+<div class="row">
+    <div class="col-sm-12 bg_lavender">
+	<div class="h5-toolbar">
+				<span class="pull-right right-align" id="media_redirection" hidden="" style="display: none;">
+					<i class="ion ion-disc"></i> CD Image:
+					<div class="upload_file">
+					<a href="javascript:void(0);" id="browse" class="btn btn-default btn-xs">Browse File</a>
+					<input type="file" id="files" name="files[]" accept=".nrg,.iso,.ISO,.NRG" class="hide">
+					</div>
+					(<span id="sentcount">0</span> KB)
+					&nbsp;&nbsp;
+					<label class="checkbox-inline hide" id="media_boost_div">
+						<input type="checkbox" value="1" id="media_boost">	Media Boost
+					</label>
+					<a href="#" id="media" class="btn btn-info btn-xs" disabled="disabled">Start Media</a>
+				</span>
+				
+				<span class="col-md-4 start_kvm">
+					<i class="fa fa-lock"></i>	&nbsp; &nbsp;
+					<a href="javascript://" id="toggle" class="btn btn-primary btn-xs">Stop KVM</a>
+				</span>
+				<span id="status"></span>
+				<p id="record_progress"></p>
+
+			<div class="div_menu" id="menu">
+				<div class="div_block">
+				<!-- <button class="btn btn-default btn-xs" id='record' style="display:none;">Record Video</button>  -->
+				<!-- <button class="btn btn-default btn-xs" id='stop' disabled style="display:none;">Stop Recording</button>  -->
+				</div>
+				<div class="div_dropdown">
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_video_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" "="">
+							Video
+						<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="button_video_menu">
+							<li><a href="#" id="pause_video" class="">Pause Video</a></li>
+							<li><a href="#" id="resume_video" class="disable_a_href">Resume Video</a></li>
+							<li><a href="#" id="refresh_video" class="">Refresh Video</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Host Display</li>
+							<li><a href="#" id="hd_turn_on" class="disable_a_href">Display ON<i class="fa fa-check"></i></a></li>
+							<li><a href="#" id="hd_turn_off" class="">Display OFF</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#" id="capture_screen" class="">Capture Screen</a></li>
+							<li role="separator" class="divider"></li>
+						</ul>
+					</span>
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_mouse_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Mouse
+						<span class="caret"></span>
+						</button>
+						<ul id="id_mouse_menu" class="dropdown-menu" aria-labelledby="button_mouse_menu">
+							<li><a href="#" id="show_cli_cursor" class="">Show Client Cursor&nbsp;&nbsp;<i class="fa fa-check"></i></a></li>
+							<!--<li><a href="#" id="show_host_cursor" disabled="disabled">Show Host Cursor&nbsp;&nbsp;</a></li> -->
+							<li role="separator" class="divider mouse-mode"></li>
+							<li class="dropdown-header mouse-mode">Mouse Mode</li>
+							<li><a href="#" class="mouse-mode" id="absolute_mm">Absolute Mouse Mode&nbsp;&nbsp;<i class="fa fa-check"></i></a></li>
+							<li><a href="#" class="mouse-mode" id="other_mm">Other Mouse Mode&nbsp;&nbsp;</a></li>
+						</ul>
+					</span>
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_options_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Options
+						<span class="caret"></span>
+						</button>
+						<ul id="id_option_menu" class="dropdown-menu" aria-labelledby="button_options_menu">
+							<li class="dropdown-header">Zoom</li>
+							<li><a href="#" id="zoom_normal" class="disable_a_href">Normal</a></li>
+							<li><a href="#" id="zoom_in" class="">Zoom In</a></li>
+							<li><a href="#" id="zoom_out" class="">Zoom Out</a></li>
+							<li role="separator" class="divider"></li>
+							<li id="block_priv_request" class="dropdown-header block-priv-req">Block Privilege Request&nbsp;&nbsp;</li>
+							<li><a href="#" class="block-priv-req" id="block_priv_partial">Partial Permission&nbsp;&nbsp;</a></li>
+							<li><a href="#" class="block-priv-req" id="block_priv_denied">No Permission&nbsp;&nbsp;</a></li>
+
+							<li hidden=""><a href="#" id="kbd_mouse_encryption" class="">keyboard/mouse encryption&nbsp;&nbsp;</a></li>
+						<li role="separator" class="divider compression_menu"></li><li><a id="soc_YUV_420" class="compression_menu" href="#">YUV 420</a></li><li><a id="soc_YUV_444" class="compression_menu" href="#">YUV 444</a></li><li><a id="soc_YUV_444_2color" class="compression_menu" href="#">YUV 444 + 2 color VQ</a></li><li><a id="soc_YUV_444_4color" class="compression_menu" href="#">YUV 444 + 4 color VQ<i class="fa fa-check" id="cm-select"></i></a></li><li role="separator" class="divider dct_menu"></li><li><a id="soc_dct_zero" class="dct_menu" href="#">0 Best Quality</a></li><li><a id="soc_dct_one" class="dct_menu" href="#">1</a></li><li><a id="soc_dct_two" class="dct_menu" href="#">2</a></li><li><a id="soc_dct_three" class="dct_menu" href="#">3</a></li><li><a id="soc_dct_four" class="dct_menu" href="#">4<i class="fa fa-check" id="dq-select"></i></a></li><li><a id="soc_dct_five" class="dct_menu" href="#">5</a></li><li><a id="soc_dct_six" class="dct_menu" href="#">6</a></li><li><a id="soc_dct_seven" class="dct_menu" href="#">7</a></li></ul>
+					</span>
+					<!--button id='kbd' class="btn btn-default btn-xs" data-show='0'>Show KBD</button-->
+					<!-- <button class="btn btn-default btn-xs" id='cad' data-show='0'>Ctrl+Alt+Del</button> -->
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_keyboard_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Keyboard
+						<span class="caret"></span>
+						</button>
+						<ul id="id_keyboard_menu" class="dropdown-menu" aria-labelledby="button_keyboard_menu">
+						<li class="dropdown-header">Keyboard Layout</li>
+						<li><a class="kbd-layout" id="kbd_layout_eng" href="#">English U.S <i id="kl-select" class="fa fa-check"></i></a></li>
+						<li><a class="kbd-layout" id="kbd_layout_uk" href="#">English U.K </a></li>
+						<li><a class="kbd-layout" id="kbd_layout_ger" href="#">German </a></li>
+						<li><a class="kbd-layout" id="kbd_layout_jap" href="#">Japanese </a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">Softkeyboard</li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_us" href="#">English U.S </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_uk" href="#">English U.K </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_Spanish" href="#">Spanish </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_French" href="#">French </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_German" href="#">German </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_Italian" href="#">Italian </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_Korean" href="#">Korean </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_CHS" href="#">Chinese Simplified </a></li>
+						<li><a class="softkeyboard-layout" id="softkeyboard_CHT" href="#">Chinese Traditional </a></li>
+						</ul>
+					</span>
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs dropdown-toggle" type="button" id="button_send_keys" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Send Keys
+							<!-- <i class="fa fa-caret-down"></i> -->
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="button_send_keys">
+							<li class="dropdown-header">Hold Down</li>
+							<li><a href="#" id="r_ctrl" class="">Right Ctrl Key</a></li>
+							<li><a href="#" id="r_alt" class="">Right Alt Key</a></li>
+							<li><a href="#" id="r_win_hold" class="">Right Windows Key</a></li>
+							<li><a href="#" id="l_ctrl" class="">Left Ctrl Key</a></li>
+							<li><a href="#" id="l_alt" class="">Left Alt Key</a></li>
+							<li><a href="#" id="l_win_hold" class="">Left Windows Key</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Press and Release</li>
+							<li><a href="#" id="cad" class="">Ctrl+Alt+Del</a></li>
+							<li><a href="#" id="l_win_press" class="">Left Windows Key</a></li>
+							<li><a href="#" id="r_win_press" class="">Right Windows Key</a></li>
+							<li><a href="#" id="context" class="">Context Menu Key</a></li>
+							<li><a href="#" id="prtscn" class="">Print Screen Key</a></li>
+						</ul>
+					</span>
+					<!-- HotKeys Menu -->
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_HotKeys" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Hot Keys
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="button_HotKeys" id="usr_macros_menu"><li><a href="#" id="addHotKey">Add&nbsp;Hot Keys</a></li><li role="separator" class="divider" id="macroDivider" hidden=""></li></ul>
+					</span>
+					<!-- End of HotKeys Menu -->
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_video_recording" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Video Record
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu record" aria-labelledby="button_video_recording" id="video-record">
+							<li><a href="#" id="record" class="">Record Video</a></li>
+							<li><a class="disable_a_href" href="#" id="stop">Stop Recording</a></li>
+							<li><a href="#" id="video_rec_setting" class="">Record Settings</a></li>
+						</ul>
+					</span>
+
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_power_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Power
+						<span class="caret"></span></button>
+						<ul id="id_power_menu" class="dropdown-menu power" aria-labelledby="dropdownPower">
+						<li><a href="#" id="power_reset" class="">Reset Server</a></li>
+						<li><a href="#" id="power_off_immediate" class="">Immediate shutdown</a></li>
+						<li><a href="#" id="power_off_orderly" class="">Orderly shutdown</a></li>
+						<li><a href="#" id="power_on" class="disable_a_href">Power On Server</a></li>
+						<li><a href="#" id="power_cycle" class="">Power Cycle Server</a></li>
+						</ul>
+					</span>
+
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_active_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Active Users
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu au" aria-labelledby="button_active_user" id="active-user"><li>admin  (AD) 192.168.120.232</li></ul>
+					</span>
+
+					<!-- Help Menu -->
+					<span class="dropdown">
+						<button class="btn btn-default btn-xs" data-show-'0'="" type="button" id="button_help" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Help
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="button_help" id="id_help_menu">
+							<li><a href="#" id="about">About H5Viewer</a></li>
+						</ul>
+					</span>
+					<!-- End of Help Menu -->
+
+					<!-- tocuh menu -->
+					<span>
+						<button class="btn btn-success btn-xs hide" type="button" id="use_touch_view">
+							 Tablet Mode
+						</button>
+					</span>
+					<!-- touch menu -->
+				</div>
+					<span><button class="btn btn-success btn-xs" id="request_full" style="display: none;">Request Full Access</button></span>
+                    <span>
+						<div class="zoom_value_div">
+							<span>
+								<i id="zoom_value" class="label label-primary" style="display: inline;"> Zoom 100 %</i>
+							</span>
+							<div id="button_notify" hidden="" style="display: block;">
+								<span class="btn btn-default btn-xs"><ul class="nav navbar-nav"><li class="dropdown notifications-menu"><!--
+We don't wanna change the css propery of the nav class;
+because it's been used by other anchor tags in notifications dropdown.
+And in future we may use nav class. So giving inline style to this anchor tag
+which will give a nice button like look by removing unnecessary spaces in all the directions.
+
+A nice black colored icon will be good enough for the notification menu toggle button.
+-->
+<a href="#" class="dropdown-toggle notification_desc" data-toggle="dropdown" title="Displays the notification received.">
+    <!-- Additional non-breaking space for the icon is to give nice look and feel  -->
+    &nbsp;<i class="fa fa-warning"></i>&nbsp;<span class="label label-warning count" id="notification-tip-count" style="display: none;">0</span>
+</a>
+<ul class="dropdown-menu dropdown-menu-right">
+	<li class="header">You have <span class="count" id="notification-count">0</span> notifications<button class="btn btn-default btn-xs" id="notify_delete" title="Delete Notifications"><i class="ion-ios-close"></i></button><button class="btn btn-default btn-xs" id="notify_download" title="Download Notifications"><i class="fa fa-download"></i></button></li>    
+	<li>        
+		<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><ul class="menu" id="notification-list" style="overflow: hidden; width: 100%; height: 200px;"></ul><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 10px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 10px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>    
+	</li>
+</ul></li></ul></span>
+							</div>
+						<span class="btn btn-success btn-xs" id="host_lock_btn" title="Host Display is Unlocked"><i class="ion-monitor"></i></span>
+                    <div id="power_div" style="display: block;">
+
+                        <span class="btn btn-success btn-xs" id="power_ctrl_btn" title="Server is Powered On">
+									<i class="fa fa-power-off"></i>
+								</span>
+							</div>
+						</div>
+					</span>
+				</div>
+				<div id="log" class="div_log"></div>
+				<div id="static_log">Time: N/A</div>
+				<!-- <div>Media Packets sent <span id="sentcount">0</span> KB</div>-->
+				<br>
+			</div>
+	</div>
+    <div class="col-sm-12 col-xs-12 div_remote">
+    	<div class="col-sm-12" id="remote-div">
+			<div class="animated fadeInRight delay-0 box box-primary">
+				<input id="kvm_textbox" name="password" autocorrect="off" autocapitalize="off" autocomplete="off" style="z-index: 0;">
+				<center class="remote-view">
+					<div class="prespective" id="scroll_div" style="overflow: scroll; width: 100%; height: 322.151px;">
+							<canvas id="kvm" width="1280" height="1024" oncontextmenu="return false;" class="alive" style="visibility: visible; width: 1280px; height: 1024px;"></canvas>
+							<canvas id="cursor_canvas" width="1280" height="1024" oncontextmenu="return false;" style="cursor: auto; width: 1280px; height: 1024px;"></canvas>
+			<!-- <img src='images/windows.jpg' /> -->
+					</div>
+				</center>
+			</div>
+		</div>
+    </div>
+    <div class="col-sm-12 bg_lavender">
+		<div class="statusbar">
+		<div class="div_statusbar">
+			<!-- status bar for Desktop -->
+			<div id="lg-statusbar" class="pull-right right-align hide_h5" style="display: block;">
+				<span class="btn btn-default btn-xs hide_h5" id="l_win_hold_btn" style="display: inline;">LWIN</span>
+				<span class="btn btn-default btn-xs hide_h5" id="r_win_hold_btn" style="display: inline;">RWIN</span>
+				<button class="btn btn-default btn-xs hide_h5" id="l_alt_btn" style="display: inline-block;">LALT</button>
+				<button class="btn btn-default btn-xs hide_h5" id="l_ctrl_btn" style="display: inline-block;">LCTRL</button>
+				<button class="btn btn-default btn-xs hide_h5" id="r_alt_btn" style="display: inline-block;">RALT</button>
+				<button class="btn btn-default btn-xs hide_h5" id="r_ctrl_btn" style="display: inline-block;">RCTRL</button>
+				<span class="btn btn-success btn-xs disable_click hide_h5" id="num_lock" style="display: inline;">NUM</span>
+				<span class="btn btn-default btn-xs disable_click hide_h5" id="caps_lock" style="display: inline;">CAPS</span>
+				<span class="btn btn-default btn-xs disable_click hide_h5" id="scr_lock" style="display: inline;">SCR</span>
+			</div>
+			<!-- status bar for Desktop End -->
+			<div class="container-fluid hide" id="touch_kbd" style="display: none;">
+				<!-- div class="col-sm-1">
+					<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-1 div_btn_top">
+								</div>
+								<div class="col-xs-1" style="height:30px; width: 40px; margin-left: 10px; margin-top: 10px">
+									<span id="kbd" class="btn btn-default btn-md" style="height:50px; width: 80px">
+										<span>Show KBD</span>
+									</span>
+								</div>
+								<div class="col-xs-1 div_btn_top">
+								</div>
+							</div>
+						</div>
+				</div-->
+				<div class="col-sm-9" id="fun_keys">
+					<div class="container-fluid">
+						<div class="row">
+								<div class="col-xs-1 div_thirty_px"><button type="button" id="esc" class="btn btn-default btn-md">Esc</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f1" class="btn btn-default btn-md">F1</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f2" class="btn btn-default btn-md">F2</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f3" class="btn btn-default btn-md">F3</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f4" class="btn btn-default btn-md">F4</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f5" class="btn btn-default btn-md">F5</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f6" class="btn btn-default btn-md">F6</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f7" class="btn btn-default btn-md">F7</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f8" class="btn btn-default btn-md">F8</button></div>
+								<div class="col-xs-1 div_ten_px"><button type="button" id="f9" class="btn btn-default btn-md">F9</button></div>
+								<div class="col-xs-1 div_fifteen_px"><button type="button" id="f10" class="btn btn-default btn-md">F10</button></div>
+								<div class="col-xs-1 div_fifteen_px"><button type="button" id="f11" class="btn btn-default btn-md">F11</button></div>
+								<div class="col-xs-1 div_twenty_px"><button type="button" id="f12" class="btn btn-default btn-md">F12</button></div>
+								<!-- div class="col-xs-1" style="height:30px; width: 40px; margin-right: 10px"><button id="scr_lock" type="button" class="btn btn-default btn-md">Scr</button></div-->
+						</div>
+					</div>
+					<div class="container-fluid">
+						<div class="row">
+								<div class="col-xs-1 tab_btn_div">
+									<button type="button" id="tab" class="btn btn-default btn-md tab_btn_div_width">Tab</button></div>
+								<div class="col-xs-1 div_fifteen_px"><button type="button" id="ins" class="btn btn-default btn-md">Ins</button></div>
+								<div class="col-xs-1 div_fifteen_px"><button type="button" id="del" class="btn btn-default btn-md">Del</button></div>
+								<div class="col-xs-1 div_thirty_px"><button type="button" id="home" class="btn btn-default btn-md">Home</button></div>
+								<div class="col-xs-1 div_fifteen_px"><button type="button" id="end" class="btn btn-default btn-md">End</button></div>
+								<div class="col-xs-1 div_thirty_px"><button type="button" id="pgup" class="btn btn-default btn-md">Pg Up</button></div>
+								<div class="col-xs-1 div_thirty_px"><button type="button" id="pgdn" class="btn btn-default btn-md">Pg Dn</button></div>
+								<div class="col-xs-1 prtscn_keys"><button type="button" id="prtscn_key" class="btn btn-default btn-md">Prt Scn</button></div>
+								<div class="col-xs-1 div_btn_top"><button type="button" id="pau-brk" class="btn btn-default btn-md">Pau/Brk</button></div>
+
+						</div>
+					</div>
+						<!-- div class="row" style="margin-top: 10px">
+							<div class="container">
+
+							</div>
+
+						</div-->
+					<div class="container-fluid">
+						<div class="row">
+								<div class="col-xs-1 div_twenty_px" margin-bottom:="" 10px"="">
+									<span id="kbd" class="btn btn-default btn-md .width_half" style="display: none;">
+										<i class="fa fa-keyboard-o fa-lg" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="col-xs-1"><button id="l_shift_key_btn" type="button" class="btn btn-default btn-md">Shift</button></div>
+								<div class="col-xs-1 div_twenty_px" margin-bottom:="" 10px"=""><button id="l_ctrl_key_btn" type="button" class="btn btn-default btn-md">Ctrl</button></div>
+								<div class="col-xs-1 btn_div_width">
+									<span id="l_win_hold_key_btn" class="btn btn-default btn-md">
+										<i class="fa fa-windows" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="col-xs-1 btn_div_width"><button id="l_alt_key_btn" type="button" class="btn btn-default btn-md">Alt</button></div>
+								<div class="col-xs-1 btn_mright"><button id="context_key" type="button" class="btn btn-default btn-md">Context Menu</button></div>
+								<div class="col-xs-1 alt_key"><button id="r_alt_key_btn" type="button" class="btn btn-default btn-md">Alt Gr</button></div>
+								<div class="col-xs-1 btn_div_width">
+									<span id="r_win_hold_key_btn" class="btn btn-default btn-md">
+										<i class="fa fa-windows" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="col-xs-1 div_twenty_px" margin-bottom:="" 10px"=""><button id="r_ctrl_key_btn" type="button" class="btn btn-default btn-md">Ctrl</button></div>
+								<div class="col-xs-1 shift_key"><button id="r_shift_key_btn" type="button" class="btn btn-default btn-md">Shift</button></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3" id="num_div" style="display: none;">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-1 div_ten_px"><button id="num_lock_key" type="button" class="btn btn-success btn-success width_forty"><font size="3"><b>1</b></font></button></div>
+								<div class="col-xs-1 div_ten_px">
+									<span id="caps_lock_key" class="btn btn-default btn-default width_forty> <i class=" fa="" fa-font"="" aria-hidden="true">
+									</span>
+							</div>
+								<!-- div class="col-xs-1 div_ten_px"><button id="caps_lock" type="button" class="btn btn-default btn-md">Caps</button></div>
+								<div class="col-xs-1 div_ten_px"><button id="scr_lock" type="button" class="btn btn-default btn-md">Scr</button></div-->
+
+								<div class="col-xs-1 div_btn_top">
+									<span id="scr_lock_key" class="btn btn-default btn-default width_forty">
+										<i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div id="dock_kbd_mouse_pad" class="btn btn-md pull-right right-align width_forty">
+									<i class="fa fa-angle-double-down fa-lg" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-1 div_btn_top">
+								</div>
+								<div class="col-xs-1 fluid_div">
+									<span id="up" class="btn btn-default btn-md width_forty">
+										<i class="ion-arrow-up-b" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="col-xs-1 div_btn_top">
+								</div>
+							</div>
+						</div>
+						<div class="container-fluid">
+							<div class="row">
+									<div class="col-xs-1 div_ten_px">
+										<span id="left" class="btn btn-default btn-md width_forty">
+											<i class="ion-arrow-left-b" aria-hidden="true"></i>
+										</span>
+									</div>
+									<div class="col-xs-1 div_ten_px">
+										<span id="down" class="btn btn-default btn-md width_forty">
+											<i class="ion-arrow-down-b" aria-hidden="true"></i>
+										</span>
+									</div>
+									<div class="col-xs-1 div_btn_top">
+										<span id="right" class="btn btn-default btn-md width_forty">
+											<i class="ion-arrow-right-b" aria-hidden="true"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Mouse Pad -->
+						<div class="col-sm-3" id="mouse_pad" style="display: none;">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-1 div_btn_top">
+									</div>
+									<div class="col-xs-1 div_btn_top">
+									<span id="scroll_canvas_up" class="btn btn-default btn-md width_forty">
+										<i class="fa fa-caret-square-o-up" aria-hidden="true"></i>
+									</span>
+									</div>
+									<div class="col-xs-1 div_btn_top">
+									</div>
+									<div id="dock_kbd_show_num" class="btn btn-md pull-right right-align width_forty">
+									<i class="fa fa-angle-double-down fa-lg" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-1 div_ten_px">
+										<span id="scroll_canvas_left" class="btn btn-default btn-md width_forty">
+											<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+										</span>
+									</div>
+									<div class="col-xs-1 div_btn_top">
+									</div>
+									<div class="col-xs-1 div_btn_top">
+										<span id="scroll_canvas_right" class="btn btn-default btn-md width_forty">
+											<i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-1 div_btn_top">
+									</div>
+									<div class="col-xs-1 div_btn_top">
+									<span id="scroll_canvas_down" class="btn btn-default btn-md width_forty">
+										<i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+									</span>
+									</div>
+									<div class="col-xs-1 div_btn_top">
+									</div>
+								</div>
+							</div>
+						</div>
+							</div>
+						</div>
+			</div>
+							</div>
+						</div>
+					<!-- Mouse Pad End-->
+				
+
+			
+
+		
+	
+	
+
+
+
+</section>
+<!-- /.content --></div></aside>
+</div></div></main>
+
+    <!-- Application source. -->
+    <script data-main="/app/main" src="/viewer.min.js"></script>
+
+
+
+</body><x-pw-glass style="position: fixed; inset: 0px; z-index: 2147483646; pointer-events: none; display: flex; background-color: transparent;"></x-pw-glass></html>

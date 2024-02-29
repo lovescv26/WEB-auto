@@ -1217,8 +1217,8 @@ waiting for event "popup"
 
 at /mnt/d/tem/WEB-auto/tests/kvm.spec.js:50:28
 ```
-##### solution : jump to fast + add condition
-Although each playwright’s official documentation states
+##### solution :  add condition  
+Although playwright’s official documentation states
 that actions should be taken only after the element has finished loading,
 this condition refers to the element’s loading process, not navigation.
 
@@ -1228,6 +1228,23 @@ add condition to solution it
 
 
 
+---
+---
+---
+## when open using windows playwright vs open directly using a browser
+because the kvm the screen is different
+`note/kvm_msedge.html`
+`note/kvm_playwright.html`
+![d_](./pic/dev_two_open_diffrerent_pic.png)
+
+this is source code different part
+green 	is correct screen
+red		is error screen
+( but I'll skip this part for now
+because there are too many problems to slove
+I don't have much energy )
+
+---
 
 
 
