@@ -1,3 +1,7 @@
+---
+number_sections:TRUE
+
+---
 ## 	ERR_CONNECTION_TIMED_OUT
 if playwright output
 ```
@@ -717,7 +721,7 @@ love it is omg love
 love me 520
 
 ---
-## playwright.issue.upload.bmc.file.after.hooks
+## playwright.issue.upload.bmc.file.after.hooks 
 ![unexpet0](./pic/is.after.unexpet0.png)
 This is explaining what went wrong
 Because this is not a matter of direct instruction
@@ -1245,9 +1249,15 @@ because there are too many problems to slove
 I don't have much energy )
 
 ---
+## playwright screenshot error 
+```bash
+====== error output ======>
+Error: file data stream has unexpected number of bytes
 
+```
 
-
+> same error  
+[playwright.issue.upload.bmc.file.after.hooks](#playwrightissueuploadbmcfileafterhooks)
 
 
 
