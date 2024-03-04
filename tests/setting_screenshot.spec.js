@@ -60,28 +60,9 @@ test.beforeEach('login', async({page,request })=>{
 
 
 });
-test.only('run 1 -- sensor',async ({page}) => {
-	//await page.waitForTimeout(10000);
-	//await page.goto('https://'+ip+'/#login');
-	await page.goto('https://'+ip+'/#sensors');
-	await page.waitForTimeout(2000);
-	//[screenshot](https://testersdock.com/playwright-screenshot-capture/#:~:text=Go%20to%20Playwright.config.ts%20file%20and%20under%20use%20add,in%20Playwright%20provides%20other%20options%20to%20capture%2Fmanipulate%20screenshots.)'
-	//await page.getByRole('heading', { name: 'Sensor Reading Live reading' });
-	//await page.getByText('Sensor Reading ').isVisible();
-	 await page.getByRole('heading', { name: 'Sensor Reading Live reading' }) 
-	//  Error: locator.isVisible: Error: strict mode violation: getByText('Sensor Reading ') resolved to 3 elements:            
-	await page.screenshot({path:'screenshot/sensor.png',fullPage:true});
-
-});
+//test('run 1 -- sensor',async ({page}) => { });
 //test('run 2 -- syslog',async ({}) => { => TypeError: Cannot read properties of undefined (reading 'goto')
-test('run 2 -- syslog',async ({page}) => {
-	//await page.waitForTimeout(10000);
-	await page.goto('https://'+ip+'/#login');
-	await page.goto('https://'+ip+'/#settings/log/advanced_log');
-	await page.waitForTimeout(1000);
-	await page.screenshot({path:'screenshot/advanced_log.png',fullPage:true});
-
-});
+//test('run 2 -- syslog',async ({page}) => { });
 //test('run 3',async ({page}) => {
 //	//await page.goto('https://192.168.120.218/
 //	//await page.waitForTimeout(10000);
@@ -90,7 +71,45 @@ test('run 2 -- syslog',async ({page}) => {
 //	await page.locator('#mainfirmware_image').setInputFiles(love_firemware_name);
 //	await page.getByRole('button', { name: 'Start firmware update' }).click();	
 //});
-test('run 4',async ({page}) => {
+//test('run 4',async ({page}) => { });
+
+//const config: PlaywrightTestConfig = {
+//	globalTimeout: 120000,
+//	timeout: 5000;
+//}
+test('run 5 -- settings/',async ({page}) => {
+	test.setTimeout(420000);
+	
+	/*
+	 *	run 1
+	 *	=====  sensor	====
+	 */
+	//await page.waitForTimeout(10000);
+	//await page.goto('https://'+ip+'/#login');
+	await page.goto('https://'+ip+'/#sensors');
+	await page.waitForTimeout(2000);
+	//[screenshot](https://testersdock.com/playwright-screenshot-capture/#:~:text=Go%20to%20Playwright.config.ts%20file%20and%20under%20use%20add,in%20Playwright%20provides%20other%20options%20to%20capture%2Fmanipulate%20screenshots.)'
+	//await page.getByRole('heading', { name: 'Sensor Reading Live reading' });
+	//await page.getByText('Sensor Reading ').isVisible();
+	await page.getByRole('heading', { name: 'Sensor Reading Live reading' }) 
+	//  Error: locator.isVisible: Error: strict mode violation: getByText('Sensor Reading ') resolved to 3 elements:            
+	await page.screenshot({path:'screenshot/sensor.png',fullPage:true});
+
+
+	/*
+	 *	run 2
+	 *	log settings
+	 */
+	//await page.waitForTimeout(10000);
+	await page.goto('https://'+ip+'/#login');
+	await page.goto('https://'+ip+'/#settings/log/advanced_log');
+	await page.waitForTimeout(1000);
+	await page.screenshot({path:'screenshot/advanced_log.png',fullPage:true});
+
+	/*
+	 *	run 4  logs/audit-log
+	 */
+
 	//await page.waitForTimeout(10000);
 	await page.goto('https://'+ip+'/#login');
 	await page.waitForTimeout(2000);
@@ -100,17 +119,11 @@ test('run 4',async ({page}) => {
 	await page.waitForTimeout(5000);
 	await page.screenshot({path:'screenshot/audit-log.png',fullPage:true });
 
-});
-
-//const config: PlaywrightTestConfig = {
-//	globalTimeout: 120000,
-//	timeout: 5000;
-//}
-test.only('run 5 -- settings/',async ({page}) => {
 	await page.goto('https://'+ip+'/#settings/date_time');
 	let timeFactor = "false" ;
 	timeFactor = await page.locator('#iddate-picker').getByRole('textbox').isVisible();
 	console.log('timeFacotr'+timeFactor);
+	await page.waitForTimeout(500);
 	await page.screenshot({path: 'screenshot/settings/date_time.png',fullPage:true });
 
 	/*
@@ -118,7 +131,7 @@ test.only('run 5 -- settings/',async ({page}) => {
 	/* ====    settings/ext_users   =====
 	 *
 	 */
-	let ldapGeneral = "false" ;
+	//let ldapGeneral = "false" ;
 	await page.goto('https://'+ip+'/#settings/ext_users');
 	await page.waitForTimeout(2000);
 	await page.screenshot({path: 'screenshot/settings/external_user_services/external_user.png',fullPage:true });
@@ -128,7 +141,7 @@ test.only('run 5 -- settings/',async ({page}) => {
 	await page.screenshot({path: 'screenshot/settings/external_user_services/ldap/ldap.png',fullPage:true });
 
 	await page.goto('https://'+ip+'/#settings/ext_users/ldap/general_ldap');
-	ldapGeneral = await page.getByText('Search Base', { exact: true }).isVisible();
+	let ldapGeneral = await page.getByText('Search Base', { exact: true }).isVisible();
 	await page.waitForTimeout(1000);	//
 	await page.screenshot({path: 'screenshot/settings/external_user_services/ldap/general.png',fullPage:true});
 
@@ -154,7 +167,7 @@ test.only('run 5 -- settings/',async ({page}) => {
 	await page.goto('https://'+ip+'/#settings/ext_users/radius');
 	await page.waitForTimeout(1000);
 	await page.screenshot({path: 'screenshot/settings/external_user_services/radius/radius.png',fullPage:true});
-	
+
 	await page.goto('https://'+ip+'/#settings/ext_users/radius/general_radius');
 	await page.waitForTimeout(1000);
 	await page.screenshot({path: 'screenshot/settings/external_user_services/radius/general_radius.png',fullPage:true});
@@ -258,7 +271,7 @@ test.only('run 5 -- settings/',async ({page}) => {
 	await page.goto('https://'+ip+'/#settings/pef');
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/pef/pef.png',fullPage:true});
-	
+
 	await page.goto('https://'+ip+'/#settings/pef/event_filters');
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/pef/event_filters.png',fullPage:true});
@@ -336,8 +349,9 @@ test.only('run 5 -- settings/',async ({page}) => {
 	await page.goto('https://'+ip+'/#settings/firewall/general_firewall_settings/add_firewall_settings');
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/firewall/general_firewall_settings/add_firewall_settings.png',fullPage:true});
+
 	// --------------------------------
-	
+
 	await page.goto('https://'+ip+'/#settings/firewall/ip_firewall');
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/firewall/ip_firewall/ip_firewall.png',fullPage:true});
@@ -413,6 +427,7 @@ test.only('run 5 -- settings/',async ({page}) => {
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/video/auto/pre_event.png',fullPage:true});
 	//----------------------------------------------------------------------
+
 	await page.goto('https://'+ip+'/#settings/video/sol');
 	await page.waitForTimeout(900);
 	await page.screenshot({path: 'screenshot/settings/video/sol/sol_setting.png',fullPage:true});
@@ -432,12 +447,16 @@ test.only('run 5 -- settings/',async ({page}) => {
 	 *
 	 */
 	await page.goto('https://'+ip+'/#settings/ipmi_interfaces');
-	await page.waitForTimeout(900);
+	await page.waitForTimeout(1300);
 	await page.screenshot({path: 'screenshot/settings/ipmi_interfaces/ipmi_interfaces.png',fullPage:true});
+	await page.waitForTimeout(2000);
+
+});
+test('run' , async({page}) => { 
 
 });
 /* {{{
-test('run 6 -- settings/ext_users ' , async({page}) => { });
+test('run 6 -- settings/ext_users ' , async({page}) => { 
 test('run 7 -- ',async({page }) =>{ });
 test('run 8 -- log' ,async({page}) => { });
 test('run 9 -- media ' , async({page}) => { });

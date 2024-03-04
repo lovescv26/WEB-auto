@@ -978,21 +978,21 @@ if use variable.that works like a charm
 ---
 ##  bash message is " Running: command not found "
 ```bash
-		echo " !!!====> ${i}" >> log.txt;
-		$(date >> log.txt)
-		#$(npx playwright test tests/change.spec.js --headed|tee -a log.txt)
-		$(npx playwright test tests/change.spec.js --headed>> log.txt)
-		sleep 10;
-		function_catch_ver;		### --> Thu Feb 22 11:36:14 CST 2024 I comment but error...this need to catch it... because the function_catch_version need to inhire it 
-		$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
-		$(command -v date >> log.txt)
-		$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
-		sleep 2m;
-		if [ ${i} -eq ${execute} ];
-		then
-			#echo " this is last one ";
-			$(npx playwright test tests/change.spec.js --headed>> log.txt);
-		fi
+echo " !!!====> ${i}" >> log.txt;
+$(date >> log.txt)
+#$(npx playwright test tests/change.spec.js --headed|tee -a log.txt)
+$(npx playwright test tests/change.spec.js --headed>> log.txt)
+sleep 10;
+function_catch_ver;		### --> Thu Feb 22 11:36:14 CST 2024 I comment but error...this need to catch it... because the function_catch_version need to inhire it 
+$(ipmitool -I lanplus -H ${ip} -U admin -P 11111111 raw 0x1e 0x01 0x00 >> log.txt);
+$(command -v date >> log.txt)
+$(npx playwright test tests/uploadfile.spec.js --headed >> log.txt)
+sleep 2m;
+if [ ${i} -eq ${execute} ];
+then
+	#echo " this is last one ";
+	$(npx playwright test tests/change.spec.js --headed>> log.txt);
+fi
 ```
 This still executes my playwright,
 but it keeps erroring out....
@@ -1137,18 +1137,18 @@ test('kvm',async () => {
 TypeError: test(...) is not a function
 
 at kvm.spec.js:39
-	37 |
-	38 |  await browser.close();
-  > 39 | })();
-           ^
-	40 |
-	41 |
-	42 | test('test', async ({ page }) => {
-		at Object.<anonymous> (/mnt/d/tem/WEB-auto/tests/kvm.spec.js:39:3)
-		To open last HTML report run:
-
-		npx playwright show-report
-		}
+  37 |
+  38 |  await browser.close();
+> 39 | })();
+	   ^
+  40 |
+  41 |
+  42 | test('test', async ({ page }) => {
+  	at Object.<anonymous> (/mnt/d/tem/WEB-auto/tests/kvm.spec.js:39:3)
+  	To open last HTML report run:
+  
+  	npx playwright show-report
+  	}
 ```
 
 #### solution -- playwright if not use tile\_name && playwright test is not a function
@@ -1211,13 +1211,13 @@ Error: page.waitForEvent: Test timeout of 30000ms exceeded.
 waiting for event "popup"
 ============================================================
 
-	48 | 	await page.getByRole('button', { name: 'Sign me in' }).click();
-	49 | 	await page.goto('https://'+ip+'/#remote_control');
-  > 50 | 	const page1Promise = page.waitForEvent('popup');
-	   | 	                          ^
-	51 | 	await page.getByRole('button', { name: ' Launch H5Viewer' }).click();
-	52 | 	const page1 = await page1Promise;
-	53 | 	await waitForTimeout(2000);
+  48 | 	await page.getByRole('button', { name: 'Sign me in' }).click();
+  49 | 	await page.goto('https://'+ip+'/#remote_control');
+> 50 | 	const page1Promise = page.waitForEvent('popup');
+     | 	                          ^
+  51 | 	await page.getByRole('button', { name: ' Launch H5Viewer' }).click();
+  52 | 	const page1 = await page1Promise;
+  53 | 	await waitForTimeout(2000);
 
 at /mnt/d/tem/WEB-auto/tests/kvm.spec.js:50:28
 ```
@@ -1249,6 +1249,7 @@ because there are too many problems to slove
 I don't have much energy )
 
 ---
+---
 ## playwright screenshot error 
 ```bash
 ====== error output ======>
@@ -1257,7 +1258,20 @@ Error: file data stream has unexpected number of bytes
 ```
 
 > same error  
-[playwright.issue.upload.bmc.file.after.hooks](#playwrightissueuploadbmcfileafterhooks)
+> [playwright.issue.upload.bmc.file.after.hooks](#playwrightissueuploadbmcfileafterhooks)
+
+> but I think it no make sense...
+(Not affecting the overall situation)
+I’ve implemented the screenshot functionality I wanted.
+However, after it finishes,
+there are a few minor issues with the output.
+So, I feel it’s not meaningful.
+
+
+---
+---
+---
+
 
 
 
