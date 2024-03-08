@@ -1,0 +1,598 @@
+11
+<html lang="en" class="" style="min-height: 692px;"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>MegaRAC SP-X</title>
+
+    <!-- Application styles. -->
+    <link rel="stylesheet" href="/styles.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/libs/js/html5shiv.js"></script>
+    <script src="/libs/js/respond.min.js"></script>
+  <![endif]-->
+<style type="text/css" id="notify-bootstrap">.notifyjs-bootstrap-base {
+  font-weight: bold;
+  padding: 8px 15px 8px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: 3px 7px;
+}
+.notifyjs-bootstrap-error {
+  color: #B94A48;
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAtRJREFUeNqkVc1u00AQHq+dOD+0poIQfkIjalW0SEGqRMuRnHos3DjwAH0ArlyQeANOOSMeAA5VjyBxKBQhgSpVUKKQNGloFdw4cWw2jtfMOna6JOUArDTazXi/b3dm55socPqQhFka++aHBsI8GsopRJERNFlY88FCEk9Yiwf8RhgRyaHFQpPHCDmZG5oX2ui2yilkcTT1AcDsbYC1NMAyOi7zTX2Agx7A9luAl88BauiiQ/cJaZQfIpAlngDcvZZMrl8vFPK5+XktrWlx3/ehZ5r9+t6e+WVnp1pxnNIjgBe4/6dAysQc8dsmHwPcW9C0h3fW1hans1ltwJhy0GxK7XZbUlMp5Ww2eyan6+ft/f2FAqXGK4CvQk5HueFz7D6GOZtIrK+srupdx1GRBBqNBtzc2AiMr7nPplRdKhb1q6q6zjFhrklEFOUutoQ50xcX86ZlqaZpQrfbBdu2R6/G19zX6XSgh6RX5ubyHCM8nqSID6ICrGiZjGYYxojEsiw4PDwMSL5VKsC8Yf4VRYFzMzMaxwjlJSlCyAQ9l0CW44PBADzXhe7xMdi9HtTrdYjFYkDQL0cn4Xdq2/EAE+InCnvADTf2eah4Sx9vExQjkqXT6aAERICMewd/UAp/IeYANM2joxt+q5VI+ieq2i0Wg3l6DNzHwTERPgo1ko7XBXj3vdlsT2F+UuhIhYkp7u7CarkcrFOCtR3H5JiwbAIeImjT/YQKKBtGjRFCU5IUgFRe7fF4cCNVIPMYo3VKqxwjyNAXNepuopyqnld602qVsfRpEkkz+GFL1wPj6ySXBpJtWVa5xlhpcyhBNwpZHmtX8AGgfIExo0ZpzkWVTBGiXCSEaHh62/PoR0p/vHaczxXGnj4bSo+G78lELU80h1uogBwWLf5YlsPmgDEd4M236xjm+8nm4IuE/9u+/PH2JXZfbwz4zw1WbO+SQPpXfwG/BBgAhCNZiSb/pOQAAAAASUVORK5CYII=);
+}
+.notifyjs-bootstrap-success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border-color: #D6E9C6;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAutJREFUeNq0lctPE0Ecx38zu/RFS1EryqtgJFA08YCiMZIAQQ4eRG8eDGdPJiYeTIwHTfwPiAcvXIwXLwoXPaDxkWgQ6islKlJLSQWLUraPLTv7Gme32zoF9KSTfLO7v53vZ3d/M7/fIth+IO6INt2jjoA7bjHCJoAlzCRw59YwHYjBnfMPqAKWQYKjGkfCJqAF0xwZjipQtA3MxeSG87VhOOYegVrUCy7UZM9S6TLIdAamySTclZdYhFhRHloGYg7mgZv1Zzztvgud7V1tbQ2twYA34LJmF4p5dXF1KTufnE+SxeJtuCZNsLDCQU0+RyKTF27Unw101l8e6hns3u0PBalORVVVkcaEKBJDgV3+cGM4tKKmI+ohlIGnygKX00rSBfszz/n2uXv81wd6+rt1orsZCHRdr1Imk2F2Kob3hutSxW8thsd8AXNaln9D7CTfA6O+0UgkMuwVvEFFUbbAcrkcTA8+AtOk8E6KiQiDmMFSDqZItAzEVQviRkdDdaFgPp8HSZKAEAL5Qh7Sq2lIJBJwv2scUqkUnKoZgNhcDKhKg5aH+1IkcouCAdFGAQsuWZYhOjwFHQ96oagWgRoUov1T9kRBEODAwxM2QtEUl+Wp+Ln9VRo6BcMw4ErHRYjH4/B26AlQoQQTRdHWwcd9AH57+UAXddvDD37DmrBBV34WfqiXPl61g+vr6xA9zsGeM9gOdsNXkgpEtTwVvwOklXLKm6+/p5ezwk4B+j6droBs2CsGa/gNs6RIxazl4Tc25mpTgw/apPR1LYlNRFAzgsOxkyXYLIM1V8NMwyAkJSctD1eGVKiq5wWjSPdjmeTkiKvVW4f2YPHWl3GAVq6ymcyCTgovM3FzyRiDe2TaKcEKsLpJvNHjZgPNqEtyi6mZIm4SRFyLMUsONSSdkPeFtY1n0mczoY3BHTLhwPRy9/lzcziCw9ACI+yql0VLzcGAZbYSM5CCSZg1/9oc/nn7+i8N9p/8An4JMADxhH+xHfuiKwAAAABJRU5ErkJggg==);
+}
+.notifyjs-bootstrap-info {
+  color: #3A87AD;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYFAhkSsdes/QAAA8dJREFUOMvVlGtMW2UYx//POaWHXg6lLaW0ypAtw1UCgbniNOLcVOLmAjHZolOYlxmTGXVZdAnRfXQm+7SoU4mXaOaiZsEpC9FkiQs6Z6bdCnNYruM6KNBw6YWewzl9z+sHImEWv+vz7XmT95f/+3/+7wP814v+efDOV3/SoX3lHAA+6ODeUFfMfjOWMADgdk+eEKz0pF7aQdMAcOKLLjrcVMVX3xdWN29/GhYP7SvnP0cWfS8caSkfHZsPE9Fgnt02JNutQ0QYHB2dDz9/pKX8QjjuO9xUxd/66HdxTeCHZ3rojQObGQBcuNjfplkD3b19Y/6MrimSaKgSMmpGU5WevmE/swa6Oy73tQHA0Rdr2Mmv/6A1n9w9suQ7097Z9lM4FlTgTDrzZTu4StXVfpiI48rVcUDM5cmEksrFnHxfpTtU/3BFQzCQF/2bYVoNbH7zmItbSoMj40JSzmMyX5qDvriA7QdrIIpA+3cdsMpu0nXI8cV0MtKXCPZev+gCEM1S2NHPvWfP/hL+7FSr3+0p5RBEyhEN5JCKYr8XnASMT0xBNyzQGQeI8fjsGD39RMPk7se2bd5ZtTyoFYXftF6y37gx7NeUtJJOTFlAHDZLDuILU3j3+H5oOrD3yWbIztugaAzgnBKJuBLpGfQrS8wO4FZgV+c1IxaLgWVU0tMLEETCos4xMzEIv9cJXQcyagIwigDGwJgOAtHAwAhisQUjy0ORGERiELgG4iakkzo4MYAxcM5hAMi1WWG1yYCJIcMUaBkVRLdGeSU2995TLWzcUAzONJ7J6FBVBYIggMzmFbvdBV44Corg8vjhzC+EJEl8U1kJtgYrhCzgc/vvTwXKSib1paRFVRVORDAJAsw5FuTaJEhWM2SHB3mOAlhkNxwuLzeJsGwqWzf5TFNdKgtY5qHp6ZFf67Y/sAVadCaVY5YACDDb3Oi4NIjLnWMw2QthCBIsVhsUTU9tvXsjeq9+X1d75/KEs4LNOfcdf/+HthMnvwxOD0wmHaXr7ZItn2wuH2SnBzbZAbPJwpPx+VQuzcm7dgRCB57a1uBzUDRL4bfnI0RE0eaXd9W89mpjqHZnUI5Hh2l2dkZZUhOqpi2qSmpOmZ64Tuu9qlz/SEXo6MEHa3wOip46F1n7633eekV8ds8Wxjn37Wl63VVa+ej5oeEZ/82ZBETJjpJ1Rbij2D3Z/1trXUvLsblCK0XfOx0SX2kMsn9dX+d+7Kf6h8o4AIykuffjT8L20LU+w4AZd5VvEPY+XpWqLV327HR7DzXuDnD8r+ovkBehJ8i+y8YAAAAASUVORK5CYII=);
+}
+.notifyjs-bootstrap-warn {
+  color: #C09853;
+  background-color: #FCF8E3;
+  border-color: #FBEED5;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAABJlBMVEXr6eb/2oD/wi7/xjr/0mP/ykf/tQD/vBj/3o7/uQ//vyL/twebhgD/4pzX1K3z8e349vK6tHCilCWbiQymn0jGworr6dXQza3HxcKkn1vWvV/5uRfk4dXZ1bD18+/52YebiAmyr5S9mhCzrWq5t6ufjRH54aLs0oS+qD751XqPhAybhwXsujG3sm+Zk0PTwG6Shg+PhhObhwOPgQL4zV2nlyrf27uLfgCPhRHu7OmLgAafkyiWkD3l49ibiAfTs0C+lgCniwD4sgDJxqOilzDWowWFfAH08uebig6qpFHBvH/aw26FfQTQzsvy8OyEfz20r3jAvaKbhgG9q0nc2LbZxXanoUu/u5WSggCtp1anpJKdmFz/zlX/1nGJiYmuq5Dx7+sAAADoPUZSAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdBgUBGhh4aah5AAAAlklEQVQY02NgoBIIE8EUcwn1FkIXM1Tj5dDUQhPU502Mi7XXQxGz5uVIjGOJUUUW81HnYEyMi2HVcUOICQZzMMYmxrEyMylJwgUt5BljWRLjmJm4pI1hYp5SQLGYxDgmLnZOVxuooClIDKgXKMbN5ggV1ACLJcaBxNgcoiGCBiZwdWxOETBDrTyEFey0jYJ4eHjMGWgEAIpRFRCUt08qAAAAAElFTkSuQmCC);
+}
+</style><style type="text/css" id="core-notify">.notifyjs-corner {
+  position: fixed;
+  margin: 5px;
+  z-index: 1050;
+}
+
+.notifyjs-corner .notifyjs-wrapper,
+.notifyjs-corner .notifyjs-container {
+  position: relative;
+  display: block;
+  height: inherit;
+  width: inherit;
+  margin: 3px;
+}
+
+.notifyjs-wrapper {
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  height: 0;
+  width: 0;
+}
+
+.notifyjs-container {
+  display: none;
+  z-index: 1;
+  position: absolute;
+}
+
+.notifyjs-hidable {
+  cursor: pointer;
+}
+
+[data-notify-text],[data-notify-html] {
+  position: relative;
+}
+
+.notifyjs-arrow {
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+}</style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;box-sizing: content-box;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+
+<body class="" style="min-height: 692px;">
+    <!-- Processing layout. -->
+    <div class="processing_bg_outer hide-spinner" id="processing_layout">
+        <div class="processing_bg_inner"></div>
+    </div>
+    <!-- Product and company logo -->
+    <div class="hide" id="ami_logo">
+            <div class="brand logo-left ">               
+                <img id="idh5banner_left" src="/res/oem/h5banner_left.png" alt="">          
+            </div>
+            <div class="brand logo-right"> 
+                <img id="idh5banner_right" src="/res/oem/h5banner_right.png" alt="">
+            </div>
+   	</div>
+    <!-- Processing image -->
+    <div class="processing_img_outer hide-spinner" id="processing_image">
+         <div class="loader"></div>
+        <div class="processing_content" id="processing_text">Processing...</div>
+    </div>
+    <!-- Application container. -->
+    <main role="main" id="main" class="skin-black"><div><!-- header logo: style can be found in header.less -->
+<header class="header">
+    <label class="logo customized_animated">MegaRAC SP-X</label>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top animated fadeInDownBig customized_animated" role="navigation">
+        <!-- Sidebar toggle button-->
+        <div class="row">
+            <div class="col-md-1">
+                <a href="#" class="navbar-btn sidebar-toggle" id="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                
+                <a href="#" title="Show/Hide header Menu's" class="navbar-btn sidebar-toggle hide" id="rightsidebar-toggle" data-toggle="offrightcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+            </div>
+        <div class="col-md-10 navbar-right">
+            <ul class="nav navbar-nav row-offrightcanvas"><li class="dropdown messages-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Displays the messages received.">
+        <i class="fa fa-envelope"></i>
+        <span class="label label-success count count-width" style="display: none;">0</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-allignment">
+        <li class="header">You have <span class="count">0</span> message</li>
+        <li>
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
+                
+            </ul><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+        </li>
+    </ul></li><li class="dropdown notifications-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Displays the notification received.">
+    <i class="fa fa-warning"></i>
+    <span class="label label-warning count count-width" style="display: none;">0</span>
+</a>
+<ul class="dropdown-menu dropdown-menu-allignment">
+    <li class="header">You have <span class="count">0</span> notifications</li>
+    <li>
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
+        </ul><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+    </li>
+</ul></li>
+                <!-- Messages: style can be found in dropdown.less-->
+                
+                <!-- Notifications: style can be found in dropdown.less -->
+                
+                <!-- Tasks: style can be found in dropdown.less -->
+                <li class="select_lang_top">
+                    <select id="select_lang_top" class="form-control select2-hidden-accessible" data-select2-id="select_lang_top" tabindex="-1" aria-hidden="true">
+                        <option id="en-us" value="en-us" data-select2-id="en-us">US - English</option>
+                        <option id="zh-cn" value="zh-cn">China - 中文 (简体)</option>
+                        <option id="zh-tw" value="zh-tw">Taiwan - 中文 (正體)</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="3" style="width: 164.8px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-select_lang_top-container"><span class="select2-selection__rendered" id="select2-select_lang_top-container" role="textbox" aria-readonly="true" title="US - English">US - English</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                </li>
+
+                
+                <li class="bios-section" title="Open the new window or popup to configure the BIOS Settings." data-feature="REDFISH_BIOS_WEB_STATIC_SUPPORT,REDFISH_LEVEL_TWO_SUPPORT" style="display: none;">
+                    <a href="#" target="_blank" id="bios_popup" alt="BIOS Configurations">
+                        <i class="ion-information-circled btn_skyblue"></i>
+                        <span>BIOS</span>
+                    </a>
+                </li>
+                                
+                <li class="widget_on_off hide" title="Show/Hide limited Dashboard Widgets"> 
+                    <label class="switch">
+                      <input type="checkbox" id="dashboardWidget">
+                      <span class="slider round"></span>
+                    </label>
+                </li>
+                
+                <!-- 2FA:-->
+                <li class="TFA-section">
+                    <a href="#" id="tfa_toggle" data-feature="TFA_SUPPORT" alt="2FA Toggle" value="0" title="Enable/Disable Two Factor Authentication">
+                        <i class="fa fa-unlock" style="color: gray;"></i>
+                        <span>2FA</span>
+                    </a>
+                </li>
+
+                <!-- Live Polling:-->
+                <li class="live-poll-section">
+                    <a href="#" id="live-poll" alt="Live Polling" data-poll="on" title="On/Off to Sync with latest Sensor and EventLog updates.">
+                        <i class="ion ion-loop btn_skyblue" style="color: gray;"></i> 
+						<span>Sync</span>
+                    </a>
+                </li>
+
+                <!-- Refresh Page:-->
+                <li class="refresh-section" title="Reloads the current page.">
+                    <a href="#" id="refreshPage" alt="Refresh Page">
+                        <i class="fa fa-refresh btn_skyblue"></i> 
+						<span>Refresh</span>
+                    </a>
+                </li>
+                
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu" title="The User profile can be viewed.">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span><span class="username">admin</span> <i class="caret"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-allignment-user">
+                        <!-- User image -->
+                        <li class="user-header bg-light-blue">
+                            <span id="user-icon" class="img-circle"><i class="fa fa-user"></i></span>
+                            <!-- <img src="images/fem.png" class="img-circle" alt="User Image" /> -->
+                            <p>
+                                <span class="username">admin</span> - <span class="privilege">Administrator</span>
+                                <!-- <small>since <span class='since'></span></small> -->
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <!--
+                        <li class="user-body">
+                            <div class="col-xs-4 text-center">
+                                <a href="#settings/users/id">Privilege</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#"></a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#tasks">Activities</a>
+                            </div>
+                        </li>
+                        -->
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a class="btn btn-default btn-flat var_profile_href" href="#settings/users/edit/2">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#logout" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>  
+    </nav>
+</header>
+
+<div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 692px;">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="left-side sidebar-offcanvas customized_animated" style="min-height: 692px;">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 692px;"><section class="sidebar" style="overflow: hidden; width: auto; height: 692px;">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div id="serverImage" class="pull-left image"> 
+                    <i id="server-icon" class="fa fa-user iconic " value="white"></i>
+                </div> 
+                <div class="pull-left info main_fw_info">
+                    <p><span><u>Firmware Information</u></span></p>
+                    <p><span class="fm-revision">1.1.21N</span></p>
+                    <p><span class="fm-date">Jan 19 2024 08:30:30 UTC</span></p>
+
+                    <a href="#power-control" id="host_status"><i class="fa fa-circle text-success"></i> <span>Host Online</span></a>
+					<p data-feature="DISPLAY_HOSTBOOT_VERSION_IN_WEBUI" style="display: none;"><span class="bios-version"></span></p>
+
+                </div>
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <select id="idQuicklinks" placeholder="QuicK Links.." tabindex="-1" data-select2-id="idQuicklinks" class="select2-hidden-accessible" aria-hidden="true">
+                    <option data-select2-id="5"></option>
+                <option value="dashboard">Dashboard</option><option value="logs/event-log">Logs &gt; Event Log</option><option value="logs/system-log">Logs &gt; System Log</option><option value="logs/audit-log">Logs &gt; Audit Log</option><option value="logs/video-log">Logs &gt; Video Log</option><option value="logs/sol_video_log">Logs &gt; SOL Video Log</option><option value="sensors">Sensors</option><option value="fru">FRU</option><option value="settings">Settings</option><option value="power-control">Power Control</option><option value="settings/network/dns">Settings &gt; Network Settings &gt; DNS Configuration</option><option value="image_redirection/rmedia">Image Redirection &gt; Remote Media</option><option value="settings/pef/event_filters">Settings &gt; PEF &gt; Event Filters</option><option value="settings/pef/lan_destinations">Settings &gt; PEF &gt; Lan Destinations</option><option value="settings/smtp">Settings &gt; SMTP Settings</option><option value="settings/dying_gasp">Settings &gt; common:dying_gasp</option><option value="settings/date_time">Settings &gt; Date &amp; Time Settings</option><option value="settings/users">Settings &gt; User Management</option><option value="settings/services">Settings &gt; Services</option><option value="settings/video/auto/pre_event">Settings &gt; Video Recording &gt; Auto Video Settings &gt; Pre-Event Video Recordings</option><option value="settings/video/sol/sol_trigger_settings">Settings &gt; Video Recording &gt; SOL Settings &gt; SOL Trigger Settings</option><option value="settings/video/sol/sol_remote_storage">Settings &gt; Video Recording &gt; SOL Settings &gt; SOL Video Settings</option><option value="settings/video/auto/trigger_settings">Settings &gt; Video Recording &gt; Auto Video Settings &gt; Video Trigger Settings</option><option value="settings/network/ip">Settings &gt; Network Settings &gt; IP Address</option><option value="settings/network/link">Settings &gt; Network Settings &gt; Network Link Configuration</option><option value="settings/media/general">Settings &gt; Media Redirection &gt; General Settings</option><option value="remote_control">Remote Control</option><option value="settings/firewall/general_firewall_settings/existing_firewall_settings">Settings &gt; System Firewall &gt; General Firewall Settings &gt; Existing Firewall Settings</option><option value="settings/bsod">Settings &gt; Captured BSOD</option><option value="settings/ext_users/ldap/general_ldap">Settings &gt; External User Services &gt; LDAP Settings &gt; General LDAP Settings</option><option value="maintenance/firmware_update_wizard">Maintenance &gt; Firmware Update</option><option value="settings/media/remote_session">Settings &gt; Media Redirection &gt; Remote Session</option><option value="settings/log/advanced_log">Settings &gt; Log Settings &gt; Advanced Log Settings</option><option value="settings/ipmi_interfaces">Settings &gt; IPMI Interfaces</option><option value="settings/ext_users/active_directory">Settings &gt; External User Services &gt; Active directory Settings</option><option value="settings/ext_users/active_directory/general_active_directory">Settings &gt; External User Services &gt; Active directory Settings &gt; General Active Directory Settings</option><option value="settings/ext_users/active_directory/rolegroup_active_directory">Settings &gt; External User Services &gt; Active directory Settings &gt; Role Groups</option><option value="settings/firewall/ip_firewall/add_ip_rule">Settings &gt; System Firewall &gt; IP Firewall Rules &gt; Add IP Rule</option><option value="settings/firewall/port_firewall/add_port_rule">Settings &gt; System Firewall &gt; Port Firewall Rules &gt; Add Port Rule</option><option value="settings/pef/alert_policies">Settings &gt; PEF &gt; Alert Policies</option><option value="settings/video/auto">Settings &gt; Video Recording &gt; Auto Video Settings</option><option value="maintenance/backup_config">Maintenance &gt; Backup Configuration</option><option value="settings/ext_users">Settings &gt; External User Services</option><option value="settings/firewall">Settings &gt; System Firewall</option><option value="settings/firewall/general_firewall_settings/add_firewall_settings">Settings &gt; System Firewall &gt; General Firewall Settings &gt; Add Firewall Settings</option><option value="settings/firewall/general_firewall_settings">Settings &gt; System Firewall &gt; General Firewall Settings</option><option value="maintenance/firmware_image_location">Maintenance &gt; Firmware Image Location</option><option value="maintenance/firmware_information">Maintenance &gt; Firmware Information</option><option value="host_debug">Host System Diagnostics</option><option value="image_redirection">Image Redirection</option><option value="settings/firewall/ip_firewall">Settings &gt; System Firewall &gt; IP Firewall Rules</option><option value="settings/firewall/ip_firewall/ip_rules">Settings &gt; System Firewall &gt; IP Firewall Rules &gt; Existing IP Rules</option><option value="settings/ext_users/ldap">Settings &gt; External User Services &gt; LDAP Settings</option><option value="settings/ext_users/ldap/rolegroup_ldap">Settings &gt; External User Services &gt; LDAP Settings &gt; Role Groups</option><option value="settings/log/SEL_log_settings_policy">Settings &gt; Log Settings &gt; SEL Log Settings Policy</option><option value="settings/log">Settings &gt; Log Settings</option><option value="maintenance">Maintenance</option><option value="settings/media/active_redirections">Settings &gt; Media Redirection &gt; Active Redirections</option><option value="settings/media">Settings &gt; Media Redirection</option><option value="settings/mouse">Settings &gt; KVM Mouse Setting</option><option value="settings/network">Settings &gt; Network Settings</option><option value="settings/pam_order">Settings &gt; PAM Order</option><option value="settings/pef">Settings &gt; PEF</option><option value="pldm">PLDM</option><option value="settings/firewall/port_firewall">Settings &gt; System Firewall &gt; Port Firewall Rules</option><option value="settings/firewall/port_firewall/port_rules">Settings &gt; System Firewall &gt; Port Firewall Rules &gt; Existing Port Rules</option><option value="maintenance/preserve_configuration">Maintenance &gt; Preserve Configuration</option><option value="settings/ext_users/radius/advanced_radius">Settings &gt; External User Services &gt; RADIUS Settings &gt; Advanced RADIUS Settings</option><option value="settings/ext_users/radius">Settings &gt; External User Services &gt; RADIUS Settings</option><option value="settings/ext_users/radius/general_radius">Settings &gt; External User Services &gt; RADIUS Settings &gt; General RADIUS Settings</option><option value="maintenance/restore_configuration">Maintenance &gt; Restore Configuration</option><option value="maintenance/restore_factory_defaults">Maintenance &gt; Restore Factory Defaults</option><option value="settings/ssl">Settings &gt; SSL Settings</option><option value="settings/ssl/generate_ssl">Settings &gt; SSL Settings &gt; Generate SSL Certificate</option><option value="settings/ssl/upload_ssl">Settings &gt; SSL Settings &gt; Upload SSL Certificate</option><option value="settings/ssl/view_ssl">Settings &gt; SSL Settings &gt; View SSL Certificate</option><option value="maintenance/system_admin">Maintenance &gt; System Administrator</option><option value="settings/telemetry_cups">Settings &gt; Telemetry CUPS</option><option value="settings/video">Settings &gt; Video Recording</option><option value="settings/video/auto/remote_storage">Settings &gt; Video Recording &gt; Auto Video Settings &gt; Video Remote Storage</option><option value=""></option></select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="4" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-idQuicklinks-container"><span class="select2-selection__rendered" id="select2-idQuicklinks-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Quick Links..</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu nav">
+                <li class="">
+                    <a href="#dashboard" tabindex="1">
+                        <i class="fa fa-home"></i> 
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sensors" tabindex="2">
+                        <i class="fa fa-dashboard"></i> 
+                        <span>Sensor</span>
+                    </a>
+                </li>
+				<!--<li data-feature="INVENTORY_SUPPORT">
+                    <a href="#system_inventory_info">
+                        <i class="fa fa-info-circle"></i> 
+                        <span>System Inventory</span>
+                    </a>
+                </li>-->
+                 <li data-feature="REDFISH_HOSTINTERFACE,REDFISH_LEVEL_TWO_SUPPORT" style="display: none;">
+                    <a href="#system_inventory_info" tabindex="3">
+                        <i class="fa fa-info-circle"></i> 
+                        <span>System Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#fru" tabindex="4">
+                        <i class="fa fa-info-circle"></i> 
+                        <span>FRU Information</span>
+                    </a>
+                </li>
+                <!-- <li>
+                            <a href="pages/widgets.html">
+                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                            </a>
+                        </li> -->
+                <li class="treeview">
+                    <a href="#logs" tabindex="5">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>Logs &amp; Reports</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#logs/event-log" tabindex="6" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> <span>IPMI Event Log</span><small class="badge pull-right bg-red ipmi-log-count hide">0</small></a>
+                        </li>
+                        <li><a href="#logs/system-log" tabindex="7" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> <span>System Log</span><small class="badge pull-right bg-yellow system-log-count hide">0</small></a>
+                        </li>
+                        <li><a href="#logs/audit-log" tabindex="8" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> <span>Audit Log</span><small class="badge pull-right bg-yellow audit-log-count hide">0</small></a>
+                        </li>
+                        <li data-feature="AUTOVDORECORD" data-license="KVM"><a href="#logs/video-log" tabindex="9" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> <span>Video Log</span><small class="badge pull-right bg-green video-log-count hide">new</small></a>
+                        </li>
+                        <li data-feature="UARTLOG"><a href="#logs/sol_video_log" tabindex="10" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> <span>SOL Video Log</span><small class="badge pull-right bg-yellow audit-log-count hide">0</small></a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>UI Elements</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
+                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
+                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
+                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
+                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>Forms</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
+                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
+                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-table"></i> <span>Tables</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
+                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+                            </ul>
+                        </li> -->
+                <li>
+                    <a href="#settings" tabindex="11">
+                        <i class="fa fa-cog"></i> 
+                        <span>Settings</span>
+                    </a>
+                </li>
+				<li data-feature="ADVISER_SUPPORT;SOL_SUPPORT" data-license="KVM" class="active">
+					<a href="#remote_control" tabindex="12">
+                        <i class="fa fa-desktop"></i> 
+                        <span>Remote Control</span>
+                    </a>
+                </li>
+                <li data-feature="IMG_REDIRECTION">
+                    <a href="#image_redirection" tabindex="13">
+                        <i class="fa fa-hdd-o"></i> 
+                        <span>Image Redirection</span>
+                    </a>
+                </li>
+                <li data-feature="ACD_SUPPORT;ASD_REMOTE_DBG_SUPPORT;ADDC_SUPPORT" style="display: none;">
+                    <a href="#host_debug" tabindex="14">
+                        <i class="fa fa-desktop"></i> 
+                        <span>Host System Diagnostics</span>
+                    </a>
+                </li>
+                <li data-feature="PLDM_PLATFORM_MONITORING_AND_CONTROL" style="display: none;">
+                    <a href="#pldm" tabindex="15">
+                        <i class="fa fa-database"></i>
+                        <span>PLDM</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#power-control" tabindex="16">
+                        <i class="fa fa-power-off"></i> 
+                        <span>Power Control</span>
+                    </a>
+                </li>
+                <li data-feature="FEATURE_FPX_EXTENSION" style="display: none;">
+                    <a href="#fpx" tabindex="17">
+                        <i class="fa fa-cubes"></i>
+                        <span>Storage Management</span>
+                    </a>
+                </li>
+                <!--
+                <li class="treeview">
+                    <a href="#ae">
+                        <i class="fa fa-code"></i>
+                        <span>Automation Engine</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#ae/tasks"><i class="fa fa-angle-double-right"></i> <span>Tasks &amp; Events</span><small class="badge pull-right bg-red tasks-count hide">0</small></a>
+                        </li>
+                        <li><a href="#ae/scripts"><i class="fa fa-angle-double-right"></i> <span>Scripts</span><small class="badge pull-right bg-yellow script-count hide">0</small></a>
+                        </li>
+                    </ul>
+                </li>-->
+                <li data-feature="AUTOMATION" style="display: none;">
+                    <a href="#scripts" tabindex="18">
+                        <i class="fa fa-code"></i> 
+                        <span>Scripts</span>
+                        <small id="script-badge" class="badge pull-right scripts-count bg-yellow hide"></small>
+                    </a>
+                </li>
+                <li data-feature="AUTOMATION" style="display: none;">
+                    <a href="#tasks" tabindex="19">
+                        <i class="fa fa-calendar"></i> 
+                        <span>Tasks &amp; Events</span>
+                        <small id="task-badge" class="badge pull-right tasks-count bg-red hide"></small>
+                    </a>
+                </li>
+                <li data-feature="MEGARAC_STORE" style="display: none;">
+                    <a href="#store" tabindex="20">
+                        <i class="fa fa-shopping-cart"></i> 
+                        <span>Store</span>
+                        <small class="badge pull-right bg-green">new</small>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="#connect">
+                        <i class="fa fa-exchange"></i> 
+                        <span>Extd. Mgmt.</span> <i class="fa fa-star pull-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#updates">
+                        <i class="fa fa-upload"></i> 
+                        <span>Update</span>
+                    </a>
+                </li> -->
+                <li>
+                    <a href="#maintenance" tabindex="21">
+                        <i class="fa fa-wrench"></i> 
+                        <span>Maintenance</span>
+                    </a>
+                </li>
+                <li data-feature="LONG_HELP" style="display: none;">
+                    <a href="#help" tabindex="22">
+                        <i class="fa fa-question-circle"></i> 
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#logout" tabindex="23">
+                        <i class="fa fa-sign-out"></i> 
+                        <span>Sign out</span>
+                    </a>
+                </li>
+                <!-- <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-folder"></i> <span>Examples</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
+                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
+                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
+                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
+                                <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
+                                <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
+                                <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
+                            </ul>
+                        </li> -->
+            </ul>
+        </section><div class="slimScrollBar" style="background: rgb(255, 255, 255); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 693.001px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(0, 0, 0); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side"><div><!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1>
+		Remote Control
+		<small> <span data-feature="ADVISER_SUPPORT"> Remote KVM </span><span data-feature="SOL_SUPPORT">&amp; SOL</span></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i>Home</a>
+		</li>
+		<li class="active">
+			Remote Control
+		</li>
+	</ol>
+	<div class="pull-right help"><a class="col-sm-1 help-link" href="#"><i class="fa fa-question-circle"></i></a></div>
+</section>
+<div id="kvm_box" data-feature="ADVISER_SUPPORT" class="kvm_box_padding">
+	<div class="box">
+		<section class="content-header">
+			<h1>
+				H5Viewer
+			</h1>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<div role="alert" class="alert alert-info help-item hide">Click 'Launch H5Viewer' button to launch the H5viewer window.</div>
+			<div class="alert alert-success hide"><b></b> </div>
+			<div id="kvm_alert_danger" class="alert alert-danger hide"><b></b></div>
+			<label for="info">Click here to go to <a data-feature="KVM_OR_MEDIA_AVAILABLE" data-license="KVM" href="#settings/media/remote_session">Remote Session Settings</a>.</label>
+			<div class="form-control-static" id="idinfo"></div>
+			<div>
+				<button type="button" class="btn btn-success" id="download"><i id="download-icon" class="fa fa-external-link"></i> &nbsp; Launch H5Viewer
+			</button></div>
+		</section>
+	</div>
+
+</div>
+<!-- /.content -->
+
+<div id="sol_box" class="box" data-feature="SOL_SUPPORT">
+	<section class="content-header">
+		<h1>
+			Serial Over LAN
+		</h1>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div role="alert" class="alert alert-info help-item hide">Click 'Activate' button to launch the HTML5 Serial Over LAN window.</div>
+		<div class="alert alert-success hide"><b></b> </div>
+		<div id="sol_alert_danger" class="alert alert-danger hide"><b></b></div>
+
+		<div>
+			<a class="btn btn-success" id="start"><i id="download-icon" class="fa fa-external-link"></i> &nbsp; Activate</a>
+		</div>
+	</section>
+</div>
+<!-- /.content --></div></aside>
+    <!-- /.right-side -->
+    <div class="modal fade" id="tfaModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Setup Google Authenticator</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Please scan following QR code.</strong></p>
+                    <div id="qrcode" class="pagination-centered"></div>
+                    <hr>
+                    <p><strong>Please save your backup codes for emergency use.</strong></p>
+                    <div id="scratchCode"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./wrapper--></div></main>
+
+    <!-- Application source. -->
+    <script data-main="/app/main" src="/source.min.js"></script>
+
+
+
+
+</body></html>

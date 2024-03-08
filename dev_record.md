@@ -1271,7 +1271,26 @@ So, I feel it’s not meaningful.
 ---
 ---
 ---
+# playwright only tag 
+```js
+test.only('run 5 -- settings/',async ({page}) => {
+...
+...
+});
+test.only('run' , async({page}) => { 
+...
+...
+});
+```
+this writing style will execute everything
+this only writing style is like the mode of a flag
 
+
+---
+---
+---
+## bash error variable spare space
+這裡的問題是 當我寫新的
 
 
 
