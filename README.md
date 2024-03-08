@@ -1,7 +1,7 @@
 ---
 created : Tue Feb  6 08:57:45 CST 2024
 
-date    : Fri Feb 23 10:44:37 CST 2024
+date    : Fri Mar  8 14:50:24 CST 2024
 
 ---
 # Consensus
@@ -39,15 +39,17 @@ powershell -File ".\windows11_init.ps1"
 ---
 ---
 ## in progress
-1. screenshot of setting page    -- chiangchiang 
-2. loop script add fearture : ask whether to delete the previous LOG file --chiangchiang
-3. change the loop burn in bmc struct : (future branch)
+0. urgent fix -->  urgently modularize some function						--chiangchiang
+1. choose delete log
+2. sensor ipmitool get data --> write bashscript 					--chiangchiang
 
 ---
 ## Objective
 Description: A brief description of the work completed.
 1. loop burn in bmc				-- chiangchiang  ❤️  (^◕.◕^)   2024/02/06
 	+ change the struct	: remove the match bmc version  --chaingchiang 2024/02/21
+	+ remove log ( V1 --> not yet chosen )
+	+ change the structure -->   (✿◡‿◡)     2024/03/08
 
 ---
 ## Expected completion

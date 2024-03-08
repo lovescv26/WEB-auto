@@ -2,7 +2,7 @@
 ###{{{
 ### --------------------------------
 ### created	:	Wed Mar  6 16:39:02 CST 2024
-### date	:	Wed Mar  6 16:39:09 CST 2024
+### date	:	Fri Mar  8 13:07:39 CST 2024
 ### README :
 ###			sensors use ipmitool  to catch 
 ###
@@ -37,7 +37,6 @@ function_setip(){
 	then
 		function_set_initial;
 	fi
-
 	#origin_ip = $(grep ip javascript_ip.js | cut -d ' ' -f 3 | cut -d '"' -f 2);
 	origin_ip=$(grep ip javascript_ip.js | cut -d ' ' -f 3 | cut -d '"' -f 2);
 	# echo -e " origin IP : ${origin_ip} ";
@@ -51,32 +50,34 @@ function_setip(){
 			#elif [[ ${con_tem_flag} == "n" ||  "N" ]]	#### ==> error : all will go this condition
 		elif [[ ${con_tem_flag} == "n" || ${con_tem_flag} == "N" ]];then
 			var_tem_fl=520 ;
+			var_ip=${origin_ip};
+			echo -e "======IP====>${var_ip} ";
 		else
 			var_tem_fl=1;
-			echo "  loop anain ";
+			#echo "  loop anain ";
 		fi
 	done
 	# var_tem_fl =1;
 	con_tem_flag=1;
-	
-	echo " var_tem_fl ${var_tem_fl} ";
-
+	#echo " var_tem_fl ${var_tem_fl} ";	### dev_va
 	## TODO  -->  if change IP or not change
 	if [[ ${var_tem_fl} == 25 ]]
 	then
 		while [[ ${con_varify_ip} == 1 ]]
 		do
 			read -p " input your ip " var_ip;
-			read -p " varify ( Y or N ) " con_tem_flag;
+			read -p " varify ip: ${var_ip} ( y to comfirm ) " con_tem_flag;
 			if [[ ${con_tem_flag} == "y" || ${con_tem_flag} == "Y"  ]]   ###???
 			then
 				con_varify_ip=0;
+				#var_ip=${origin_ip};
 			else
 				con_varify_ip=1;
 			fi
-			
 		done
 	fi
+	#echo "=====IP====>${var_ip}";
+	con_varify_ip=1;
 }
 
 	## TODO  --> ipmitool sdr
