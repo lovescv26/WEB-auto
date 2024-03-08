@@ -65,6 +65,8 @@ function_setip(){
 			if [[ ${con_tem_flag} == "y" || ${con_tem_flag} == "Y"  ]]   ###???
 			then
 				con_varify_ip=0;
+				echo -e '// @ts-check' > javascript_ip.js
+				echo -e "export let ip=\"${var_ip}\"">>javascript_ip.js
 				#var_ip=${origin_ip};
 			else
 				con_varify_ip=1;

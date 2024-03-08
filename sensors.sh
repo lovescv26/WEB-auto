@@ -1,8 +1,8 @@
 #! /bin/bash
 ###{{{
 ### --------------------------------
-### created	:	Wed Mar  6 16:39:02 CST 2024
-### date	:	Fri Mar  8 13:07:39 CST 2024
+### created	:	Fri Mar  8 15:50:35 CST 2024
+### date	:	Fri Mar  8 15:50:39 CST 2024
 ### README :
 ###			sensors use ipmitool  to catch 
 ###
