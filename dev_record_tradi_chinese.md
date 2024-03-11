@@ -1289,37 +1289,77 @@ this only writing style is like the mode of a flag
 ---
 ---
 ---
-# bash script ipmitool write a txt file
+# bash script  error
 ## bash insufficient capacity
-The concept is the same, so I’ll use a shortened version to illustrate it
+概念是一樣的 所以 我就用 縮短版來說明
 ```bash
 buf_psu=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 sdr) 
 buf_fan=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 sdr type fan) 
 echo  "${buf_psu}\n">TEST\ RECORD/Sensors/SDR.txt
 echo  "${buf_fan}\n">TEST\ RECORD/Sensors/FAN.txt
 ```
-this looks fine, but it will only run a few fixed lines.
-what mean? 
-It might have retrieved 52 lines of information using ipmitool,
-but it got reduced to 7 lines.
-The available capacity on my system is just those 7 lines buffer
+這樣看沒問題 但是 他會跑只有固定幾行
+他可能ipmitool抓取到的資訊是 52 行
+就變成 7行 我這台可能的空間 就是7行的
+
 ## bash not have EOL
+這就是我說的錯誤訊息
 ```bash
 cat ./TEST\ RECORD/Sensors/SDR.txt
 ===output===>
 CPU0 Temp.       | 48 degrees C      | ok Inlet1 Temp.     | 25 degrees C      | ok Inlet2 Temp.     | 30 degrees C      | ok Outlet1 Temp.    | 26 degrees C      | ok Outlet2 Temp.    | 30 degrees C      | ok CPU0 VCORE       | 1.82 Volts        | ok VDIMM1 1.2V      | 1.25 Volts        | ok VDIMM2 1.2V      | 1.25 Volts        | ok +12V             | 11.97 Volts       | ok +5V              | 5.08 Volts        | ok +3.3V            | 3.32 Volts        | ok VBAT             | 2.96 Volts        | ok SYSFAN1 1        | 0 RPM             | nr SYSFAN2 1        | 0 RPM             | nr SYSFAN3 1        | 0 RPM             | nr SYSFAN4 1        | 0 RPM             | nr SYSFAN5 1        | 0 RPM             | nr PSU0 Status      | 0x00              | ok PSU0 VIn         | 114 Volts         | ok PSU0 +12V        | 11.88 Volts       | ok PSU0 Fan         | 4335 RPM          | ok PSU0 Temp.       | 24 degrees C      | ok PSU1 Status      | 0x00              | ok PSU1 VIn         | 114 Volts         | ok PSU1 +12V        | 12 Volts          | ok PSU1 Fan         | 7395 RPM          | ok PSU1 Temp.       | 24 degrees C      | ok
 ```
-it unexpetedly lumped everything together.
-Now I'm pondering how to sparate it.
-Initially, I even tried extracting the values.
+這時如果只有 當時我很開心地使用
+ipmitool 然後寫入檔案後 
+他竟然給我全部 黏在一起
+害我在思考 要怎麼分開他
+一開始我還用 抓取數值的方式
+```bash
+buf_psu=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 sdr) 
+cou_psu=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 sdr|tr -cd "|" | wc -l)
+```
+在這個5121裡面我只有抓到  54 個 意思是
+54但是我並不知道  他是 怎樣排列 如果用
+我用CLI的方式看來排列 
+```bash
+ipmitool -I lanplus -H 192.168.120.69 -U admin -P 11111111 sdr
+====output====>
+CPU0 Temp.       | 48 degrees C      | ok
+Inlet1 Temp.     | 25 degrees C      | ok
+Inlet2 Temp.     | 30 degrees C      | ok
+Outlet1 Temp.    | 26 degrees C      | ok
+Outlet2 Temp.    | 30 degrees C      | ok
+CPU0 VCORE       | 1.82 Volts        | ok
+VDIMM1 1.2V      | 1.25 Volts        | ok
+VDIMM2 1.2V      | 1.25 Volts        | ok
++12V             | 11.97 Volts       | ok
++5V              | 5.08 Volts        | ok
++3.3V            | 3.32 Volts        | ok
+VBAT             | 2.96 Volts        | ok
+SYSFAN1 1        | 0 RPM             | nr
+SYSFAN2 1        | 0 RPM             | nr
+SYSFAN3 1        | 0 RPM             | nr
+SYSFAN4 1        | 0 RPM             | nr
+SYSFAN5 1        | 0 RPM             | nr
+PSU0 Status      | 0x00              | ok
+PSU0 VIn         | 114 Volts         | ok
+PSU0 +12V        | 11.88 Volts       | ok
+PSU0 Fan         | 4335 RPM          | ok
+PSU0 Temp.       | 24 degrees C      | ok
+PSU1 Status      | 0x00              | ok
+PSU1 VIn         | 114 Volts         | ok
+PSU1 +12V        | 12 Volts          | ok
+PSU1 Fan         | 7395 RPM          | ok
+PSU1 Temp.       | 24 degrees C      | ok
+```
+會知道 他是 3列 但是 我要如何確定 是ok 還是  nr
+OR 其他的 所以 計算好數量 也可能要寫很多東西
+[ref count tr](https://stackoverflow.com/questions/16679369/count-occurrences-of-a-char-in-a-string-using-bash)
 
-I know it’s 3 rows,
-but how can I determine if it’s ‘ok’ or ‘nr’ (not relevant),
-or something else? So,
-calculating the quantity might also require writing a lot of things.
 ### solution
-
-```shell
+一開始我是用 cat的方式變成BASH
+的文字檔的方式 後來發現 好像不用 (莫名其妙就成功了)
+```bash
 buf_psu=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 sdr) 
 echo -e  "${buf_psu}\n"
 echo -e  "${buf_psu}\n">TEST\ RECORD/Sensors/SDR.txt
@@ -1350,7 +1390,6 @@ echo -e  "${buf_psu}\n">TEST\ RECORD/Sensors/PSU.txt
 ##echo "${buf_vol}">TEST\ RECORD/Sensors/VOLTAGE.txt
 ##echo "${buf_psu}">TEST\ RECORD/Sensors/PSU.txt
 ```
-
 
 
 
