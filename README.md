@@ -35,6 +35,7 @@ PS D:\tem\WEB-auto> .\windows11_init.ps1
 ```cmd
 powershell -File ".\windows11_init.ps1"
 ```
+![powershellorcmd](./pic/REAMD_powershell_cmd.png)
 
 ---
 ---
