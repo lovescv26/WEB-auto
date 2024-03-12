@@ -78,6 +78,7 @@ fi
 echo "now use $(grep ip javascript_ip.js|cut -d ' ' -f 3)";
 IFS=${OIFS};
 #$(cat javascript_ip.js|grep ip)
+###	prevent error file is empty
 grep ip javascript_ip.js;
 if [ "$?" == "0" ];
 then
