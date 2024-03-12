@@ -2,10 +2,10 @@
 ###{{{
 ### --------------------------------
 ### created	:	Fri Mar  8 15:50:35 CST 2024
-### date	:	Fri Mar  8 15:50:39 CST 2024
+### date	:	Tue Mar 12 16:46:14 CST 2024
 ### README :
 ###			sensors use ipmitool  to catch 
-###
+###		
 ###
 ###
 ###
@@ -36,16 +36,21 @@ con_tem_nu=0;
 #if [ -d ./TEST\ RECORD/Sensors/ ]
 if [ ! -d ./TEST\ RECORD/Sensors/ ]
 then
-	echo -e " no TEST RECORD/Sensors/";
 	mkdir TEST\ RECORD/;
 	mkdir TEST\ RECORD/Sensors/;
 #else
 #	echo "???"
 fi
+if [[ ! -d ./TEST\ RECORD/Log\&Reports/ ]]
+then
+	mkdir TEST\ RECORD/Log\&Reports/;
+else
+	echo "have log&reports";
+fi
 
 function_setip;
 	## TODO impitool ip is correct !
-function_ipmitool(){
+function_test_ipmitool(){
 	var_tem_ipmitool=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 raw 0x1e 0x01 0x00)
 	if [[ "$?" == "0" ]]
 	then
@@ -56,7 +61,7 @@ function_ipmitool(){
 	fi
 	echo -e "${var_tem_ipmitool}";
 }
-function_ipmitool;
+function_test_ipmitool;
 function_ipmi(){
 						## dir => TEST RECORD/Sensors
 	## todo  --> ipmitool sdr					--> SDR.txt
@@ -90,6 +95,8 @@ echo -e  "${buf_psu}\n">TEST\ RECORD/Sensors/PSU.txt
 ##echo "${buf_tem}">TEST\ RECORD/Sensors/TEMPERATURE.txt
 ##echo "${buf_vol}">TEST\ RECORD/Sensors/VOLTAGE.txt
 ##echo "${buf_psu}">TEST\ RECORD/Sensors/PSU.txt
+buf_sel_elist=$(ipmitool -I lanplus -H ${var_ip} -U admin -P 11111111 sel elist)
+echo -e "${buf_sel_elist}">TEST\ RECORD/Log\&Reports/LOG.txt
 
 }
 #function_ipmi(); #### ---> error 
@@ -106,7 +113,7 @@ echo -e  "${buf_psu}\n">TEST\ RECORD/Sensors/PSU.txt
 #echo "${psu_count}"
 #echo "${psu}">TEST\ RECORD/Sensors/SDR.txt
 
-#function_ipmi;
+function_ipmi;
 
 
 

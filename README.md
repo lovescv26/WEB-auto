@@ -39,7 +39,7 @@ powershell -File ".\windows11_init.ps1"
 
 ---
 ---
-[progress](./agenda.md)
+# [progress](./agenda.md)
 
 ---
 ---

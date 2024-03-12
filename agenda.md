@@ -23,16 +23,26 @@ Description: Expected functionality
 
 ---
 ---
+---
 # agenda
 source from : IPMI Test Report v1.0.20N.xlsx
-|Sensors								|
-|:--:									|
-TEST RECORD\Sensors\SDR.txt				|
-TEST RECORD\Sensors\FAN.txt				|
-TEST RECORD\Sensors\FAN1.txt			|
-TEST RECORD\Sensors\TEMPERATURE.txt		|			
-TEST RECORD\Sensors\VOLTAGE.txt			|
-TEST RECORD\Sensors\PSU.txt				|
+|Sensors									|		|
+|:--:										|:--:	|
+|TEST RECORD\Sensors\SDR.txt				| V		|
+|TEST RECORD\Sensors\FAN.txt				| V		|
+|TEST RECORD\Sensors\FAN1.txt				| V		|
+|TEST RECORD\Sensors\TEMPERATURE.txt		| V		|
+|TEST RECORD\Sensors\VOLTAGE.txt			| V		|
+|TEST RECORD\Sensors\PSU.txt				| V		|
+
+|Log & Report								|		|
+|   :---:									| :---:	|
+|TEST RECORD\Log&Reports\LOG.jpg			| V		|
+|TEST RECORD\Log&Reports\SEL LOG.jpg		| ?		|
+|TEST RECORD\Log&Reports\CLEAR LOG.jpg		| ?		|
+|TEST RECORD\Log&Reports\WARM BOOT SEL.jpg	| ?		|
+|TEST RECORD\Log&Reports\COOL BOOT SEL.jpg	| ?		|
+
 > because  kvm and serial LAN -> due to the screen size
 > there might be issues related to smallness within playwright
 
