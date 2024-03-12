@@ -39,23 +39,7 @@ powershell -File ".\windows11_init.ps1"
 
 ---
 ---
-## in progress
-0. urgent fix -->  urgently modularize some function						--chiangchiang
-1. choose delete log
-2. sensor ipmitool get data --> write bashscript 					--chiangchiang
-
----
-## Objective
-Description: A brief description of the work completed.
-1. loop burn in bmc				-- chiangchiang  ❤️  (^◕.◕^)   2024/02/06
-	+ change the struct	: remove the match bmc version  --chaingchiang 2024/02/21
-	+ remove log ( V1 --> not yet chosen )
-	+ change the structure -->   (✿◡‿◡)     2024/03/08
-
----
-## Expected completion
-Description: Expected functionality
-
+[progress](./agenda.md)
 
 ---
 ---
