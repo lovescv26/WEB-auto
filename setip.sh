@@ -35,18 +35,21 @@ function_setip(){
 	#origin_ip = $(grep ip javascript_ip.js | cut -d ' ' -f 3 | cut -d '"' -f 2);
 	origin_ip=$(grep ip javascript_ip.js | cut -d ' ' -f 3 | cut -d '"' -f 2);
 	# echo -e " origin IP : ${origin_ip} ";
-	## TODO  -->  ask whether change IP
+	## ask whether change IP
+	echo -e "The initial IP  :  \e[31m${origin_ip}\e[0m \n";	## the same variable  with ./updateBMC.sh
 	while [[ ${var_tem_fl} == "1" ]]
 	do
-		read -p " now IP is ${origin_ip} do you want to change? (Y or N) " con_tem_flag;
+		read -p "Do you want to continue useing this IP?  press \"y\" or \"n\" : " con_tem_flag ;
+		#read -p " now IP is ${origin_ip} do you want to change? (Y or N) " con_tem_flag;
+
 		if [[ ${con_tem_flag} == "y" || ${con_tem_flag} == "Y"  ]]
 		then
-			var_tem_fl=25 ;
-			#elif [[ ${con_tem_flag} == "n" ||  "N" ]]	#### ==> error : all will go this condition
-		elif [[ ${con_tem_flag} == "n" || ${con_tem_flag} == "N" ]];then
 			var_tem_fl=520 ;
 			var_ip=${origin_ip};
 			echo -e "======IP====>${var_ip} ";
+		elif [[ ${con_tem_flag} == "n" || ${con_tem_flag} == "N" ]];then
+			var_tem_fl=25 ;
+			#elif [[ ${con_tem_flag} == "n" ||  "N" ]]	#### ==> error : all will go this condition
 		else
 			var_tem_fl=1;
 			#echo "  loop anain ";
@@ -55,13 +58,13 @@ function_setip(){
 	# var_tem_fl =1;
 	con_tem_flag=1;
 	#echo " var_tem_fl ${var_tem_fl} ";	### dev_va
-	## TODO  -->  if change IP or not change
+	## if change IP or not change
 	if [[ ${var_tem_fl} == 25 ]]
 	then
 		while [[ ${con_varify_ip} == 1 ]]
 		do
 			read -p " input your ip " var_ip;
-			read -p " varify ip: ${var_ip} ( y to comfirm ) " con_tem_flag;
+			read -p " varify ip: \"${var_ip}\" ( y to comfirm ) " con_tem_flag;
 			if [[ ${con_tem_flag} == "y" || ${con_tem_flag} == "Y"  ]]   ###???
 			then
 				con_varify_ip=0;

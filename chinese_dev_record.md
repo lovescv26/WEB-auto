@@ -1391,5 +1391,20 @@ echo -e  "${buf_psu}\n">TEST\ RECORD/Sensors/PSU.txt
 ##echo "${buf_psu}">TEST\ RECORD/Sensors/PSU.txt
 ```
 
+---
+---
+---
+# bash read command ignores spaces
+BASH裡面會跳過空白
+```bash
+read -p " varify ip: \"${var_ip}\" ( y to comfirm ) " con_tem_flag;
+```
+我特地加上雙引號 來確認
+默默的降低BUG的發生率
+
+---
+
+
+
 
 

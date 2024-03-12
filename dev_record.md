@@ -1351,6 +1351,18 @@ echo -e  "${buf_psu}\n">TEST\ RECORD/Sensors/PSU.txt
 ##echo "${buf_psu}">TEST\ RECORD/Sensors/PSU.txt
 ```
 
+---
+---
+---
+# bash read command ignores spaces
+In bash, the `read` command ignores spaces.
+```bash
+read -p " varify ip: \"${var_ip}\" ( y to comfirm ) " con_tem_flag;
+```
+I intentionally added double quotes to confirm,
+silently reducing the occurrence rate of bugs.
+
+---
 
 
 
